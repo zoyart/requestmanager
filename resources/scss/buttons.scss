@@ -1,0 +1,106 @@
+// === General vars ===
+$btn-transition: 0.2s linear;
+
+// === Colors ===
+.l-to-y {
+    background-color: $light;
+    &:hover {
+        background-color: $yellow;
+        color: $font-dark;
+    }
+}
+.l-to-d {
+    background-color: $light;
+    &:hover {
+        background-color: $dark;
+        color: $white;
+    }
+}
+.y-to-d {
+    background-color: $yellow;
+    &:hover {
+        background-color: $dark;
+        color: $white;
+    }
+}
+.y-to-l {
+    background-color: $yellow;
+    &:hover {
+        background-color: $light;
+        color: $dark;
+    }
+}
+.w-to-d {
+    background-color: $white;
+    &:hover {
+        background-color: $dark;
+        color: $white;
+    }
+}
+.d-to-l {
+    background-color: $dark;
+    color: $white;
+    &:hover {
+        background-color: $light;
+        color: $dark;
+    }
+}
+
+// === Button ===
+$btn-padding-x: 0.75em;
+$btn-padding-y: 3em;
+
+.button {
+    font-size: 16px;
+    font-weight: 500;
+    color: $font-dark;
+    padding: $btn-padding-x $btn-padding-y;
+    transition: $btn-transition;
+}
+
+
+// === Small button ===
+$btn-padding-x-sm: 0.5em;
+$btn-padding-y-sm: 2em;
+
+.button-sm {
+    font-size: 16px;
+    font-weight: 500;
+    color: $font-dark;
+    padding: $btn-padding-x-sm $btn-padding-y-sm;
+    transition: $btn-transition;
+}
+
+
+// === Circle button ===
+$btn-height-circle: 5em;
+$btn-width-circle: 5em;
+
+.button-circle {
+    font-size: 16px;
+    color: $font-dark;
+    transition: $btn-transition;
+    width: $btn-width-circle;
+    height: $btn-height-circle;
+}
+
+
+// === Circle small button ===
+$btn-width-circle-sm: 3em;
+$btn-height-circle-sm: 3em;
+
+.button-circle-sm {
+    font-size: 16px;
+    color: $font-dark;
+    transition: $btn-transition;
+    width: $btn-width-circle-sm;
+    height: $btn-height-circle-sm;
+}
+
+
+// === Tab ===
+$tab-padding: 0.5em 1.5em;
+
+.tab {
+    padding: $tab-padding;
+}

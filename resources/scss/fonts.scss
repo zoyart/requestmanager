@@ -1,0 +1,59 @@
+// === Font colors ===
+$font-white: #FFFFFF;
+$font-light: #a2a2a2;
+$font-gray: #666666;
+$font-dark: #232323;
+$font-sec: #BCBCBC;
+
+.font-dark {
+    color: $font-dark;
+}
+.font-yellow {
+    color: $yellow;
+}
+.font-light {
+   color: $font-light;
+}
+.font-white {
+    color: $font-white;
+}
+.font-gray {
+    color: $font-gray;
+}
+.font-sec {
+    color: $font-sec;
+}
+// =========================
+.font-text {
+    color: #666666;
+}
+
+// === Font weight ===
+.font-400 {
+    font-weight: 400;
+}
+.font-500 {
+    font-weight: 500;
+}
+.font-700 {
+    font-weight: 700;
+}
+.font-900 {
+    font-weight: 900;
+}
+.fsize-16 {
+    font-size: 16px;
+}
+.fsize-20 {
+    font-size: 20px;
+}
+.fsize-24 {
+    font-size: 24px;
+}
+.fsize-32 {
+    font-size: 32px;
+}
+.fsize-40 {
+    font-size: 40px;
+}
+// =========================

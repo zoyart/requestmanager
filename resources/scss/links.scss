@@ -1,0 +1,25 @@
+$link-font-size: 16px;
+$link-transition: 0.2s linear;
+$link-border: 0;
+
+.link-on-dark {
+    color: $font-light;
+    font-size: $link-font-size;
+    transition: $link-transition;
+    &:hover {
+        color: #FFFFFF;
+    }
+}
+
+// === Circle link ===
+$link-border-radius: 50%;
+$link-height-circle-sm: 3em;
+
+.link-circle-sm {
+    font-size: 16px;
+    border: $link-border;
+    border-radius: $link-border-radius;
+    transition: $link-transition;
+    width: $link-height-circle-sm;
+    height: $link-height-circle-sm;
+}

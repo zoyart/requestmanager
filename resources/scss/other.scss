@@ -1,0 +1,17 @@
+.custom-card {
+    transition: 0.2s linear;
+    &:hover {
+        box-shadow:  0 .5rem 1rem rgba(black, .15);
+    }
+
+}
+
+.title__text {
+    background: url('/resources/images/index.svg') no-repeat;
+    background-size: 100%
+}
+
+table {
+    border: 0;
+    border-color: #F4F4F4;
+}

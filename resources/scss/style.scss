@@ -1,0 +1,74 @@
+// === General ===
+body, html {
+    font-family: 'Montserrat', sans-serif;
+    height: 100%;
+    letter-spacing: normal;
+    color: #232323;
+    font-size: 16px;
+}
+a {
+    text-decoration: none;
+}
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 1 1 auto;
+
+}
+.container {
+    padding: 0;
+}
+// =========================
+
+
+// === Colors ===
+$white: #FFFFFF;
+$light: #F4F4F4;
+$dark: #232323;
+$yellow: #F7E841;
+
+$secondary-1: #F6F6F6;
+$secondary-2: #393939;
+// =========================
+
+
+// === Background colors ===
+.back-dark {
+    background-color: $dark;
+}
+.back-light {
+    background-color: $light;
+}
+.back-white {
+    background-color: $white;
+}
+.back-yellow {
+    background-color: $yellow;
+}
+.back-secondary-2 {
+    background-color: $yellow;
+}
+// =========================
+
+$global-font-size: 16px;
+
+// =========================
+
+
+
+
+
+
+
+
+// === Import items ===
+@import "fonts";
+@import "buttons";
+@import "links";
+@import "other";
+
+
+
