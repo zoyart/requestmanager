@@ -96,7 +96,6 @@
                         'company_id' => $company_id]) }}">Аккаунт
                     </a>
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Сотрудники</a>
-                    <a class="tab rounded-top font-dark text-center font-500" href="{{ route('clients.index', ['company_id' => $company_id]) }}">Клиенты</a>
                 </div>
             </div>
         </div>

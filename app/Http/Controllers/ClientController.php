@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Client;
 
 class ClientController extends Controller
 {
@@ -15,9 +16,9 @@ class ClientController extends Controller
      */
     public function index($company_id)
     {
-        $data = User::where('company_id', $company_id)->where('user_status', 'client')->get();
+        $data = Client::where('company_id', $company_id)->get();
 
-        return view('account.clients', compact('data', 'company_id'));
+        return view('clients.clients', compact('data', 'company_id'));
     }
 
     /**
@@ -25,9 +26,9 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($company_id)
     {
-        //
+        return view('clients.create', compact('company_id'));
     }
 
     /**
@@ -36,24 +37,22 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $company_id)
+    public function store($company_id, Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'surname' => 'required',
-            'position' => 'required',
-            'email' => 'required|email|unique:users|unique:companies',
-            'password' => 'required|confirmed'
+            'address' => 'required',
         ]);
 
-        User::create([
+        Client::create([
             'company_id' => $company_id,
             'name' => $request->name,
-            'surname' => $request->surname,
+            'phone_number' => $request->phone_number,
             'email' => $request->email,
-            'user_status' => 'client',
-            'position' => $request->position,
-            'password' => Hash::make($request->password),
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
+            'address' => $request->address,
+            'working_conditions' => $request->working_conditions,
         ]);
 
         return redirect()->route('clients.index', compact('company_id'));
@@ -67,9 +66,9 @@ class ClientController extends Controller
      */
     public function show($company_id, $id)
     {
-        $data = User::where('id', $id)->get();
-
-        return view('account.client-card', compact('data', 'company_id'));
+        $data = Client::where('id', $id)->get();
+        // Добавить contact person тут
+        return view('clients.card', compact('data', 'company_id'));
     }
 
     /**
@@ -82,7 +81,7 @@ class ClientController extends Controller
     {
         $data = User::where('id', $id)->get();
 
-        return view('account.client-edit', compact('data', 'company_id'));
+        return view('clients.client-edit', compact('data', 'company_id'));
     }
 
     /**

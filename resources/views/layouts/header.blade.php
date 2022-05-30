@@ -28,7 +28,7 @@
                         Компания
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{ route('clients.index', ['company_id' => $company_id]) }}">Клиенты</a></li>
+                        <li><a class="dropdown-item" href="{{ route('clients.index', ['company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}">Клиенты</a></li>
                         <li><a class="dropdown-item" href="{{ route('price-list.index', \Illuminate\Support\Facades\Auth::user()->company_id) }}">Прайс листы</a></li>
                         <li><a class="dropdown-item" href="#">Контракты</a></li>
                         <li><a class="dropdown-item" href="#">Оборудование</a></li>
