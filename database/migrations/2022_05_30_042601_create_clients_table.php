@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->integer('company_id');
 
-            $table->integer('phone_number')->nullable('true');
+            $table->string('phone_number')->nullable('true');
             $table->float('latitude')->nullable('true');
             $table->float('longitude')->nullable('true');
 

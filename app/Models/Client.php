@@ -10,12 +10,17 @@ class Client extends Model
     use HasFactory;
 
     protected $fillable = [
-      'name',
-      'phone_number',
-      'address',
-      'working_conditions',
+        'name',
+        'phone_number',
+        'address',
+        'working_conditions',
         'longitude',
         'latitude',
-        'company_id'
+        'company_id',
+        'email',
     ];
+
+    public function contactPersons() {
+        return $this->hasMany(ContactPerson::class);
+    }
 }

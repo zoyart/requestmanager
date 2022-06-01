@@ -9,7 +9,7 @@ use App\Http\Controllers\PriceListMaterialController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ClientController;
-
+use App\Http\Controllers\ContactPersonController;
 
 // Стартовая страница
 Route::view('/', 'index')->name('index');
@@ -55,6 +55,7 @@ Route::group(['middleware' => ['company', 'auth'], 'prefix' => '{company_id}'], 
 
 //    Клиенты
     Route::resource('/clients', ClientController::class);
+    Route::resource('/contact-person', ContactPersonController::class);
 
 
 

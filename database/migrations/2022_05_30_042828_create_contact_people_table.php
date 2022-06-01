@@ -17,7 +17,7 @@ class CreateContactPeopleTable extends Migration
             $table->id();
             $table->integer('client_id');
 
-            $table->integer('phone_number')->nullable('true');
+            $table->string('phone_number')->nullable('true');
 
             $table->string('name')->nullable('false');
             $table->string('surname')->nullable('true');

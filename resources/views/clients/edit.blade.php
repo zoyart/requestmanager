@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('head-title')
-    Редактирование
+    Редактирование клиента
 @endsection
 
 @section('content')
@@ -10,75 +10,69 @@
             <div class="row">
                 <div class="col">
                     <div class="title font-500 fsize-20">
-                        Изменение данных пользователя "{{ $data[0]['name'] }} {{ $data[0]['surname'] }}"
+                        Изменение данных пользователя "{{ $data[0]['name'] }}"
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="cards back-light min-vh-100">
+    <div class="request-form py-4">
         <div class="container">
-            <form action="{{ route('clients.update', ['company_id' => $company_id, 'client' => $data[0]['id']])}}"
-                  method="post">
+            <form method="post" action="{{ route('clients.update', ['company_id' => $company_id, 'client' => $data[0]['id']]) }}">
                 @csrf
                 @method('PUT')
-                <div class="row py-4">
-                    <div class="col">
-                        <div class="general-info back-white rounded-3 shadow-sm p-4">
-                            <div class="row pb-3">
-                                <div class="col">
-                                    <div class="fsize-20 font-500">Основная информация</div>
-                                </div>
-                            </div>
-                            <div class="font-text">
-                                <div class="row  pb-3">
-                                    <div class="col-3">Имя:</div>
-                                    <div class="col-9">
-                                        <input type="text" class="form-control" id="name" name="name"
-                                               value="{{ $data[0]['name'] }}">
-                                    </div>
-                                </div>
-                                <div class="row  pb-3">
-                                    <div class="col-3">Фамилия:</div>
-                                    <div class="col-9">
-                                        <input type="text" class="form-control" id="surname" name="surname"
-                                               value="{{ $data[0]['surname'] }}">
-                                    </div>
-                                </div>
-                                {{--                                <div class="row  pb-3">--}}
-                                {{--                                    <div class="col-3">Email:</div>--}}
-                                {{--                                    <div class="col-9">--}}
-                                {{--                                        <input type="text" class="form-control" id="email" name="email"--}}
-                                {{--                                               value="{{ $data[0]['email'] }}">--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
-                                <div class="row  pb-3">
-                                    <div class="col-3">Должность:</div>
-                                    <div class="col-9">
-                                        <select name="position" class="form-select">
-                                            <option value="111111111" selected>Пока нечего писать</option>
-                                            <option value="222222222">Исправить</option>
-                                            <option value="333333333">Позже</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row  pb-3">
-                                    <div class="col-3">Пароль:</div>
-                                    <div class="col-9">???</div>
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="title mb-3">
+                            <label for="name" class="form-label">Название</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ $data[0]['name'] }}">
                         </div>
-                        <div class="row my-4">
-                            <div class="col-lg">
-                                <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d">
-                                    Обновить
-                                </button>
-                            </div>
+                        <div class="address mb-3">
+                            <label for="address" class="form-label">Адрес</label>
+                            <input type="text" class="form-control" id="address" name="address" value="{{ $data[0]['address'] }}">
                         </div>
+                        <div class="phone_number mb-3">
+                            <label for="phone_number" class="form-label">Номер телефона</label>
+                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $data[0]['phone_number'] }}">
+                        </div>
+                        <div class="email mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" value="{{ $data[0]['email'] }}">
+                        </div>
+                        <div class="working_conditions mb-3">
+                            <label for="working_conditions" class="form-label">Условия работы с заказчиком</label>
+                            <textarea class="form-control" id="description" rows="10" name="working_conditions" value="{{ $data[0]['working_conditions'] }}"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="latitude mb-3">
+                            <label for="latitude" class="form-label">Широта</label>
+                            <a href="#" data-bs-toggle="tooltip" title="Если вы хотите видеть клиента на карте, то необходимо указать его координаты.">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                </svg>
+                            </a>
+                            <input type="text" class="form-control" id="latitude" name="latitude">
+                        </div>
+                        <div class="longitude mb-3">
+                            <label for="longitude" class="form-label">Долгота</label>
+                            <a href="#" data-bs-toggle="tooltip" title="Если вы хотите видеть клиента на карте, то необходимо указать его координаты.">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                </svg>
+                            </a>
+                            <input type="text" class="form-control" id="longitude" name="longitude">
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-lg">
+                        <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d">Обновить</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
 @endsection

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactPerson;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Client;
 
 class ClientController extends Controller
@@ -42,6 +42,7 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required',
             'address' => 'required',
+            'email' => 'email',
         ]);
 
         Client::create([
@@ -67,8 +68,9 @@ class ClientController extends Controller
     public function show($company_id, $id)
     {
         $data = Client::where('id', $id)->get();
-        // Добавить contact person тут
-        return view('clients.card', compact('data', 'company_id'));
+        $dataContactPerson = ContactPerson::where('client_id', $id)->get();
+
+        return view('clients.card', compact('data', 'company_id', 'dataContactPerson'));
     }
 
     /**
@@ -79,9 +81,9 @@ class ClientController extends Controller
      */
     public function edit($company_id, $id)
     {
-        $data = User::where('id', $id)->get();
+        $data = Client::where('id', $id)->get();
 
-        return view('clients.client-edit', compact('data', 'company_id'));
+        return view('clients.edit', compact('data', 'company_id'));
     }
 
     /**
@@ -91,13 +93,22 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($company_id, Request $request, $id)
+    public function update($company_id, $id, Request $request)
     {
-        //        Сделать валидацию
-        User::where('id', $id)->update([
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'email' => 'email',
+        ]);
+
+        Client::where('id', $id)->update([
             'name' => $request->name,
-            'surname' => $request->surname,
-            'position' => $request->position,
+            'address' => $request->address,
+            'working_conditions' => $request->working_conditions,
+            'email' => $request->email,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'phone_number' => $request->phone_number,
         ]);
 
         return redirect()->route('clients.show', ['company_id' => $company_id, 'client' => $id]);
@@ -111,7 +122,7 @@ class ClientController extends Controller
      */
     public function destroy($company_id, $id)
     {
-        User::where('id', $id)->delete();
+        Client::where('id', $id)->delete();
 
         return redirect()->route('clients.index', compact('company_id'));
     }

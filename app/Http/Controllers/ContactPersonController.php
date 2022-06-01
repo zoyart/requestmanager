@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactPerson;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,9 +16,7 @@ class ContactPersonController extends Controller
      */
     public function index($company_id)
     {
-        $data = User::where('company_id', $company_id)->where('user_status', 'client')->get();
-
-        return view('account.clients', compact('data', 'company_id'));
+        redirect()->route('index');
     }
 
     /**
@@ -27,7 +26,7 @@ class ContactPersonController extends Controller
      */
     public function create()
     {
-        //
+        redirect()->route('index');
     }
 
     /**
@@ -40,23 +39,19 @@ class ContactPersonController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'surname' => 'required',
-            'position' => 'required',
-            'email' => 'required|email|unique:users|unique:companies',
-            'password' => 'required|confirmed'
+            'email' => 'email',
         ]);
 
-        User::create([
-            'company_id' => $company_id,
+        ContactPerson::create([
+            'client_id' => $request->client_id,
             'name' => $request->name,
             'surname' => $request->surname,
             'email' => $request->email,
-            'user_status' => 'client',
-            'position' => $request->position,
-            'password' => Hash::make($request->password),
+            'phone_number' => $request->phone_number,
+            'description' => $request->description,
         ]);
 
-        return redirect()->route('clients.index', compact('company_id'));
+        return redirect()->route('clients.show', ['company_id' => $company_id, 'client' => $request->client_id]);
     }
 
     /**
