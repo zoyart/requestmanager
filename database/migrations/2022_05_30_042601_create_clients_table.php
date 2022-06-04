@@ -17,14 +17,14 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->integer('company_id');
 
-            $table->string('phone_number')->nullable('true');
+            $table->string('phone_number', 15)->nullable('true');
             $table->float('latitude')->nullable('true');
             $table->float('longitude')->nullable('true');
 
-            $table->string('name')->nullable('false');
+            $table->string('name', 45)->nullable('false');
             $table->text('working_conditions')->nullable('true');
-            $table->string('email')->nullable('true');
-            $table->string('address')->nullable('false');
+            $table->string('email', 45)->nullable('true');
+            $table->string('address', 100)->nullable('false');
 
             $table->timestamps();
         });

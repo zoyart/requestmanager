@@ -70,10 +70,10 @@
                                     <td class="py-3">
                                         <a class=""
                                            href="{{ route('requests.show', ['company_id' => $company_id, 'request' => $item['id']]) }}">
-                                            {{ $item['title'] }}
+                                            {{ Str::limit($item['title'], 20, '...') }}
                                         </a>
                                     </td>
-                                    <td class="py-3">{{ $item['description'] }}</td>
+                                    <td class="py-3">{{ Str::limit($item['description'], 30, '...') }}</td>
                                     <td class="py-3">{{ $item['status'] }}</td>
                                     <td class="py-3">{{ $item['urgency'] }}</td>
                                 </tr>

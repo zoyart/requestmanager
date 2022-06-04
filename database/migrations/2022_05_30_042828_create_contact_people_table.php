@@ -17,12 +17,12 @@ class CreateContactPeopleTable extends Migration
             $table->id();
             $table->integer('client_id');
 
-            $table->string('phone_number')->nullable('true');
+            $table->string('phone_number', 15)->nullable('true');
 
-            $table->string('name')->nullable('false');
-            $table->string('surname')->nullable('true');
+            $table->string('name', 45)->nullable('false');
+            $table->string('surname', 45)->nullable('true');
             $table->string('description')->nullable('true');
-            $table->string('email')->nullable('true');
+            $table->string('email', 45)->nullable('true');
 
             $table->timestamps();
         });

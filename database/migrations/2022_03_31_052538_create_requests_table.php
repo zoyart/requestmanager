@@ -17,14 +17,13 @@ class CreateRequestsTable extends Migration
             $table->id();
             $table->integer('company_id')->nullable(false);
 
-            $table->string('title')->nullable(false);
-            $table->string('status')->nullable(false);
-            $table->string('urgency')->nullable(false);
-            $table->string('object_address')->nullable();
+            $table->string('title', 100)->nullable(false);
+            $table->string('status', 45)->nullable(false);
+            $table->string('urgency', 45)->nullable(false);
+            $table->string('object_address', 250)->nullable();
             $table->string('client')->nullable();
-            $table->string('contract')->nullable();
-            $table->string('equipment')->nullable();
-            $table->string('service_object')->nullable();
+            $table->string('equipment', 45)->nullable();
+            $table->string('service_object', 45)->nullable();
 
             $table->integer('inventory_number')->nullable();
             $table->integer('serial_number')->nullable();

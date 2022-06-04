@@ -24,11 +24,13 @@
                 <div class="col-lg-8">
                     <div class="title mb-3">
                         <label for="title" class="form-label">Тема</label>
-                        <input type="text" class="form-control" id="title" name="title">
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                               name="title" placeholder=" @error('title') {{ $message }} @enderror">
                     </div>
                     <div class="description mb-3">
                         <label for="description" class="form-label">Описание</label>
-                        <textarea class="form-control" id="description" rows="10" name="description"></textarea>
+                        <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="10"
+                                  name="description" placeholder="@error('description') {{ $message }} @enderror"></textarea>
                     </div>
                     <div class="urgency mb-3">
                         <label class="form-label">Срочность</label>
