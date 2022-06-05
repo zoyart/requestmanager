@@ -24,8 +24,16 @@ class StoreReqRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:',
+            'title' => 'required',
             'description' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Это поле обязательно к заполнению.',
+            'description.required' => 'Это поле обязательно к заполнению.',
         ];
     }
 }

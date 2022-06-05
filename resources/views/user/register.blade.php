@@ -74,7 +74,7 @@
         </div>
     </nav>
     <div class="content d-flex vh-100">
-        <div class="container d-flex flex-column justify-content-center align-items-center">
+        <div class="container d-flex flex-column justify-content-center align-items-center pt-5">
             <div class="start">
                 <div class="container">
                     <div class="d-flex font-700 fsize-32 font-dark mb-5 justify-content-center">
@@ -82,42 +82,43 @@
                     </div>
                 </div>
             </div>
-            <form method="post" action="{{ route('register.store') }}" class="w-50">
-
+            <form method="post" action="{{ route('register.store') }}" class="w-50 pb-5">
                 @csrf
-
                 <div class="mb-3 form-group">
                     <label for="companyName" class="form-label">Название вашей компании</label>
-                    <input type="text" class="form-control" id="companyName" name="companyName"
-                           value="{{ old('companyName') }}">
+                    <input type="text" class="form-control @error('companyName') is-invalid @enderror" id="companyName"
+                           name="companyName" value="{{ old('companyName') }}"
+                           placeholder="@error('companyName') {{ $message }} @enderror">
                 </div>
                 <div class="mb-3 form-group">
                     <label for="name" class="form-label">Ваше имя</label>
-                    <input type="text" class="form-control" id="name" name="name"
-                           value="{{ old('name') }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                           value="{{ old('name') }}" placeholder="@error('name') {{ $message }} @enderror">
                 </div>
                 <div class="mb-3 form-group">
                     <label for="surname" class="form-label">Ваша фамилия</label>
-                    <input type="text" class="form-control" id="surname" name="surname"
-                           value="{{ old('surname') }}">
+                    <input type="text" class="form-control @error('surname') is-invalid @enderror" id="surname" name="surname"
+                           value="{{ old('surname') }}" placeholder="@error('surname') {{ $message }} @enderror">
                 </div>
                 <div class="mb-3">
-                    <label for="inputEmail" class="form-label">Email адрес</label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email"
-                           value="{{ old('email') }}">
+                    <label for="email" class="form-label">Email адрес</label>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail"
+                           aria-describedby="emailHelp" name="email"
+                           value="" placeholder="@error('email') {{ $message }} @enderror">
                     <div id="emailHelp" class="form-text">Мы никогда не будем делиться вашей электронной почтой с кем-либо.</div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Пароль</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"
+                           placeholder="@error('password') {{ $message }} @enderror">
                 </div>
                 <div class="mb-4">
                     <label for="password_confirmation" class="form-label">Подтвердите пароль</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password_confirmation" name="password_confirmation"
+                           placeholder="@error('password') {{ $message }} @enderror">
                 </div>
 
                 <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d">Зарегестрироваться</button>
-
             </form>
         </div>
     </div>

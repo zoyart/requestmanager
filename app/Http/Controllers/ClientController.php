@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClientRequest;
 use App\Models\ContactPerson;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,14 +38,8 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($company_id, Request $request)
+    public function store($company_id, StoreClientRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'email' => 'email',
-        ]);
-
         Client::create([
             'company_id' => $company_id,
             'name' => $request->name,

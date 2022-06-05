@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLoginRequest;
+use App\Http\Requests\StoreRegistrationRequest;
 use App\Models\User;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -16,16 +18,8 @@ class UserController extends Controller
         return view('user.register');
     }
 
-    public function store(Request $request)
+    public function store(StoreRegistrationRequest $request)
     {
-        $request->validate([
-            'companyName' => 'required',
-            'name' => 'required',
-            'surname' => 'required',
-            'email' => 'required|email|unique:users|unique:companies',
-            'password' => 'required|confirmed'
-        ]);
-
         $company = Company::create([
             'name' => $request->companyName,
             'email' => $request->email,
@@ -53,13 +47,8 @@ class UserController extends Controller
         return view('user.login');
     }
 
-    public function auth(Request $request)
+    public function auth(StoreLoginRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
         if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password,
