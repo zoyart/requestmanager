@@ -164,6 +164,15 @@ a {
   color: #232323;
 }
 
+.l-to-y-icon {
+  background-color: #232323;
+  color: #FFFFFF;
+}
+.l-to-y-icon:hover {
+  background-color: #F7E841;
+  color: #232323;
+}
+
 .button {
   font-size: 16px;
   font-weight: 500;

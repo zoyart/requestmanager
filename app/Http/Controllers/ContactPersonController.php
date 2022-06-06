@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\StoreContactPersonRequest;
 use App\Models\ContactPerson;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,13 +37,8 @@ class ContactPersonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $company_id)
+    public function store(StoreContactPersonRequest $request, $company_id)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'email',
-        ]);
-
         ContactPerson::create([
             'client_id' => $request->client_id,
             'name' => $request->name,
@@ -87,9 +84,8 @@ class ContactPersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($company_id, Request $request, $id)
+    public function update($company_id, StoreClientRequest $request, $id)
     {
-        //        Сделать валидацию
         User::where('id', $id)->update([
             'name' => $request->name,
             'surname' => $request->surname,

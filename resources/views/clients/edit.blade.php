@@ -25,19 +25,27 @@
                     <div class="col-lg-8">
                         <div class="title mb-3">
                             <label for="name" class="form-label">Название</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $data[0]['name'] }}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                   id="name" name="name" value="{{ $data[0]['name'] }}"
+                                   placeholder="@error('name') {{ $message }} @enderror" required>
                         </div>
                         <div class="address mb-3">
                             <label for="address" class="form-label">Адрес</label>
-                            <input type="text" class="form-control" id="address" name="address" value="{{ $data[0]['address'] }}">
+                            <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                   id="address" name="address" value="{{ $data[0]['address'] }}"
+                                   placeholder="@error('address') {{ $message }} @enderror" >
                         </div>
                         <div class="phone_number mb-3">
                             <label for="phone_number" class="form-label">Номер телефона</label>
-                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $data[0]['phone_number'] }}">
+                            <input type="text" class="form-control @error('phone_number') is-invalid @enderror"
+                                   id="phone_number" name="phone_number" value="{{ $data[0]['phone_number'] }}"
+                                   placeholder="@error('phone_number') {{ $message }} @enderror" >
                         </div>
                         <div class="email mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" value="{{ $data[0]['email'] }}">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                   id="email" name="email" value="{{ $data[0]['email'] }}"
+                                   placeholder="@error('email') {{ $message }} @enderror" required>
                         </div>
                         <div class="working_conditions mb-3">
                             <label for="working_conditions" class="form-label">Условия работы с заказчиком</label>

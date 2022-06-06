@@ -102,7 +102,7 @@
             <div class="col">
                 <div class="d-flex">
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Карточка заявки</a>
-                    <a class="tab rounded-top font-dark text-center font-500" href="">Спецификация</a>
+                    <a class="tab rounded-top font-dark text-center font-500" href="">Согласования</a>
                 </div>
             </div>
         </div>
@@ -137,12 +137,6 @@
                             </div>
                         </div>
                         <div class="font-text">
-                            <div class="row  pb-3">
-                                <div class="col-4">Контракт:</div>
-                                <div class="col-8">
-                                    {{ $data['title'] }}
-                                </div>
-                            </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Услуга:</div>
                                 <div class="col-8">data</div>

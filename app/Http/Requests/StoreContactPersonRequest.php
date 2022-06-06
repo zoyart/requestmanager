@@ -13,7 +13,7 @@ class StoreContactPersonRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreContactPersonRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'email',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Это поле обязательно к заполнению.',
+            'email.email' => 'Email введён некорректно.',
         ];
     }
 }

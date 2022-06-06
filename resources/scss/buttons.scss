@@ -46,6 +46,14 @@ $btn-transition: 0.2s linear;
     }
 }
 
+.l-to-y-icon {
+    background-color: $dark;
+    color: $white;
+    &:hover {
+        background-color: $yellow;
+        color: $dark;
+    }
+}
 // === Button ===
 $btn-padding-x: 0.75em;
 $btn-padding-y: 3em;

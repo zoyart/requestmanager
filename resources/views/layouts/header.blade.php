@@ -28,16 +28,20 @@
                         Компания
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{ route('clients.index', ['company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}">Клиенты</a></li>
-                        <li><a class="dropdown-item" href="{{ route('price-list.index', \Illuminate\Support\Facades\Auth::user()->company_id) }}">Прайс листы</a></li>
-                        <li><a class="dropdown-item" href="#">Контракты</a></li>
-                        <li><a class="dropdown-item" href="#">Оборудование</a></li>
-                        <li><a class="dropdown-item" href="">Склад</a></li>
+                        <li><a class="dropdown-item"
+                               href="{{ route('clients.index', ['company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}">Клиенты</a></li>
+                        <li><a class="dropdown-item"
+                               href="{{ route('price-list.index', \Illuminate\Support\Facades\Auth::user()->company_id) }}">Прайс листы</a></li>
+                        <li><a class="dropdown-item"
+                               href="#">Оборудование</a></li>
+                        <li><a class="dropdown-item"
+                               href="">Склад</a></li>
 
                     </ul>
                 </div>
                 <li class="nav-item me-2">
-                    <a class="nav-link link-on-dark" href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id, 'company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}">Аккаунт</a>
+                    <a class="nav-link link-on-dark"
+                       href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id, 'company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}">Аккаунт</a>
                 </li>
 
 

@@ -127,19 +127,25 @@
                                         <div class="modal-body">
                                             <div class="name my-3">
                                                 <label for="name" class="form-label">Имя</label>
-                                                <input type="text" class="form-control" id="name" name="name">
+                                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                       id="name" name="name"
+                                                       placeholder="@error('name') {{ $message }} @enderror">
                                             </div>
                                             <div class="surname my-3">
                                                 <label for="surname" class="form-label">Фамилия</label>
-                                                <input type="text" class="form-control" id="surname" name="surname">
+                                                <input type="text" class="form-control @error('surname') is-invalid @enderror"
+                                                       id="surname" name="surname"
+                                                       placeholder="@error('surname') {{ $message }} @enderror">
                                             </div>
                                             <div class="email my-3">
                                                 <label for="email" class="form-label">Email</label>
-                                                <input type="text" class="form-control" id="email" name="email">
+                                                <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                                       id="email" name="email" placeholder="@error('email') {{ $message }} @enderror">
                                             </div>
                                             <div class="phone_number my-3">
                                                 <label for="phone_number" class="form-label">Номер телефона</label>
-                                                <input type="text" class="form-control" id="phone_number" name="phone_number">
+                                                <input type="text" class="form-control @error('phone_number') is-invalid @enderror"
+                                                       id="phone_number" name="phone_number" placeholder="@error('phone_number') {{ $message }} @enderror">
                                             </div>
                                             <div class="description mb-3">
                                                 <label for="description" class="form-label">Примечания</label>
