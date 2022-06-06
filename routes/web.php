@@ -28,7 +28,7 @@ Route::group(['middleware', 'auth'], function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
 
-Route::group(['middleware' => ['company', 'auth'], 'prefix' => '{company_id}'], function () {
+Route::group(['middleware' => ['auth']], function () {
 //    Заявка
     Route::put('/requests/change-status/{id}', [RequestController::class, 'changeStatus'])->name('requests.change-status');
     Route::delete('/requests/delete-few', [RequestController::class, 'deleteFew'])->name('requests.delete-few');

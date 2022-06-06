@@ -36,17 +36,17 @@
                     <div class="fsize-20 font-500 pb-3">Создать</div>
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2">
-                            <a href="{{ route('requests.create', \Illuminate\Support\Facades\Auth::user()->company_id) }}" class="nav-link p-0 link-on-dark">
+                            <a href="{{ route('requests.create') }}" class="nav-link p-0 link-on-dark">
                                 Заявку
                             </a>
                         </li>
                         <li class="nav-item mb-2">
-                            <a href="{{ route('clients.create', ['company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}" class="nav-link p-0 link-on-dark">
+                            <a href="{{ route('clients.create') }}" class="nav-link p-0 link-on-dark">
                                 Клиента
                             </a>
                         </li>
                         <li class="nav-item mb-2">
-                            <a href="{{ route('price-list.index', \Illuminate\Support\Facades\Auth::user()->company_id) }}" class="nav-link p-0 link-on-dark">
+                            <a href="{{ route('price-list.index') }}" class="nav-link p-0 link-on-dark">
                                 Прайс-лист
                             </a>
                         </li>
@@ -58,11 +58,14 @@
 
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2"><a
-                                href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id, 'company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}" class="nav-link p-0 link-on-dark">Аккаунт</a></li>
+                                href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id]) }}"
+                                class="nav-link p-0 link-on-dark">Аккаунт</a></li>
                         <li class="nav-item mb-2"><a
-                                href="{{ route('clients.index', ['company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}" class="nav-link p-0 link-on-dark">Клиенты</a></li>
+                                href="{{ route('clients.index') }}"
+                                class="nav-link p-0 link-on-dark">Клиенты</a></li>
                         <li class="nav-item mb-2"><a
-                                href="{{ route('requests.index', \Illuminate\Support\Facades\Auth::user()->company_id) }}" class="nav-link p-0 link-on-dark">Главная</a></li>
+                                href="{{ route('requests.index') }}"
+                                class="nav-link p-0 link-on-dark">Главная</a></li>
                     </ul>
                 </div>
             </div>

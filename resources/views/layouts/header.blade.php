@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg back-dark py-3 shadow-sm">
     <div class="container">
-        <a class="navbar-brand me-5" href="{{ route('requests.index', \Illuminate\Support\Facades\Auth::user()->company_id) }}">
+        <a class="navbar-brand me-5" href="{{ route('requests.index') }}">
             <div class="d-flex align-items-center fs-6">
                 <div class="me-2">
                     <img style="height: 40px;" src="{{ asset("resources/icons/logo.png") }}" alt="">
@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item me-2">
-                    <a class="nav-link link-on-dark" href="{{ route('requests.create', \Illuminate\Support\Facades\Auth::user()->company_id) }}">Создать заявку</a>
+                    <a class="nav-link link-on-dark" href="{{ route('requests.create') }}">Создать заявку</a>
                 </li>
                 <div class="dropdown nav-item me-2">
                     <a class="nav-link link-on-dark" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,9 +29,9 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li><a class="dropdown-item"
-                               href="{{ route('clients.index', ['company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}">Клиенты</a></li>
+                               href="{{ route('clients.index') }}">Клиенты</a></li>
                         <li><a class="dropdown-item"
-                               href="{{ route('price-list.index', \Illuminate\Support\Facades\Auth::user()->company_id) }}">Прайс листы</a></li>
+                               href="{{ route('price-list.index') }}">Прайс листы</a></li>
                         <li><a class="dropdown-item"
                                href="#">Оборудование</a></li>
                         <li><a class="dropdown-item"
@@ -41,7 +41,7 @@
                 </div>
                 <li class="nav-item me-2">
                     <a class="nav-link link-on-dark"
-                       href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id, 'company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}">Аккаунт</a>
+                       href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id]) }}">Аккаунт</a>
                 </li>
 
 

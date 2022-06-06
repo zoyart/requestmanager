@@ -16,17 +16,10 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $company_id = Auth::user()->company_id;
-        $user_status = Auth::user()->user_status;
+        $company_id = (int) Auth::user()->company_id;
+        $data = \App\Models\Request::where('company_id', $company_id)->get();
 
-        if ($user_status === 'client') {
-//            Тут доделать
-//            $data = \App\Models\Request::where('company_id', $company_id)->where()->get();
-        } else {
-            $data = \App\Models\Request::where('company_id', $company_id)->get();
-        }
-
-        return view('requests.requests', compact('data', 'company_id'));
+        return view('requests.requests', compact('data'));
     }
 
     /**
@@ -65,11 +58,12 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company_id, $id)
+    public function show($id)
     {
+        $company_id = (int) Auth::user()->company_id;
         $data = \App\Models\Request::where('company_id', $company_id)->where('id', $id)->get()[0];
 
-        return view('requests.card', compact('data', 'company_id'));
+        return view('requests.card', compact('data'));
     }
 
     /**
@@ -78,11 +72,12 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($company_id, $id)
+    public function edit($id)
     {
+        $company_id = (int) Auth::user()->company_id;
         $data = \App\Models\Request::where('company_id', $company_id)->where('id', $id)->get()[0];
 
-        return view('requests.edit', compact('data', 'company_id'));
+        return view('requests.edit', compact('data'));
     }
 
     /**
@@ -92,15 +87,17 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($company_id, Request $request, $id)
+    public function update(Request $request, $id)
     {
+        $company_id = (int) Auth::user()->company_id;
+
         \App\Models\Request::where('id', $id)->update([
             'title' => $request->title,
         ]);
 
         $data = \App\Models\Request::where('company_id', $company_id)->get();
 
-        return view('requests.requests', compact('data', 'company_id'));
+        return view('requests.requests', compact('data'));
     }
 
     /**
@@ -109,13 +106,13 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function changeStatus($company_id, $id, Request $request)
+    public function changeStatus($id, Request $request)
     {
         \App\Models\Request::where('id', $id)->update([
             'status' => $request->status,
         ]);
 
-        return redirect()->route('requests.show', ['company_id' => $company_id, 'request' => $id]);
+        return redirect()->route('requests.show', ['request' => $id]);
     }
 
     /**
@@ -124,15 +121,17 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($company_id, $id)
+    public function destroy($id)
     {
+        $company_id = (int) Auth::user()->company_id;
         \App\Models\Request::where('company_id', $company_id)->where('id', $id)->delete();
 
-        return redirect()->route('requests.index', $company_id);
+        return redirect()->route('requests.index');
     }
 
-    public function deleteFew($company_id, Request $request)
+    public function deleteFew(Request $request)
     {
+        $company_id = (int) Auth::user()->company_id;
         $request_array = $request->all();
 //      ID всех отмеченных чекбоксов
         $ids = array_slice($request_array, 2);
@@ -141,6 +140,6 @@ class RequestController extends Controller
             \App\Models\Request::where('company_id', $company_id)->where('id', $item)->delete();
         }
 
-        return redirect()->route('requests.index', $company_id);
+        return redirect()->route('requests.index');
     }
 }

@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <div class="requests-table rounded bg-white">
-                    <form action="{{ route('requests.delete-few', ['company_id' => $company_id]) }}" method="post"
+                    <form action="{{ route('requests.delete-few') }}" method="post"
                           id="form-checkbox">
                         @csrf
                         @method('DELETE')
@@ -69,7 +69,7 @@
                                     <td class="py-3">{{ $item['id'] }}</td>
                                     <td class="py-3">
                                         <a class=""
-                                           href="{{ route('requests.show', ['company_id' => $company_id, 'request' => $item['id']]) }}">
+                                           href="{{ route('requests.show', ['request' => $item['id']]) }}">
                                             {{ Str::limit($item['title'], 20, '...') }}
                                         </a>
                                     </td>

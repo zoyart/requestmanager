@@ -19,7 +19,7 @@
     <div class="card__buttons">
         <div class="container">
             <div class="d-flex">
-                <form action="{{ route('requests.destroy', ['company_id' => $company_id, 'request' => $data['id']]) }}"
+                <form action="{{ route('requests.destroy', ['request' => $data['id']]) }}"
                       method="post">
                     @csrf
                     @method('delete')
@@ -34,7 +34,7 @@
                         </div>
                     </button>
                 </form>
-                <form action="{{ route('requests.edit', ['company_id' => $company_id, 'request' => $data['id']]) }}"
+                <form action="{{ route('requests.edit', ['request' => $data['id']]) }}"
                       method="get">
                     <button type="submit" class="button-circle-sm rounded-circle border-0 y-to-d me-3">
                         <div class="d-flex align-items-center justify-content-center">
@@ -52,7 +52,7 @@
                         data-bs-toggle="modal">
                     Изменить статус
                 </button>
-                <form action="{{ route('requests.change-status', ['company_id' => $company_id, 'id' => $data['id']]) }}"
+                <form action="{{ route('requests.change-status', ['id' => $data['id']]) }}"
                       method="post">
                 @csrf
                 @method('PUT')
