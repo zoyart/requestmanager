@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -45,8 +46,9 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company_id, $id)
+    public function show($id)
     {
+        $company_id = Auth::user()->company_id;
         $data = User::where('id', $id)->get();
         $company_data = Company::where('id', $company_id)->get();
 

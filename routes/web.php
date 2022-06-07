@@ -56,18 +56,6 @@ Route::group(['middleware' => ['auth']], function () {
 //    Клиенты
     Route::resource('/clients', ClientController::class);
     Route::resource('/contact-person', ContactPersonController::class);
-
-
-
-//    Проверка на права
-    Route::group([ 'middleware' => ['client', 'employee'] ], function() {
-        Route::resource('/clients', ClientController::class);
-        Route::resource('/employees', EmployeeController::class);
-
-        Route::delete('/requests/delete-few', [RequestController::class, 'deleteFew'])->name('requests.delete-few');
-        Route::resource('/requests', RequestController::class);
-//    Снятие запрета на просмотр всех заявок у клиентов и сотрудников
-        Route::get('/requests', [RequestController::class, 'index'])->name('requests.index')->withoutMiddleware(['employee', 'client']);
-    });
+    
 });
 

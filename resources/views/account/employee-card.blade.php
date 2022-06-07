@@ -19,7 +19,7 @@
     <div class="card__buttons pb-4">
         <div class="container">
             <div class="d-flex">
-                <form action="{{ route('employees.destroy', ['company_id' => $company_id, 'employee' => $data[0]['id']]) }}" method="post">
+                <form action="{{ route('employees.destroy', ['employee' => $data[0]['id']]) }}" method="post">
                     @csrf
                     @method('delete')
                     <button type="submit" class="button-circle-sm rounded-circle border-0 y-to-d me-3">
@@ -33,7 +33,7 @@
                         </div>
                     </button>
                 </form>
-                <form action="{{ route('employees.edit', ['company_id' => $company_id, 'employee' => $data[0]['id']]) }}" method="get">
+                <form action="{{ route('employees.edit', ['employee' => $data[0]['id']]) }}" method="get">
                     <button type="submit" class="button-circle-sm rounded-circle border-0 y-to-d me-3">
                         <div class="d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

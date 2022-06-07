@@ -33,7 +33,7 @@
                 <div class="d-flex">
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Аккаунт</a>
                     @if(\Illuminate\Support\Facades\Auth::user()->user_status === 'owner')
-                    <a class="tab rounded-top font-dark text-center font-500" href="{{ route('employees.index', ['company_id' => $company_id]) }}">Сотрудники</a>
+                    <a class="tab rounded-top font-dark text-center font-500" href="{{ route('employees.index') }}">Сотрудники</a>
                     @endif
                 </div>
             </div>

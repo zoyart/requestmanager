@@ -7,6 +7,7 @@ use App\Models\ContactPerson;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Client;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -15,11 +16,12 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($company_id)
+    public function index()
     {
+        $company_id = Auth::user()->company_id;
         $data = Client::where('company_id', $company_id)->get();
 
-        return view('clients.clients', compact('data', 'company_id'));
+        return view('clients.clients', compact('data'));
     }
 
     /**
@@ -27,9 +29,9 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($company_id)
+    public function create()
     {
-        return view('clients.create', compact('company_id'));
+        return view('clients.create');
     }
 
     /**
@@ -38,8 +40,10 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($company_id, StoreClientRequest $request)
+    public function store(StoreClientRequest $request)
     {
+        $company_id = Auth::user()->company_id;
+
         Client::create([
             'company_id' => $company_id,
             'name' => $request->name,
@@ -51,7 +55,7 @@ class ClientController extends Controller
             'working_conditions' => $request->working_conditions,
         ]);
 
-        return redirect()->route('clients.index', compact('company_id'));
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -60,12 +64,12 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company_id, $id)
+    public function show($id)
     {
         $data = Client::where('id', $id)->get();
         $dataContactPerson = ContactPerson::where('client_id', $id)->get();
 
-        return view('clients.card', compact('data', 'company_id', 'dataContactPerson'));
+        return view('clients.card', compact('data','dataContactPerson'));
     }
 
     /**
@@ -74,11 +78,11 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($company_id, $id)
+    public function edit($id)
     {
         $data = Client::where('id', $id)->get();
 
-        return view('clients.edit', compact('data', 'company_id'));
+        return view('clients.edit', compact('data'));
     }
 
     /**
@@ -88,7 +92,7 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($company_id, $id, Request $request)
+    public function update($id, Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -106,7 +110,7 @@ class ClientController extends Controller
             'phone_number' => $request->phone_number,
         ]);
 
-        return redirect()->route('clients.show', ['company_id' => $company_id, 'client' => $id]);
+        return redirect()->route('clients.show', ['client' => $id]);
     }
 
     /**
@@ -115,10 +119,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($company_id, $id)
+    public function destroy($id)
     {
         Client::where('id', $id)->delete();
 
-        return redirect()->route('clients.index', compact('company_id'));
+        return redirect()->route('clients.index');
     }
 }

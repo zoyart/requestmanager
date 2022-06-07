@@ -39,7 +39,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('requests.index', Auth::user()->company_id);
+        return redirect()->route('requests.index');
     }
 
     public function loginForm()
@@ -53,7 +53,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            return redirect()->route('requests.index', Auth::user()->company_id);
+            return redirect()->route('requests.index');
         }
 
         return redirect()->back();

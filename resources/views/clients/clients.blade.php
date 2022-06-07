@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col">
                     <div class="d-flex" id="actions">
-                        <a href="{{ route('clients.create', ['company_id' => $company_id]) }}">
+                        <a href="{{ route('clients.create') }}">
                             <button type="button"
                                     class="d-inline-block button-sm border-0 rounded-pill y-to-d me-3">
                                 Создать
@@ -53,7 +53,7 @@
                                     <tr>
                                         <td class="py-3">
                                             <a class=""
-                                               href="{{ route('clients.show', ['client' => $item['id'], 'company_id' => $company_id]) }}">
+                                               href="{{ route('clients.show', ['client' => $item['id']]) }}">
                                                 {{ $item['name'] }}
                                             </a>
                                         </td>

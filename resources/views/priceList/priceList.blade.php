@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <!-- Modal create -->
-                <form action=" {{ route('price-list.store', ['company_id' => $company_id]) }} "
+                <form action=" {{ route('price-list.store') }} "
                       method="post">
                     @csrf
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -105,7 +105,7 @@
         <div class="container">
             <div class="row">
                 <div class="requests-table rounded bg-white">
-                    <form action="{{ route('price-list.delete-few', ['company_id' => $company_id]) }}" method="post"
+                    <form action="{{ route('price-list.delete-few') }}" method="post"
                           id="form-checkbox">
                         @csrf
                         @method('DELETE')
@@ -133,7 +133,7 @@
                                     </td>
                                     <td class="py-3">
                                         <a class="price-list_name"
-                                           href=" {{ route('work.show', ['company_id' => $company_id, 'id' => $item['id']]) }} ">{{ $item['name'] }}
+                                           href=" {{ route('work.show', ['id' => $item['id']]) }} ">{{ $item['name'] }}
                                         </a>
                                     </td>
                                     <td class="py-3">{{ $item['created_at'] }}</td>

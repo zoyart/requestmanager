@@ -19,7 +19,7 @@ class PriceListController extends Controller
         $company_id = Auth::user()->company_id;
         $data = PriceList::where('company_id', $company_id)->get();
 
-        return view('priceList.priceList', compact('company_id', 'data'));
+        return view('priceList.priceList', compact('data'));
     }
 
     /**
@@ -38,8 +38,9 @@ class PriceListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $company_id)
+    public function store(Request $request)
     {
+        $company_id = Auth::user()->company_id;
         $author = Auth::user()->name;
         $priceListName = $request->name;
 
@@ -49,7 +50,7 @@ class PriceListController extends Controller
             'author' => $author,
         ]);
 
-        return redirect()->route('price-list.index', compact('company_id'));
+        return redirect()->route('price-list.index');
     }
 
 
@@ -62,7 +63,7 @@ class PriceListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $company_id, $id)
+    public function edit(Request $request, $id)
     {
 
     }
@@ -75,7 +76,7 @@ class PriceListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $company_id, $id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -91,9 +92,11 @@ class PriceListController extends Controller
         //
     }
 
-    public function deleteFew(Request $request, $company_id)
+    public function deleteFew(Request $request)
     {
+        $company_id = Auth::user()->company_id;
         $request_array = $request->all();
+
 //      ID всех отмеченных чекбоксов
         $ids = array_slice($request_array, 2);
 
@@ -101,6 +104,6 @@ class PriceListController extends Controller
             PriceList::where('company_id', $company_id)->where('id', $item)->delete();
         }
 
-        return redirect()->route('price-list.index', compact('company_id'));
+        return redirect()->route('price-list.index');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PriceList;
 use App\Models\PriceListObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PriceListMaterialController extends Controller
 {
@@ -34,7 +35,7 @@ class PriceListMaterialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $company_id, $id)
+    public function store(Request $request, $id)
     {
         PriceListObject::create([
             'price_list_id' => $request->priceListId,
@@ -45,7 +46,7 @@ class PriceListMaterialController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('material.show', compact('company_id', 'id'));
+        return redirect()->route('material.show', compact('id'));
     }
 
     /**
@@ -54,12 +55,12 @@ class PriceListMaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company_id, $id)
+    public function show($id)
     {
         $data = PriceListObject::where('price_list_id', $id)->where('type', 'material')->get();
         $priceListData = PriceList::where('id', $id)->get();
 
-        return view('priceList.materials', compact('data', 'company_id', 'id', 'priceListData'));
+        return view('priceList.materials', compact('data', 'id', 'priceListData'));
     }
 
     /**
@@ -96,9 +97,10 @@ class PriceListMaterialController extends Controller
         //
     }
 
-    public function deleteFew($company_id, Request $request, $id)
+    public function deleteFew(Request $request, $id)
     {
         $request_array = $request->all();
+
 //      ID всех отмеченных чекбоксов
         $ids = array_slice($request_array, 2);
 
@@ -106,6 +108,6 @@ class PriceListMaterialController extends Controller
             PriceListObject::where('price_list_id', $id)->where('id', $item)->delete();
         }
 
-        return redirect()->route('material.show', compact('company_id', 'id'));
+        return redirect()->route('material.show', compact('id'));
     }
 }

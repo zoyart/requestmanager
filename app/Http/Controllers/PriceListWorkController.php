@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PriceList;
 use App\Models\PriceListObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PriceListWorkController extends Controller
 {
@@ -14,8 +15,10 @@ class PriceListWorkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $company_id, $id)
+    public function store(Request $request, $id)
     {
+        $company_id = Auth::user()->company_id;
+
         PriceListObject::create([
             'price_list_id' => $request->priceListId,
             'name' => $request->name,
@@ -25,7 +28,7 @@ class PriceListWorkController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('work.show', compact('company_id', 'id'));
+        return redirect()->route('work.show', compact('id'));
     }
 
     /**
@@ -40,12 +43,13 @@ class PriceListWorkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company_id, $id)
+    public function show($id)
     {
+        $company_id = Auth::user()->company_id;
         $data = PriceListObject::where('price_list_id', $id)->where('type', 'work')->get();
         $priceListData = PriceList::where('id', $id)->get();
 
-        return view('priceList.work', compact('data', 'company_id', 'id', 'priceListData'));
+        return view('priceList.work', compact('data','id', 'priceListData'));
     }
 
     /**
@@ -71,9 +75,11 @@ class PriceListWorkController extends Controller
         //
     }
 
-    public function deleteFew($company_id, Request $request, $id)
+    public function deleteFew(Request $request, $id)
     {
+        $company_id = Auth::user()->company_id;
         $request_array = $request->all();
+
 //      ID всех отмеченных чекбоксов
         $ids = array_slice($request_array, 2);
 

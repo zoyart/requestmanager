@@ -18,7 +18,7 @@
     </div>
     <div class="request-form py-4">
         <div class="container">
-            <form method="post" action="{{ route('clients.update', ['company_id' => $company_id, 'client' => $data[0]['id']]) }}">
+            <form method="post" action="{{ route('clients.update', ['client' => $data[0]['id']]) }}">
                 @csrf
                 @method('PUT')
                 <div class="row">

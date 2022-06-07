@@ -49,7 +49,7 @@ class RequestController extends Controller
             'urgency' => $request->urgency,
         ]);
 
-        return redirect()->route('requests.index', $company_id);
+        return redirect()->route('requests.index');
     }
 
     /**

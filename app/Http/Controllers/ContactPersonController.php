@@ -7,6 +7,7 @@ use App\Http\Requests\StoreContactPersonRequest;
 use App\Models\ContactPerson;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ContactPersonController extends Controller
@@ -16,7 +17,7 @@ class ContactPersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($company_id)
+    public function index()
     {
         redirect()->route('index');
     }
@@ -37,7 +38,7 @@ class ContactPersonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreContactPersonRequest $request, $company_id)
+    public function store(StoreContactPersonRequest $request)
     {
         ContactPerson::create([
             'client_id' => $request->client_id,
@@ -48,7 +49,7 @@ class ContactPersonController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('clients.show', ['company_id' => $company_id, 'client' => $request->client_id]);
+        return redirect()->route('clients.show', ['client' => $request->client_id]);
     }
 
     /**
@@ -57,11 +58,11 @@ class ContactPersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company_id, $id)
+    public function show($id)
     {
         $data = User::where('id', $id)->get();
 
-        return view('account.client-card', compact('data', 'company_id'));
+        return view('account.client-card', compact('data'));
     }
 
     /**
@@ -70,11 +71,11 @@ class ContactPersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($company_id, $id)
+    public function edit($id)
     {
         $data = User::where('id', $id)->get();
 
-        return view('account.client-edit', compact('data', 'company_id'));
+        return view('account.client-edit', compact('data'));
     }
 
     /**
@@ -84,7 +85,7 @@ class ContactPersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($company_id, StoreClientRequest $request, $id)
+    public function update(StoreClientRequest $request, $id)
     {
         User::where('id', $id)->update([
             'name' => $request->name,
@@ -92,7 +93,7 @@ class ContactPersonController extends Controller
             'position' => $request->position,
         ]);
 
-        return redirect()->route('clients.show', ['company_id' => $company_id, 'client' => $id]);
+        return redirect()->route('clients.show', ['client' => $id]);
     }
 
     /**
@@ -101,10 +102,10 @@ class ContactPersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($company_id, $id)
+    public function destroy($id)
     {
         User::where('id', $id)->delete();
 
-        return redirect()->route('clients.index', compact('company_id'));
+        return redirect()->route('clients.index');
     }
 }

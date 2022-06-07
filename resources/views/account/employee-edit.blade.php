@@ -18,7 +18,7 @@
     </div>
     <div class="cards back-light min-vh-100">
         <div class="container">
-            <form action="{{ route('employees.update', ['company_id' => $company_id, 'employee' => $data[0]['id']])}}"
+            <form action="{{ route('employees.update', ['employee' => $data[0]['id']])}}"
                   method="post">
                 @csrf
                 @method('PUT')

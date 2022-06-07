@@ -19,7 +19,7 @@
     <div class="card__buttons pb-4">
         <div class="container">
             <div class="d-flex">
-                <form action="{{ route('clients.destroy', ['company_id' => $company_id, 'client' => $data[0]['id']]) }}"
+                <form action="{{ route('clients.destroy', ['client' => $data[0]['id']]) }}"
                       method="post">
                     @csrf
                     @method('delete')
@@ -34,7 +34,7 @@
                         </div>
                     </button>
                 </form>
-                <form action="{{ route('clients.edit', ['company_id' => $company_id, 'client' => $data[0]['id']]) }}"
+                <form action="{{ route('clients.edit', ['client' => $data[0]['id']]) }}"
                       method="get">
                     <button type="submit" class="button-circle-sm rounded-circle border-0 y-to-d me-3">
                         <div class="d-flex align-items-center justify-content-center">
@@ -111,8 +111,7 @@
                             </div>
                         </div>
                         <!-- Modal create -->
-                        <form action="{{ route('contact-person.store',
-                      ['company_id' => $company_id]) }}"
+                        <form action="{{ route('contact-person.store') }}"
                               method="post">
                             @csrf
                             <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -194,7 +193,7 @@
                                     <tr>
                                         <td class="py-3">
                                             <a class=""
-                                               href="{{ route('contact-person.show', ['contact_person' => $item['id'], 'company_id' => $company_id]) }}">
+                                               href="{{ route('contact-person.show', ['contact_person' => $item['id']]) }}">
                                                 {{ $item['name'] }}
                                             </a>
                                         </td>

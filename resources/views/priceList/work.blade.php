@@ -37,7 +37,7 @@
                 </div>
 
                 <!-- Modal -->
-                <form action=" {{ route('work.store', ['company_id' => $company_id, 'id' => $id]) }} "
+                <form action=" {{ route('work.store', ['id' => $id]) }} "
                       method="post">
                     @csrf
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -98,7 +98,7 @@
                 <div class="d-flex">
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Прайс лист работы</a>
                     <a class="tab rounded-top font-dark text-center font-500" href="{{ route('material.show',
-                                ['company_id' => $company_id, 'id' => $id]) }}">
+                                ['id' => $id]) }}">
                         Прайс лист материалы</a>
                 </div>
             </div>
@@ -108,7 +108,7 @@
         <div class="container">
             <div class="row">
                 <div class="requests-table rounded bg-white">
-                    <form action="{{ route('work.delete-few', ['company_id' => $company_id, 'id' => $id]) }}" method="post"
+                    <form action="{{ route('work.delete-few', ['id' => $id]) }}" method="post"
                           id="form-checkbox">
                         @csrf
                         @method('DELETE')

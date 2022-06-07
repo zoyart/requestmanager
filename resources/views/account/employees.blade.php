@@ -28,8 +28,7 @@
                     </div>
                 </div>
                 <!-- Modal create -->
-                <form action="{{ route('employees.store',
-                      ['company_id' => \Illuminate\Support\Facades\Auth::user()->company_id]) }}"
+                <form action="{{ route('employees.store') }}"
                       method="post">
                     @csrf
                     <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -92,8 +91,7 @@
             <div class="col">
                 <div class="d-flex">
                     <a class="tab rounded-top font-dark text-center font-500" href="{{ route('account.show', [
-                        'account' => \Illuminate\Support\Facades\Auth::user()->id,
-                        'company_id' => $company_id]) }}">Аккаунт
+                        'account' => \Illuminate\Support\Facades\Auth::user()->id]) }}">Аккаунт
                     </a>
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Сотрудники</a>
                 </div>
@@ -120,10 +118,7 @@
                                 <tr>
                                     <td class="py-3">
                                         <a class=""
-                                           href="{{ route('employees.show', [
-                                                'company_id' => $company_id,
-                                                'employee' => $item['id'],
-                                                ]) }}">
+                                           href="{{ route('employees.show', ['employee' => $item['id']]) }}">
                                             {{ $item['name'] }}
                                         </a>
                                     </td>

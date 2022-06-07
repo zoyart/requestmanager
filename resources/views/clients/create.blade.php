@@ -18,7 +18,7 @@
     </div>
     <div class="request-form py-4">
         <div class="container">
-            <form method="post" action="{{ route('clients.store', ['company_id' => $company_id]) }}">
+            <form method="post" action="{{ route('clients.store') }}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-8">

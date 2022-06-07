@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
@@ -13,12 +14,12 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($company_id)
+    public function index()
     {
-
+        $company_id = Auth::user()->company_id;
         $data = User::where('company_id', $company_id)->where('user_status', 'employee')->get();
 
-        return view('account.employees', compact('data', 'company_id'));
+        return view('account.employees', compact('data'));
     }
 
     /**
@@ -37,8 +38,10 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $company_id)
+    public function store(Request $request)
     {
+        $company_id = Auth::user()->company_id;
+
         $request->validate([
             'name' => 'required',
             'surname' => 'required',
@@ -57,7 +60,7 @@ class EmployeeController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('employees.index', compact('company_id'));
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -66,11 +69,11 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company_id, $id)
+    public function show($id)
     {
         $data = User::where('id', $id)->get();
 
-        return view('account.employee-card', compact('data', 'company_id'));
+        return view('account.employee-card', compact('data'));
     }
 
     /**
@@ -79,11 +82,11 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($company_id, $id)
+    public function edit($id)
     {
         $data = User::where('id', $id)->get();
 
-        return view('account.employee-edit', compact('data', 'company_id'));
+        return view('account.employee-edit', compact('data'));
     }
 
     /**
@@ -93,7 +96,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($company_id, $id, Request $request)
+    public function update($id, Request $request)
     {
 //        Сделать валидацию
         User::where('id', $id)->update([
@@ -102,7 +105,7 @@ class EmployeeController extends Controller
             'position' => $request->position,
         ]);
 
-        return redirect()->route('employees.show', ['company_id' => $company_id, 'employee' => $id]);
+        return redirect()->route('employees.show', ['employee' => $id]);
     }
 
     /**
@@ -111,10 +114,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($company_id, $id)
+    public function destroy($id)
     {
         User::where('id', $id)->delete();
 
-        return redirect()->route('employees.index', compact('company_id'));
+        return redirect()->route('employees.index');
     }
 }
