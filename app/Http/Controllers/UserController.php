@@ -7,8 +7,10 @@ use App\Http\Requests\StoreRegistrationRequest;
 use App\Models\User;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -25,19 +27,30 @@ class UserController extends Controller
             'email' => $request->email,
         ]);
 
-        $companyId = Company::where('email', $request->email)->value('id');
+        $company_id = Company::where('email', $request->email)->value('id');
 
         $user = User::create([
             'name' => $request->name,
             'surname' => $request->surname,
-            'company_id' => $companyId,
+            'company_id' => $company_id,
             'user_status' => 'owner',
-            'position' => 'owner',
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+//      Создаём роль "владелец"
+        $role = Role::create([
+            'name' => 'Владелец',
+            'company_id' => $company_id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+//      Выдаём роль "владелец" при регистрации аккаунта
+        $user->assignRole($role);
+
         Auth::login($user);
+
 
         return redirect()->route('requests.index');
     }

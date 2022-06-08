@@ -23,7 +23,7 @@
                     <div class="d-flex" id="actions">
                         <button type="button" data-bs-target="#create" data-bs-toggle="modal"
                                 class="d-inline-block button-sm border-0 rounded-pill y-to-d me-3">
-                            Создать
+                            Создать аккаунт
                         </button>
                     </div>
                 </div>
@@ -94,6 +94,7 @@
                         'account' => \Illuminate\Support\Facades\Auth::user()->id]) }}">Аккаунт
                     </a>
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Сотрудники</a>
+                    <a class="tab rounded-top font-dark text-center font-500" href="{{ route('role.index') }}">Права доступа</a>
                 </div>
             </div>
         </div>
@@ -102,7 +103,6 @@
         <div class="container">
             <div class="row">
                 <div class="requests-table rounded bg-white">
-
                         <table class="table">
                             <thead class="">
                             <tr>

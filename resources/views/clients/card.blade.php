@@ -119,46 +119,65 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">Создать Контактное лицо</h5>
+                                            <h5 class="modal-title" id="staticBackdropLabel">Создать Контактное
+                                                лицо</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="name my-3">
-                                                <label for="name" class="form-label">Имя</label>
-                                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            <div class="mb-3 form-group">
+                                                <label for="name" class="form-label">Ваше имя</label>
+                                                <input type="text"
+                                                       class="form-control @error('name') is-invalid @enderror"
                                                        id="name" name="name"
+                                                       value="{{ old('name') }}"
                                                        placeholder="@error('name') {{ $message }} @enderror">
                                             </div>
-                                            <div class="surname my-3">
-                                                <label for="surname" class="form-label">Фамилия</label>
-                                                <input type="text" class="form-control @error('surname') is-invalid @enderror"
+                                            <div class="mb-3 form-group">
+                                                <label for="surname" class="form-label">Ваша фамилия</label>
+                                                <input type="text"
+                                                       class="form-control @error('surname') is-invalid @enderror"
                                                        id="surname" name="surname"
+                                                       value="{{ old('surname') }}"
                                                        placeholder="@error('surname') {{ $message }} @enderror">
                                             </div>
-                                            <div class="email my-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                                       id="email" name="email" placeholder="@error('email') {{ $message }} @enderror">
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email адрес</label>
+                                                <input type="email"
+                                                       class="form-control @error('email') is-invalid @enderror"
+                                                       id="inputEmail"
+                                                       aria-describedby="emailHelp" name="email"
+                                                       value="" placeholder="@error('email') {{ $message }} @enderror">
+                                                <div id="emailHelp" class="form-text">Мы никогда не будем делиться вашей
+                                                    электронной почтой с кем-либо.
+                                                </div>
                                             </div>
-                                            <div class="phone_number my-3">
-                                                <label for="phone_number" class="form-label">Номер телефона</label>
-                                                <input type="text" class="form-control @error('phone_number') is-invalid @enderror"
-                                                       id="phone_number" name="phone_number" placeholder="@error('phone_number') {{ $message }} @enderror">
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Пароль</label>
+                                                <input type="password"
+                                                       class="form-control @error('password') is-invalid @enderror"
+                                                       id="password" name="password"
+                                                       placeholder="@error('password') {{ $message }} @enderror">
                                             </div>
-                                            <div class="description mb-3">
-                                                <label for="description" class="form-label">Примечания</label>
-                                                <textarea class="form-control" id="description" rows="5" name="description"></textarea>
+                                            <div class="mb-4">
+                                                <label for="password_confirmation" class="form-label">Подтвердите
+                                                    пароль</label>
+                                                <input type="password"
+                                                       class="form-control @error('password') is-invalid @enderror"
+                                                       id="password_confirmation" name="password_confirmation"
+                                                       placeholder="@error('password') {{ $message }} @enderror">
                                             </div>
-                                            <input type="hidden" name="client_id" value="{{ $data[0]['id'] }}">
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-start">
-                                            <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d">
-                                                Создать
-                                            </button>
-                                            <button type="button" class="d-inline-block button-sm border-0 rounded-pill l-to-d"
-                                                    data-bs-dismiss="modal">Отмена
-                                            </button>
+                                            <input type="text" hidden name="client_id" value="{{ $data[0]['id'] }}">
+                                            <div class="modal-footer d-flex justify-content-start">
+                                                <button type="submit"
+                                                        class="d-inline-block button-sm border-0 rounded-pill y-to-d">
+                                                    Создать
+                                                </button>
+                                                <button type="button"
+                                                        class="d-inline-block button-sm border-0 rounded-pill l-to-d"
+                                                        data-bs-dismiss="modal">Отмена
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -184,8 +203,6 @@
                                     <th scope="col" class="fw-normal py-3">Имя</th>
                                     <th scope="col" class="fw-normal py-3">Фамилия</th>
                                     <th scope="col" class="fw-normal py-3">Email</th>
-                                    <th scope="col" class="fw-normal py-3">Номер телефона</th>
-                                    <th scope="col" class="fw-normal py-3">Примечание</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -199,8 +216,6 @@
                                         </td>
                                         <td class="py-3">{{ $item['surname'] }}</td>
                                         <td class="py-3">{{ $item['email'] }}</td>
-                                        <td class="py-3">{{ $item['phone_number'] }}</td>
-                                        <td class="py-3">{{ $item['description'] }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

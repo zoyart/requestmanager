@@ -50,13 +50,12 @@ class EmployeeController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        User::create([
+        $user = User::create([
             'company_id' => $company_id,
             'name' => $request->name,
             'surname' => $request->surname,
             'email' => $request->email,
             'user_status' => 'employee',
-            'position' => $request->position,
             'password' => Hash::make($request->password),
         ]);
 

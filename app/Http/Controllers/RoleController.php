@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\StoreContactPersonRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
-class ContactPersonController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,10 @@ class ContactPersonController extends Controller
      */
     public function index()
     {
-        redirect()->route('index');
+        $company_id = Auth::user()->company_id;
+        $data = Role::where('company_id', $company_id)->where('name', '!=', 'Владелец')->get();
+
+        return view('role.role', compact('data'));
     }
 
     /**
@@ -27,7 +30,12 @@ class ContactPersonController extends Controller
      */
     public function create()
     {
-        redirect()->route('index');
+        $request = Permission::where('app', 'request')->get();
+//        $priceList = Permission::where('app', 'priceList')->get();
+//        $employee = Permission::where('app', 'employee')->get();
+//        $client = Permission::where('app', 'client')->get();
+
+        return view('role.create', compact('request'));
     }
 
     /**
@@ -36,20 +44,26 @@ class ContactPersonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreContactPersonRequest $request)
+    public function store(Request $request)
     {
         $company_id = Auth::user()->company_id;
 
-        $user = User::create([
-            'company_id' => $company_id,
-            'name' => $request->input('name'),
-            'surname' => $request->input('surname'),
-            'email' => $request->input('email'),
-            'user_status' => 'client',
-            'password' => Hash::make($request->password),
+        $request->validate([
+            'permissions.*' => 'required|integer|exists:permissions,id'
         ]);
 
-        return redirect()->route('clients.show', ['client' => $request->input('client_id')]);
+
+
+
+        $permissions = Permission::whereIn('id', $request->permissions)->get();
+
+        $user = User::find(7);
+        $userMain = Auth::user();
+
+//        dd($user, $userMain);
+        $user->givePermissionTo($permissions);
+
+        return redirect()->route('role.index');
     }
 
     /**
@@ -60,9 +74,7 @@ class ContactPersonController extends Controller
      */
     public function show($id)
     {
-        $data = User::where('id', $id)->get();
-
-        return view('account.client-card', compact('data'));
+        //
     }
 
     /**
@@ -73,9 +85,7 @@ class ContactPersonController extends Controller
      */
     public function edit($id)
     {
-        $data = User::where('id', $id)->get();
-
-        return view('account.client-edit', compact('data'));
+        //
     }
 
     /**
@@ -85,15 +95,9 @@ class ContactPersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreClientRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        User::where('id', $id)->update([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'position' => $request->position,
-        ]);
-
-        return redirect()->route('clients.show', ['client' => $id]);
+        //
     }
 
     /**
@@ -104,8 +108,6 @@ class ContactPersonController extends Controller
      */
     public function destroy($id)
     {
-        User::where('id', $id)->delete();
-
-        return redirect()->route('clients.index');
+        //
     }
 }
