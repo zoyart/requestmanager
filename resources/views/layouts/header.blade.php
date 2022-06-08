@@ -43,20 +43,6 @@
                     <a class="nav-link link-on-dark"
                        href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id]) }}">Аккаунт</a>
                 </li>
-
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link header-link" href="#">Сотрудники</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link header-link" href="#">Документация</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link header-link" href="#">Оборудование</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link header-link" href="#">Склад</a>
-                </li> -->
             </ul>
             <div class="mx-5">
                 <label class="font-light font-500" for="">
