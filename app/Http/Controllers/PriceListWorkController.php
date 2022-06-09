@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Auth;
 class PriceListWorkController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function __construct()
+    {
+        // Проверка на права
+        $this->middleware('can:Просмотр работ прайс-листа', ['only' => 'show']);
+        $this->middleware('can:Удаление работ', ['only' => 'deleteFew']);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -17,7 +29,6 @@ class PriceListWorkController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $company_id = Auth::user()->company_id;
 
         PriceListObject::create([
             'price_list_id' => $request->priceListId,
@@ -45,7 +56,6 @@ class PriceListWorkController extends Controller
      */
     public function show($id)
     {
-        $company_id = Auth::user()->company_id;
         $data = PriceListObject::where('price_list_id', $id)->where('type', 'work')->get();
         $priceListData = PriceList::where('id', $id)->get();
 
@@ -59,18 +69,6 @@ class PriceListWorkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
     {
         //
     }

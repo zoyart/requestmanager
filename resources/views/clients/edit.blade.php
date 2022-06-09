@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Изменение данных пользователя "{{ $data[0]['name'] }}"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page.name')
+    Изменение данных пользователя "{{ $data[0]['name'] }}"
+@endsection
+
     <div class="request-form py-4">
         <div class="container">
             <form method="post" action="{{ route('clients.update', ['client' => $data[0]['id']]) }}">

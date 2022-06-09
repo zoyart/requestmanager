@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Редактирование заявки "{{ $data['id'] }}"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page.name')
+    Редактирование заявки "{{ $data['id'] }}"
+@endsection
+
     <div class="cards back-light min-vh-100">
         <div class="container">
             <form action="{{ route('requests.update', ['request' => $data['id']])}}"

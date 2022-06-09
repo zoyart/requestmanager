@@ -7,6 +7,18 @@
     <div class="wrapper">
         @include('layouts.header')
         <main class="content">
+            <div class="page__name py-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="title font-500 fsize-20 pb-3">
+                                @yield('page.name')
+                            </div>
+                            <hr class="dropdown-divider">
+                        </div>
+                    </div>
+                </div>
+            </div>
             @yield('content')
         </main>
         @include('layouts.footer')

@@ -15,6 +15,20 @@ class ContactPersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        // Проверка на права
+        $this->middleware('can:Просмотр карточки контактного лица', ['only' => 'show']);
+        $this->middleware('can:Создание контактного лица', ['only' => ['create', 'store']]);
+        $this->middleware('can:Редактирование контактного лица', ['only' => ['edit', 'update']]);
+        $this->middleware('can:Удаление контактного лица', ['only' => 'destroy']);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         redirect()->route('index');

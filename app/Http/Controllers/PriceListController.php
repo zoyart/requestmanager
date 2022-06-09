@@ -14,6 +14,21 @@ class PriceListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        // Проверка на права
+        $this->middleware('can:Просмотр всех прайс-листов', ['only' => 'index']);
+        $this->middleware('can:Создание прайс-листов', ['only' => ['create', 'store']]);
+        $this->middleware('can:Редактирование прайс-листов', ['only' => ['edit', 'update']]);
+        $this->middleware('can:Удаление прайс-листов', ['only' => 'deleteFew']);
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $company_id = Auth::user()->company_id;
@@ -52,22 +67,6 @@ class PriceListController extends Controller
 
         return redirect()->route('price-list.index');
     }
-
-
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request, $id)
-    {
-
-    }
-
 
     /**
      * Update the specified resource in storage.

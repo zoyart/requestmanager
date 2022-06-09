@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Личный кабинет "{{ $data[0]['name'] }} {{ $data[0]['surname'] }}"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    @section('page.name')
+        Личный кабинет "{{ $data[0]['name'] }} {{ $data[0]['surname'] }}"
+    @endsection
+
     <div class="container pb-2">
         <div class="col">
             <div class="d-flex" id="actions">

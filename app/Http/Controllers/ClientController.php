@@ -16,6 +16,21 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        // Проверка на права
+        $this->middleware('can:Просмотр всех клиентов', ['only' => 'index']);
+        $this->middleware('can:Просмотр карточки клиента', ['only' => 'show']);
+        $this->middleware('can:Создание клиента', ['only' => ['create', 'store']]);
+        $this->middleware('can:Редактирование клиента', ['only' => ['edit', 'update']]);
+        $this->middleware('can:Удаление клиента', ['only' => 'destroy']);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $company_id = Auth::user()->company_id;

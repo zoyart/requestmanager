@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-<div class="page__name py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="title font-500 fsize-20">
-                    Создание заявки
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+@section('page.name')
+    Создание заявки
+@endsection
+
 <div class="request-form py-4">
     <div class="container">
         <form method="post" action="{{ route('requests.store', \Illuminate\Support\Facades\Auth::user()->company_id) }}">

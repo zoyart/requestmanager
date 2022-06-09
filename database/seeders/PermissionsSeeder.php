@@ -34,9 +34,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'Удаление заявки',
                             'app' => 'request'
         ]);
-//        Permission::create(['name' => 'Множественное удаление заявок',
-//            'app' => 'request'
-//        ]);
 
         // Права на прайс листы
         Permission::create(['name' => 'Просмотр всех прайс-листов',
@@ -96,6 +93,19 @@ class PermissionsSeeder extends Seeder
         ]);
         Permission::create(['name' => 'Удаление клиента',
             'app' => 'client'
+        ]);
+
+        Permission::create(['name' => 'Создание контактного лица',
+            'app' => 'contact_person'
+        ]);
+        Permission::create(['name' => 'Просмотр карточки контактного лица',
+            'app' => 'contact_person'
+        ]);
+        Permission::create(['name' => 'Редактирование контактного лица',
+            'app' => 'contact_person'
+        ]);
+        Permission::create(['name' => 'Удаление контактного лица',
+            'app' => 'contact_person'
         ]);
     }
 }

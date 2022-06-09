@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Прайс листы
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page.name')
+    Прайс листы
+@endsection
+
     <div class="price-list-form pb-4">
         <div class="container">
             <div class="row">

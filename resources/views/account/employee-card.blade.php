@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Карточка сотрудника
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page.name')
+    Карточка сотрудника
+@endsection
+
     <div class="card__buttons pb-4">
         <div class="container">
             <div class="d-flex">
@@ -115,6 +109,7 @@
                             <div class="col-lg">
                                 <div class="requests">
                                     <div class="font-500 fsize-20 pb-2">Заявки</div>
+                                    <hr class="dropdown-divider">
                                     <div class="font-text pb-2 d-flex">
                                         <input type="checkbox" class="form-check-input me-2" disabled>
                                         <label class="form-check-label" for="name">Выделить все</label>
@@ -134,6 +129,7 @@
                             <div class="col-lg">
                                 <div class="price_lists">
                                     <div class="font-500 fsize-20 pb-2">Прайс листы</div>
+                                    <hr class="dropdown-divider">
                                     <div class="font-text pb-2 d-flex">
                                         <input type="checkbox" class="form-check-input me-2" disabled>
                                         <label class="form-check-label" for="">Выделить все</label>
@@ -154,6 +150,7 @@
                             <div class="col-lg">
                                 <div class="employees">
                                     <div class="font-500 fsize-20 pb-2">Сотрудники</div>
+                                    <hr class="dropdown-divider">
                                     <div class="font-text pb-2 d-flex">
                                         <input type="checkbox" class="form-check-input me-2" disabled>
                                         <label class="form-check-label" for="name">Выделить все</label>
@@ -174,10 +171,12 @@
                             <div class="col-lg">
                                 <div class="clients">
                                     <div class="font-500 fsize-20 pb-2">Клиенты</div>
+                                    <hr class="dropdown-divider">
                                     <div class="font-text pb-2 d-flex">
                                         <input type="checkbox" class="form-check-input me-2" disabled>
                                         <label class="form-check-label" for="name">Выделить все</label>
                                     </div>
+
                                     @foreach($client as $item)
                                         <div class="font-text pb-1 d-flex">
                                             <input type="checkbox" class="form-check-input me-2" disabled
@@ -189,6 +188,19 @@
                                             </label>
                                         </div>
                                     @endforeach
+                                    <hr class="dropdown-divider">
+                                    @foreach($contact_person as $item)
+                                        <div class="font-text pb-1 d-flex">
+                                            <input type="checkbox" class="form-check-input me-2" disabled
+                                                   name="permissions[]"
+                                                   @if($user->hasPermissionTo($item->name)) checked @endif
+                                                   value="{{ $item['id'] }}">
+                                            <label class="form-check-label" for="exampleCheck{{ $item['id'] }}">
+                                                {{ $item['name'] }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>

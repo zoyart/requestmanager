@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Заявка "{{ $data['id'] }}"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page.name')
+    Заявка "{{ $data['id'] }}"
+@endsection
+
     <div class="card__buttons">
         <div class="container">
             <div class="d-flex">

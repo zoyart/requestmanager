@@ -14,6 +14,22 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        // Проверка на права
+        $this->middleware('can:Просмотр всех заявок', ['only' => 'index']);
+        $this->middleware('can:Просмотр карточки заявки', ['only' => 'show']);
+        $this->middleware('can:Создание заявки', ['only' => ['create', 'store']]);
+        $this->middleware('can:Редактирование заявки', ['only' => ['edit', 'update', 'changeStatus']]);
+        $this->middleware('can:Удаление заявки', ['only' => ['destroy', 'deleteFew']]);
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $company_id = (int) Auth::user()->company_id;

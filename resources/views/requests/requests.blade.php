@@ -5,17 +5,9 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Всё заявки
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('page.name')
+    Все заявки
+@endsection
     <div class="action">
         <div class="container">
             <div class="row">

@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Создание карточки клиента
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page.name')
+    Создание карточки клиента
+@endsection
+
     <div class="request-form py-4">
         <div class="container">
             <form method="post" action="{{ route('clients.store') }}">

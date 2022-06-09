@@ -14,9 +14,11 @@ class PriceListMaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct()
     {
-        //
+        // Проверка на права
+        $this->middleware('can:Просмотр материалов прайс-листа', ['only' => 'show']);
+        $this->middleware('can:Удаление материалов', ['only' => 'deleteFew']);
     }
 
     /**
@@ -82,17 +84,6 @@ class PriceListMaterialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }
