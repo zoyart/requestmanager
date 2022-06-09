@@ -55,11 +55,7 @@
                                     </div>
                                     <div class="position mb-3">
                                         <label class="form-label">Должность</label>
-                                        <select name="position" class="form-select">
-                                            <option value="position" selected>Тут нужно добавлять должности</option>
-                                            <option value="position">Ещё одну</option>
-                                            <option value="position">И последнюю (или нет)</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="position" name="position">
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Пароль</label>
@@ -94,7 +90,6 @@
                         'account' => \Illuminate\Support\Facades\Auth::user()->id]) }}">Аккаунт
                     </a>
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Сотрудники</a>
-                    <a class="tab rounded-top font-dark text-center font-500" href="{{ route('role.index') }}">Права доступа</a>
                 </div>
             </div>
         </div>

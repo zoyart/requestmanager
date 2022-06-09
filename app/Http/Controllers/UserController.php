@@ -34,20 +34,13 @@ class UserController extends Controller
             'surname' => $request->surname,
             'company_id' => $company_id,
             'user_status' => 'owner',
+            'position' => 'owner',
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-//      Создаём роль "владелец"
-        $role = Role::create([
-            'name' => 'Владелец',
-            'company_id' => $company_id,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
 
-//      Выдаём роль "владелец" при регистрации аккаунта
-        $user->assignRole($role);
+        $user->syncPermissions('Владелец');
 
         Auth::login($user);
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 class EmployeeController extends Controller
 {
@@ -14,22 +15,23 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        // Проверка на права
+        $this->middleware('can:Просмотр всех сотрудников', ['only' => 'index']);
+        $this->middleware('can:Просмотр карточки сотрудника', ['only' => 'show']);
+        $this->middleware('can:Создание сотрудника', ['only' => 'store']);
+        $this->middleware('can:Редактирование сотрудника', ['only' => ['edit', 'update']]);
+        $this->middleware('can:Удаление сотрудника', ['only' => 'destroy']);
+
+    }
+
     public function index()
     {
         $company_id = Auth::user()->company_id;
         $data = User::where('company_id', $company_id)->where('user_status', 'employee')->get();
 
         return view('account.employees', compact('data'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -56,6 +58,7 @@ class EmployeeController extends Controller
             'surname' => $request->surname,
             'email' => $request->email,
             'user_status' => 'employee',
+            'position' => $request->position,
             'password' => Hash::make($request->password),
         ]);
 
@@ -71,8 +74,13 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $data = User::where('id', $id)->get();
+        $user = User::find($id);
+        $request = Permission::where('app', 'request')->get();
+        $priceList = Permission::where('app', 'priceList')->get();
+        $employee = Permission::where('app', 'employee')->get();
+        $client = Permission::where('app', 'client')->get();
 
-        return view('account.employee-card', compact('data'));
+        return view('account.employee-card', compact('data', 'request', 'priceList', 'employee', 'client', 'user'));
     }
 
     /**
@@ -84,8 +92,13 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $data = User::where('id', $id)->get();
+        $user = User::find($id);
+        $request = Permission::where('app', 'request')->get();
+        $priceList = Permission::where('app', 'priceList')->get();
+        $employee = Permission::where('app', 'employee')->get();
+        $client = Permission::where('app', 'client')->get();
 
-        return view('account.employee-edit', compact('data'));
+        return view('account.employee-edit', compact('data', 'request', 'priceList', 'employee', 'client', 'user'));
     }
 
     /**
@@ -97,12 +110,19 @@ class EmployeeController extends Controller
      */
     public function update($id, Request $request)
     {
-//        Сделать валидацию
+        $request->validate([
+            'permissions.*' => 'required|integer|exists:permissions,id'
+        ]);
+
         User::where('id', $id)->update([
-           'name' => $request->name,
+            'name' => $request->name,
             'surname' => $request->surname,
             'position' => $request->position,
         ]);
+
+        $permissions = Permission::whereIn('id', $request->permissions)->get();
+        $user = User::find($id);
+        $user->syncPermissions($permissions);
 
         return redirect()->route('employees.show', ['employee' => $id]);
     }

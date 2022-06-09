@@ -49,6 +49,15 @@
             </div>
         </div>
     </div>
+    <div class="card__menu">
+        <div class="container">
+            <div class="col">
+                <div class="d-flex">
+                    <a class="tab rounded-top back-light font-dark text-center font-500" href="">Информация</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="cards back-light min-vh-100">
         <div class="container">
             <div class="row py-4">
@@ -89,11 +98,104 @@
                                 <div class="col-3">Дата последнего изменения аккаунта:</div>
                                 <div class="col-9">{{ $data[0]['updated_at'] }}</div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pb-5">
+                <div class="col">
+                    <div class="general-info back-white rounded-3 shadow-sm p-4">
+                        <div class="row pb-3">
+                            <div class="col">
+                                <div class="fsize-20 font-500">Права пользователя</div>
+                            </div>
+                        </div>
 
+                        <div class="row my-3">
+                            <div class="col-lg">
+                                <div class="requests">
+                                    <div class="font-500 fsize-20 pb-2">Заявки</div>
+                                    <div class="font-text pb-2 d-flex">
+                                        <input type="checkbox" class="form-check-input me-2" disabled>
+                                        <label class="form-check-label" for="name">Выделить все</label>
+                                    </div>
+                                    @foreach($request as $item)
+                                        <div class="font-text pb-1 d-flex">
+                                            <input type="checkbox" class="form-check-input me-2" name="permissions[]"
+                                                   value="{{ $item['id'] }}" disabled
+                                                   @if($user->hasPermissionTo($item->name)) checked @endif>
+                                            <label class="form-check-label" for="exampleCheck{{ $item['id'] }}">
+                                                {{ $item['name'] }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="col-lg">
+                                <div class="price_lists">
+                                    <div class="font-500 fsize-20 pb-2">Прайс листы</div>
+                                    <div class="font-text pb-2 d-flex">
+                                        <input type="checkbox" class="form-check-input me-2" disabled>
+                                        <label class="form-check-label" for="">Выделить все</label>
+                                    </div>
+                                    @foreach($priceList as $item)
+                                        <div class="font-text pb-1 d-flex">
+                                            <input type="checkbox" class="form-check-input me-2" disabled
+                                                   name="permissions[]"
+                                                   @if($user->hasPermissionTo($item->name)) checked @endif
+                                                   value="{{ $item['id'] }}">
+                                            <label class="form-check-label" for="exampleCheck{{ $item['id'] }}">
+                                                {{ $item['name'] }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="col-lg">
+                                <div class="employees">
+                                    <div class="font-500 fsize-20 pb-2">Сотрудники</div>
+                                    <div class="font-text pb-2 d-flex">
+                                        <input type="checkbox" class="form-check-input me-2" disabled>
+                                        <label class="form-check-label" for="name">Выделить все</label>
+                                    </div>
+                                    @foreach($employee as $item)
+                                        <div class="font-text pb-1 d-flex">
+                                            <input type="checkbox" class="form-check-input me-2" disabled
+                                                   name="permissions[]"
+                                                   @if($user->hasPermissionTo($item->name)) checked @endif
+                                                   value="{{ $item['id'] }}">
+                                            <label class="form-check-label" for="exampleCheck{{ $item['id'] }}">
+                                                {{ $item['name'] }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="col-lg">
+                                <div class="clients">
+                                    <div class="font-500 fsize-20 pb-2">Клиенты</div>
+                                    <div class="font-text pb-2 d-flex">
+                                        <input type="checkbox" class="form-check-input me-2" disabled>
+                                        <label class="form-check-label" for="name">Выделить все</label>
+                                    </div>
+                                    @foreach($client as $item)
+                                        <div class="font-text pb-1 d-flex">
+                                            <input type="checkbox" class="form-check-input me-2" disabled
+                                                   name="permissions[]"
+                                                   @if($user->hasPermissionTo($item->name)) checked @endif
+                                                   value="{{ $item['id'] }}">
+                                            <label class="form-check-label" for="exampleCheck{{ $item['id'] }}">
+                                                {{ $item['name'] }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

@@ -14,6 +14,11 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
+        Permission::create(['name' => 'Владелец',
+            'app' => 'all'
+        ]);
+
+        // Права на заявку
         Permission::create(['name' => 'Просмотр всех заявок',
                             'app' => 'request'
         ]);
@@ -29,13 +34,68 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'Удаление заявки',
                             'app' => 'request'
         ]);
+//        Permission::create(['name' => 'Множественное удаление заявок',
+//            'app' => 'request'
+//        ]);
 
-//        Permission::create([]);
-//        Permission::create([]);
-//        Permission::create([]);
-//        Permission::create([]);
-//        Permission::create([]);
-//        Permission::create([]);
+        // Права на прайс листы
+        Permission::create(['name' => 'Просмотр всех прайс-листов',
+            'app' => 'priceList'
+        ]);
+        Permission::create(['name' => 'Просмотр материалов прайс-листа',
+            'app' => 'priceList'
+        ]);
+        Permission::create(['name' => 'Просмотр работ прайс-листа',
+            'app' => 'priceList'
+        ]);
+        Permission::create(['name' => 'Создание прайс-листов',
+            'app' => 'priceList'
+        ]);
+        Permission::create(['name' => 'Редактирование прайс-листов',
+            'app' => 'priceList'
+        ]);
+        Permission::create(['name' => 'Удаление прайс-листов',
+            'app' => 'priceList'
+        ]);
+        Permission::create(['name' => 'Удаление материалов',
+            'app' => 'priceList'
+        ]);
+        Permission::create(['name' => 'Удаление работ',
+            'app' => 'priceList'
+        ]);
 
+        // Права на сотрудников
+        Permission::create(['name' => 'Просмотр всех сотрудников',
+            'app' => 'employee'
+        ]);
+        Permission::create(['name' => 'Просмотр карточки сотрудника',
+            'app' => 'employee'
+        ]);
+        Permission::create(['name' => 'Создание сотрудника',
+            'app' => 'employee'
+        ]);
+        Permission::create(['name' => 'Редактирование сотрудника',
+            'app' => 'employee'
+        ]);
+        Permission::create(['name' => 'Удаление сотрудника',
+            'app' => 'employee'
+        ]);
+
+        // Права на клиентов
+        Permission::create(['name' => 'Просмотр всех клиентов',
+            'app' => 'client'
+        ]);
+        Permission::create(['name' => 'Просмотр карточки клиента',
+            'app' => 'client'
+        ]);
+        Permission::create(['name' => 'Создание клиента',
+            'app' => 'client'
+        ]);
+        Permission::create(['name' => 'Редактирование клиента',
+            'app' => 'client'
+        ]);
+        Permission::create(['name' => 'Удаление клиента',
+            'app' => 'client'
+        ]);
     }
 }

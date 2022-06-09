@@ -31,22 +31,33 @@ Route::group(['middleware', 'auth'], function () {
 
 Route::group(['middleware' => ['auth']], function () {
 //    Заявка
-    Route::put('/requests/change-status/{id}', [RequestController::class, 'changeStatus'])->name('requests.change-status');
-    Route::delete('/requests/delete-few', [RequestController::class, 'deleteFew'])->name('requests.delete-few');
-    Route::resource('/requests', RequestController::class)->middleware('can:Просмотр всех заявок');
+    Route::put('/requests/change-status/{id}', [RequestController::class, 'changeStatus'])
+        ->name('requests.change-status');
+    Route::delete('/requests/delete-few', [RequestController::class, 'deleteFew'])
+        ->name('requests.delete-few');
+    Route::resource('/requests', RequestController::class)
+        ->middleware('can:Просмотр всех заявок');
 
 //    Прайс лист
-    Route::delete('/price-list/delete-few', [PriceListController::class, 'deleteFew'])->name('price-list.delete-few');
-    Route::resource('/price-list', PriceListController::class)->middleware('can:Просмотр всех прайс-листов');
+    Route::delete('/price-list/delete-few', [PriceListController::class, 'deleteFew'])
+        ->name('price-list.delete-few');
+    Route::resource('/price-list', PriceListController::class)
+        ->middleware('can:Просмотр всех прайс-листов');
 
 //    Объекты прайс листа
-    Route::get('/price-list/work/{id}', [PriceListWorkController::class, 'show'])->name('work.show');
-    Route::post('/price-list/work/{id}', [PriceListWorkController::class, 'store'])->name('work.store');
-    Route::delete('/price-list/work/delete-few/{id}', [PriceListWorkController::class, 'deleteFew'])->name('work.delete-few');
+    Route::get('/price-list/work/{id}', [PriceListWorkController::class, 'show'])
+        ->name('work.show');
+    Route::post('/price-list/work/{id}', [PriceListWorkController::class, 'store'])
+        ->name('work.store');
+    Route::delete('/price-list/work/delete-few/{id}', [PriceListWorkController::class, 'deleteFew'])
+        ->name('work.delete-few');
 
-    Route::get('/price-list/material/{id}', [PriceListMaterialController::class, 'show'])->name('material.show');
-    Route::post('/price-list/material/{id}', [PriceListMaterialController::class, 'store'])->name('material.store');
-    Route::delete('/price-list/material/delete-few/{id}', [PriceListMaterialController::class, 'deleteFew'])->name('material.delete-few');
+    Route::get('/price-list/material/{id}', [PriceListMaterialController::class, 'show'])
+        ->name('material.show');
+    Route::post('/price-list/material/{id}', [PriceListMaterialController::class, 'store'])
+        ->name('material.store');
+    Route::delete('/price-list/material/delete-few/{id}', [PriceListMaterialController::class, 'deleteFew'])
+        ->name('material.delete-few');
 
 //    Аккаунт
     Route::resource('/account', AccountController::class);
@@ -57,9 +68,6 @@ Route::group(['middleware' => ['auth']], function () {
 //    Клиенты
     Route::resource('/clients', ClientController::class);
     Route::resource('/contact-person', ContactPersonController::class);
-
-//    Роли
-    Route::resource('/role', RoleController::class);
 
 });
 
