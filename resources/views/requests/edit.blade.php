@@ -32,12 +32,10 @@
                                                value="{{ $data['title'] }}">
                                     </div>
                                 </div>
-                                <div class="row pb-3 d-flex align-items-center">
-                                    <div class="col-2">Описание:</div>
-                                    <div class="col-10">
-                                        <input type="text" class="form-control" id="description" name="description"
-                                               value="{{ $data['description'] }}">
-                                    </div>
+                                <div class="description mb-3">
+                                    <label for="description" class="form-label">Описание:</label>
+                                    <textarea class="form-control" id="description" rows="10"
+                                              name="description" placeholder="" value="{{ $data['description'] }}"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -51,28 +49,11 @@
                             </div>
                             <div class="font-text">
                                 <div class="row  pb-3 d-flex align-items-center">
-                                    <div class="col-4">Контракт:</div>
-                                    <div class="col-8">
-                                        <select name="status" class="form-select">
-                                            <option value="111111111" selected>Пока нечего писать</option>
-                                            <option value="222222222">Исправить</option>
-                                            <option value="333333333">Позже</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row  pb-3 d-flex align-items-center">
-                                    <div class="col-4">Услуга:</div>
-                                    <div class="col-8">
-                                        <select name="status" class="form-select">
-                                            <option value="111111111" selected>Услуги пока тоже не сделаны</option>
-                                            <option value="222222222">Сделать</option>
-                                            <option value="333333333">Позже</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Тип заявки:</div>
-                                    <div class="col-8">data</div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="request_type" name="request_type"
+                                               value="">
+                                    </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Статус:</div>
@@ -86,15 +67,37 @@
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Ответственный:</div>
-                                    <div class="col-8">data</div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="request_type" name="request_type"
+                                               value="">
+                                    </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Оплачено:</div>
-                                    <div class="col-8">data</div>
+                                    <div class="col-8">
+                                        <select name="status" class="form-select">
+                                            <option value="Да" selected>Нет</option>
+                                            <option value="Нет">Да</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Номер заявки:</div>
                                     <div class="col-8">{{ $data['id'] }}</div>
+                                </div>
+                                <div class="row  pb-3 d-flex align-items-center">
+                                    <div class="col-4">Инвентарный номер:</div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="" name=""
+                                               value="">
+                                    </div>
+                                </div>
+                                <div class="row  pb-3 d-flex align-items-center">
+                                    <div class="col-4">Серийный номер:</div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="" name=""
+                                               value="">
+                                    </div>
                                 </div>
                             </div>
                         </div>

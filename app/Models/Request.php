@@ -16,7 +16,7 @@ class Request extends Model
 
     protected $fillable = [
         'company_id',
-        'executor_id',
+        'user_id',
         'title',
         'description',
         'urgency',
@@ -31,4 +31,8 @@ class Request extends Model
         return $this->hasOne(Client::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

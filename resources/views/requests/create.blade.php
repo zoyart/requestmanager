@@ -36,9 +36,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="executor mb-3">
-                        <label for="executor_id" class="form-label">Исполнитель</label>
-                        <select name="executor_id"  class="form-select">
+                    <div class="user_id mb-3">
+                        <label for="user_id" class="form-label">Исполнитель</label>
+                        <select name="user_id"  class="form-select">
                             <option value="{{auth()->user()->id}}" selected>Я</option>
                             @foreach($employees as $employee)
                                 <option value="{{ $employee['id'] }}">{{ $employee['name'] }}

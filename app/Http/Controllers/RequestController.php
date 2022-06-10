@@ -38,8 +38,8 @@ class RequestController extends Controller
         if (Auth::user()->user_status === 'owner') {
             $requests = \App\Models\Request::where('company_id', $company_id)->get();
         } else {
-            $id = Auth::user()->id;
-            $requests = \App\Models\Request::where('company_id', $company_id)->where('executor_id', $id)->get();
+            $user = User::find(Auth::user()->id);
+            $requests = $user->requests;
         }
 
         return view('requests.requests', compact('requests'));
@@ -72,7 +72,7 @@ class RequestController extends Controller
 
         \App\Models\Request::create([
             'company_id' => $company_id,
-            'executor_id' => $request->executor_id,
+            'user_id' => $request->user_id,
             'title' => $request->title,
             'description' => $request->description,
             'urgency' => $request->urgency,
@@ -90,9 +90,9 @@ class RequestController extends Controller
     public function show($id)
     {
         $request = \App\Models\Request::find($id);
-        $executorInfo = User::where('id', $request->executor_id)->get()[0];
+        $userInfo = $request->user;
 
-        return view('requests.card', compact('request', 'executorInfo'));
+        return view('requests.card', compact('request', 'userInfo'));
     }
 
     /**

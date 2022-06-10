@@ -15,7 +15,8 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->integer('company_id');
+            $table->bigInteger('company_id')->unsigned()->nullable(false);
+            $table->foreign('company_id')->references('id')->on('companies');
 
             $table->string('phone_number', 15)->nullable('true');
             $table->float('latitude')->nullable('true');

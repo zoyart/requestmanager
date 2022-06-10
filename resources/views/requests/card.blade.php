@@ -132,12 +132,8 @@
                         </div>
                         <div class="font-text">
                             <div class="row  pb-3">
-                                <div class="col-4">Услуга:</div>
-                                <div class="col-8">data</div>
-                            </div>
-                            <div class="row  pb-3">
                                 <div class="col-4">Тип Заявки:</div>
-                                <div class="col-8">data</div>
+                                <div class="col-8">Нет данных</div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Статус:</div>
@@ -145,17 +141,25 @@
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Исполнитель:</div>
-                                <div class="col-8">{{ $executorInfo->name }} {{ $executorInfo->surname }}
-                                    ({{ $executorInfo->position }})
+                                <div class="col-8">{{ $userInfo->name }} {{ $userInfo->surname }}
+                                    ({{ $userInfo->position }})
                                 </div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Оплачено:</div>
-                                <div class="col-8">data</div>
+                                <div class="col-8">Нет данных</div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Номер заявки:</div>
                                 <div class="col-8">{{ $request['id'] }}</div>
+                            </div>
+                            <div class="row  pb-3">
+                                <div class="col-4">Инвентарный номер:</div>
+                                <div class="col-8">Нет данных</div>
+                            </div>
+                            <div class="row  pb-3">
+                                <div class="col-4">Серийный номер:</div>
+                                <div class="col-8">Нет данных</div>
                             </div>
                         </div>
                     </div>

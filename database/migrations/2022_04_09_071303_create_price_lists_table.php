@@ -15,7 +15,9 @@ class CreatePriceListsTable extends Migration
     {
         Schema::create('price_lists', function (Blueprint $table) {
             $table->id();
-            $table->integer('company_id');
+            $table->bigInteger('company_id')->unsigned()->nullable(false);
+            $table->foreign('company_id')->references('id')->on('companies');
+
             $table->string('name', 45)->nullable('false');
             $table->string('author', 100)->nullable('false');
             $table->timestamps();

@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Request;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class CreateRequestsSeeder extends Seeder
 {
@@ -14,6 +16,16 @@ class CreateRequestsSeeder extends Seeder
      */
     public function run()
     {
+        $user = User::create([
+            'name' => 'Artur',
+            'surname' =>'Tsoy',
+            'company_id' => 1,
+            'user_status' => 'owner',
+            'position' => 'owner',
+            'email' => 'stistv9@mail.ru',
+            'password' => Hash::make(123123123),
+        ]);
+
         Request::create([
             'company_id' => 1,
             'title' => 'Lorem ipsum dias lorem',
