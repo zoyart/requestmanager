@@ -24,7 +24,6 @@ class RequestController extends Controller
         $this->middleware('can:Создание заявки', ['only' => ['create', 'store']]);
         $this->middleware('can:Редактирование заявки', ['only' => ['edit', 'update', 'changeStatus']]);
         $this->middleware('can:Удаление заявки', ['only' => ['destroy', 'deleteFew']]);
-
     }
 
     /**
