@@ -50,24 +50,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($data as $item)
+                            @foreach($requests as $request)
                                 <tr>
                                     <td style="width: 4%" class="py-3" id="request_id">
                                         <div class="form-check">
-                                            <input name="{{ $item['id'] }}" value="{{ $item['id'] }}"
+                                            <input name="{{ $request['id'] }}" value="{{ $request['id'] }}"
                                                    class="form-check-input checkbox" type="checkbox">
                                         </div>
                                     </td>
-                                    <td class="py-3">{{ $item['id'] }}</td>
+                                    <td class="py-3">{{ $request['id'] }}</td>
                                     <td class="py-3">
                                         <a class=""
-                                           href="{{ route('requests.show', ['request' => $item['id']]) }}">
-                                            {{ Str::limit($item['title'], 20, '...') }}
+                                           href="{{ route('requests.show', ['request' => $request['id']]) }}">
+                                            {{ Str::limit($request['title'], 20, '...') }}
                                         </a>
                                     </td>
-                                    <td class="py-3">{{ Str::limit($item['description'], 30, '...') }}</td>
-                                    <td class="py-3">{{ $item['status'] }}</td>
-                                    <td class="py-3">{{ $item['urgency'] }}</td>
+                                    <td class="py-3">{{ Str::limit($request['description'], 30, '...') }}</td>
+                                    <td class="py-3">{{ $request['status'] }}</td>
+                                    <td class="py-3">{{ $request['urgency'] }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

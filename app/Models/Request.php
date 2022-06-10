@@ -16,6 +16,7 @@ class Request extends Model
 
     protected $fillable = [
         'company_id',
+        'executor_id',
         'title',
         'description',
         'urgency',
@@ -24,4 +25,10 @@ class Request extends Model
     protected $attributes = [
         'status' => 'Новая',
     ];
+
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
 }

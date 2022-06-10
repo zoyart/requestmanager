@@ -7,13 +7,13 @@
 @section('content')
 
 @section('page.name')
-    Заявка "{{ $data['id'] }}"
+    Заявка "{{ $request['id'] }}"
 @endsection
 
     <div class="card__buttons">
         <div class="container">
             <div class="d-flex">
-                <form action="{{ route('requests.destroy', ['request' => $data['id']]) }}"
+                <form action="{{ route('requests.destroy', ['request' => $request['id']]) }}"
                       method="post">
                     @csrf
                     @method('delete')
@@ -28,7 +28,7 @@
                         </div>
                     </button>
                 </form>
-                <form action="{{ route('requests.edit', ['request' => $data['id']]) }}"
+                <form action="{{ route('requests.edit', ['request' => $request['id']]) }}"
                       method="get">
                     <button type="submit" class="button-circle-sm rounded-circle border-0 y-to-d me-3">
                         <div class="d-flex align-items-center justify-content-center">
@@ -46,7 +46,7 @@
                         data-bs-toggle="modal">
                     Изменить статус
                 </button>
-                <form action="{{ route('requests.change-status', ['id' => $data['id']]) }}"
+                <form action="{{ route('requests.change-status', ['id' => $request['id']]) }}"
                       method="post">
                 @csrf
                 @method('PUT')
@@ -63,7 +63,7 @@
                                 <div class="modal-body">
                                     <div class="name my-3">
                                         <label for="name" class="form-label">Текущий
-                                            статус: {{ $data['status'] }}</label>
+                                            статус: {{ $request['status'] }}</label>
                                     </div>
                                     <div class="status mb-3">
                                         <label class="form-label">Укажите новый статус:</label>
@@ -114,11 +114,11 @@
                         <div class="font-text">
                             <div class="row  pb-3">
                                 <div class="col-2">Тема:</div>
-                                <div class="col-10">{{ $data['title'] }}</div>
+                                <div class="col-10">{{ $request['title'] }}</div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-2">Описание:</div>
-                                <div class="col-10">{{ $data['description'] }}</div>
+                                <div class="col-10">{{ $request['description'] }}</div>
                             </div>
                         </div>
                     </div>
@@ -141,11 +141,13 @@
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Статус:</div>
-                                <div class="col-8">{{ $data['status'] }}</div>
+                                <div class="col-8">{{ $request['status'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Ответственный:</div>
-                                <div class="col-8">data</div>
+                                <div class="col-4">Исполнитель:</div>
+                                <div class="col-8">{{ $executorInfo->name }} {{ $executorInfo->surname }}
+                                    ({{ $executorInfo->position }})
+                                </div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Оплачено:</div>
@@ -153,7 +155,7 @@
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Номер заявки:</div>
-                                <div class="col-8">{{ $data['id'] }}</div>
+                                <div class="col-8">{{ $request['id'] }}</div>
                             </div>
                         </div>
                     </div>

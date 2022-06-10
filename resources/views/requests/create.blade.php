@@ -12,7 +12,7 @@
 
 <div class="request-form py-4">
     <div class="container">
-        <form method="post" action="{{ route('requests.store', \Illuminate\Support\Facades\Auth::user()->company_id) }}">
+        <form method="post" action="{{ route('requests.store') }}">
             @csrf
             <div class="row">
                 <div class="col-lg-8">
@@ -36,6 +36,17 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
+                    <div class="executor mb-3">
+                        <label for="executor_id" class="form-label">Исполнитель</label>
+                        <select name="executor_id"  class="form-select">
+                            <option value="{{auth()->user()->id}}" selected>Я</option>
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee['id'] }}">{{ $employee['name'] }}
+                                    {{ $employee['surname'] }} ({{ $employee['position'] }})
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="address-object mb-3">
                         <label for="address-object" class="form-label">Адрес объекта</label>
                         <input type="text" class="form-control" id="address-object" name="address_object">
@@ -43,7 +54,10 @@
                     <div class="client mb-3">
                         <label class="form-label">Клиент</label>
                         <select class="form-select">
-                            <option selected>---</option>
+                            <option selected>Частное лицо</option>
+                            @foreach($clients as $client)
+                                <option>{{ $client['name'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

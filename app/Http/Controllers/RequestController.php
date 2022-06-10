@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReqRequest;
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
@@ -33,9 +35,16 @@ class RequestController extends Controller
     public function index()
     {
         $company_id = (int) Auth::user()->company_id;
-        $data = \App\Models\Request::where('company_id', $company_id)->get();
 
-        return view('requests.requests', compact('data'));
+        if (Auth::user()->user_status === 'owner') {
+            $requests = \App\Models\Request::where('company_id', $company_id)->get();
+        } else {
+            $id = Auth::user()->id;
+            $requests = \App\Models\Request::where('company_id', $company_id)->where('executor_id', $id)->get();
+        }
+
+        return view('requests.requests', compact('requests'));
+
     }
 
     /**
@@ -45,7 +54,11 @@ class RequestController extends Controller
      */
     public function create()
     {
-        return view('requests.create');
+        $company_id = (int) Auth::user()->company_id;
+        $clients = Client::where('company_id', $company_id)->get();
+        $employees = User::where('company_id', $company_id)->where('user_status', 'employee')->get();
+
+        return view('requests.create', compact('clients', 'employees'));
     }
 
     /**
@@ -60,6 +73,7 @@ class RequestController extends Controller
 
         \App\Models\Request::create([
             'company_id' => $company_id,
+            'executor_id' => $request->executor_id,
             'title' => $request->title,
             'description' => $request->description,
             'urgency' => $request->urgency,
@@ -76,10 +90,10 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $company_id = (int) Auth::user()->company_id;
-        $data = \App\Models\Request::where('company_id', $company_id)->where('id', $id)->get()[0];
+        $request = \App\Models\Request::find($id);
+        $executorInfo = User::where('id', $request->executor_id)->get()[0];
 
-        return view('requests.card', compact('data'));
+        return view('requests.card', compact('request', 'executorInfo'));
     }
 
     /**

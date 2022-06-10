@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="page__name py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="title font-500 fsize-20">
-                        Изменение данных пользователя "{{ $data[0]['name'] }} {{ $data[0]['surname'] }}"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+@section('page.name')
+    Изменение данных пользователя "{{ $data[0]['name'] }} {{ $data[0]['surname'] }}"
+@endsection
+
     <div class="cards back-light min-vh-100">
         <div class="container">
             <form action="{{ route('employees.update', ['employee' => $data[0]['id']])}}"
@@ -80,6 +74,7 @@
                                 <div class="col-lg">
                                     <div class="requests">
                                         <div class="font-500 fsize-20 pb-2">Заявки</div>
+                                        <hr class="dropdown-divider">
                                         <div class="font-text pb-2 d-flex">
                                             <input type="checkbox" class="form-check-input me-2" >
                                             <label class="form-check-label" for="name">Выделить все</label>
@@ -99,6 +94,7 @@
                                 <div class="col-lg">
                                     <div class="price_lists">
                                         <div class="font-500 fsize-20 pb-2">Прайс листы</div>
+                                        <hr class="dropdown-divider">
                                         <div class="font-text pb-2 d-flex">
                                             <input type="checkbox" class="form-check-input me-2" >
                                             <label class="form-check-label" for="">Выделить все</label>
@@ -119,6 +115,7 @@
                                 <div class="col-lg">
                                     <div class="employees">
                                         <div class="font-500 fsize-20 pb-2">Сотрудники</div>
+                                        <hr class="dropdown-divider">
                                         <div class="font-text pb-2 d-flex">
                                             <input type="checkbox" class="form-check-input me-2" >
                                             <label class="form-check-label" for="name">Выделить все</label>
@@ -139,11 +136,24 @@
                                 <div class="col-lg">
                                     <div class="clients">
                                         <div class="font-500 fsize-20 pb-2">Клиенты</div>
+                                        <hr class="dropdown-divider">
                                         <div class="font-text pb-2 d-flex">
                                             <input type="checkbox" class="form-check-input me-2" >
                                             <label class="form-check-label" for="name">Выделить все</label>
                                         </div>
                                         @foreach($client as $item)
+                                            <div class="font-text pb-1 d-flex">
+                                                <input type="checkbox" class="form-check-input me-2"
+                                                       name="permissions[]"
+                                                       @if($user->hasPermissionTo($item->name)) checked @endif
+                                                       value="{{ $item['id'] }}">
+                                                <label class="form-check-label" for="exampleCheck{{ $item['id'] }}">
+                                                    {{ $item['name'] }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                        <hr class="dropdown-divider">
+                                        @foreach($contact_person as $item)
                                             <div class="font-text pb-1 d-flex">
                                                 <input type="checkbox" class="form-check-input me-2"
                                                        name="permissions[]"
