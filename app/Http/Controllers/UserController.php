@@ -14,7 +14,6 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-
     public function register()
     {
         return view('user.register');

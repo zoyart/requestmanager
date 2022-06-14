@@ -65,13 +65,17 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row  pb-3 d-flex align-items-center">
-                                    <div class="col-4">Ответственный:</div>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" id="request_type" name="request_type"
-                                               value="">
-                                    </div>
-                                </div>
+{{--                                <div class="user_id mb-3">--}}
+{{--                                    <label for="user_id" class="form-label">Исполнитель</label>--}}
+{{--                                    <select name="user_id"  class="form-select">--}}
+{{--                                        <option value="{{auth()->user()->id}}" selected>Я</option>--}}
+{{--                                        @foreach($employees as $employee)--}}
+{{--                                            <option value="{{ $employee['id'] }}">{{ $employee['name'] }}--}}
+{{--                                                {{ $employee['surname'] }} ({{ $employee['position'] }})--}}
+{{--                                            </option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Оплачено:</div>
                                     <div class="col-8">

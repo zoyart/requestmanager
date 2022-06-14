@@ -115,7 +115,7 @@
                                     </div>
                                 </th>
                                 <th scope="col" class="font-500 py-3">Название</th>
-                                <th scope="col" class="font-500 py-3">Цена</th>
+                                <th scope="col" class="font-500 py-3">Цена (руб.)</th>
                                 <th scope="col" class="font-500 py-3">Категория</th>
                                 <th scope="col" class="font-500 py-3">НДС</th>
                                 <th scope="col" class="font-500 py-3">Дата создания</th>
@@ -131,7 +131,7 @@
                                         </div>
                                     </td>
                                     <td class="py-3">{{ $item['name'] }}</td>
-                                    <td class="py-3">{{ $item['price'] }}</td>
+                                    <td class="py-3">{{ $item['price'] }} руб.</td>
                                     <td class="py-3">{{ $item['category'] }}</td>
                                     <td class="py-3">{{ $item['vat'] }}
                                     <td class="py-3">{{ $item['created_at'] }}</td>

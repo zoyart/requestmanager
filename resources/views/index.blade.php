@@ -43,7 +43,7 @@
                 @if(\Illuminate\Support\Facades\Auth::check())
                     <li class="nav-item me-2">
                         <a class="nav-link link-on-dark"
-                           href="{{ route('requests.index', \Illuminate\Support\Facades\Auth::user()->company_id) }}">Мои
+                           href="{{ route('requests.index') }}">Мои
                             заявки</a>
                     </li>
                 @endif
@@ -76,7 +76,7 @@
     </div>
 </nav>
 <div class="content">
-    <div class="title__text py-5 vh-100 d-flex flex-column ">
+    <div class="title__text  py-5 vh-100 d-flex flex-column ">
         <div class="container">
             <div class="row pt-5">
                 <div class="col-6">
@@ -96,9 +96,6 @@
                                class="button border-0 rounded-pill w-to-d d-inline-block">Регистрация</a>
                         </div>
                     </div>
-                </div>
-                <div class="col-6">
-
                 </div>
             </div>
         </div>

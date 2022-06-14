@@ -71,7 +71,7 @@
             </div>
         </div>
     </nav>
-    <div class="content d-flex vh-100">
+    <div class="content d-flex">
         <div class="container d-flex flex-column justify-content-center align-items-center pt-5">
             <div class="start">
                 <div class="container">

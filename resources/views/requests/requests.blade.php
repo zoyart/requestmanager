@@ -38,9 +38,7 @@
                             <thead class="">
                             <tr>
                                 <th scope="col" class="py-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input " type="checkbox" value="" id="select_all">
-                                    </div>
+                                    <input class="form-check-input " type="checkbox" value="" id="select_all">
                                 </th>
                                 <th scope="col" class="fw-normal py-3">Номер</th>
                                 <th scope="col" class="fw-normal py-3">Название</th>

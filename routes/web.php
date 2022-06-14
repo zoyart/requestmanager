@@ -15,7 +15,8 @@ use App\Http\Controllers\RoleController;
 // Стартовая страница
 Route::view('/', 'index')->name('index');
 
-Route::group(['middleware', 'guest'], function () {
+// Только гости могут посещать данные страницы
+Route::group(['middleware' => 'guest'], function () {
 //    Регистрация
     Route::get('/register', [UserController::class, 'register'])->name('register.create');
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
@@ -25,11 +26,12 @@ Route::group(['middleware', 'guest'], function () {
     Route::post('/login', [UserController::class, 'auth'])->name('auth');
 });
 
+// Выход из аккаунта
 Route::group(['middleware', 'auth'], function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => 'auth'], function () {
 //    Заявка
     Route::put('/requests/change-status/{id}', [RequestController::class, 'changeStatus'])
         ->name('requests.change-status');
