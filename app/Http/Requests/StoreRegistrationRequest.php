@@ -24,11 +24,11 @@ class StoreRegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'companyName' => 'required',
-            'name' => 'required|max:10',
-            'surname' => 'required',
-            'email' => 'required|email|unique:users|unique:companies',
-            'password' => 'required|confirmed|min:8'
+            'companyName' => 'required|max:100',
+            'name' => 'required|max:45',
+            'surname' => 'required|max:45',
+            'email' => 'required|email|unique:users|unique:companies|max:45',
+            'password' => 'required|confirmed|min:8|max:45'
         ];
     }
 

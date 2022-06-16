@@ -15,7 +15,8 @@
                 </div>
             </div>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -24,19 +25,26 @@
                     <a class="nav-link link-on-dark" href="{{ route('requests.create') }}">Создать заявку</a>
                 </li>
                 <div class="dropdown nav-item me-2">
-                    <a class="nav-link link-on-dark" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link link-on-dark" href="#" role="button" id="dropdownMenuLink"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         Компания
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item"
-                               href="{{ route('clients.index') }}">Клиенты</a></li>
-                        <li><a class="dropdown-item"
-                               href="{{ route('price-list.index') }}">Прайс листы</a></li>
-                        <li><a class="dropdown-item"
-                               href="#">Оборудование</a></li>
-                        <li><a class="dropdown-item"
-                               href="">Склад</a></li>
-
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ route('clients.index') }}">Клиенты
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ route('price-list.index') }}">Прайс листы
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                               href="">Склад
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <li class="nav-item me-2">
@@ -50,15 +58,15 @@
                 </label>
             </div>
             @if(\Illuminate\Support\Facades\Auth::check())
-            <form action=" {{ route('logout') }} " method="get">
-                @csrf
-                <button type="submit" class="button border-0 rounded-pill l-to-y">Выйти</button>
-            </form>
+                <form action=" {{ route('logout') }} " method="get">
+                    @csrf
+                    <button type="submit" class="button border-0 rounded-pill l-to-y">Выйти</button>
+                </form>
             @else
-            <form method="get" action=" {{ route('login.form') }} ">
-                @csrf
-                <button type="submit" class="button border-0 rounded-pill l-to-y">Войти</button>
-            </form>
+                <form method="get" action=" {{ route('login.form') }} ">
+                    @csrf
+                    <button type="submit" class="button border-0 rounded-pill l-to-y">Войти</button>
+                </form>
             @endif
         </div>
     </div>

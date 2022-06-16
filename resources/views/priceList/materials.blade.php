@@ -46,14 +46,6 @@
                                         <label for="name" class="form-label">Название</label>
                                         <input type="text" class="form-control" id="name" name="name">
                                     </div>
-                                    <div class="category mb-3">
-                                        <label class="form-label">Категория</label>
-                                        <select name="category" class="form-select">
-                                            <option value="Категория 1" selected>Категория 1</option>
-                                            <option value="Категория 2">Категория 2</option>
-                                            <option value="Категория 3">Категория 3</option>
-                                        </select>
-                                    </div>
                                     <div class="price my-3">
                                         <label for="price" class="form-label">Цена</label>
                                         <input type="text" class="form-control" id="price" name="price">
@@ -114,7 +106,6 @@
                                 </th>
                                 <th scope="col" class="font-500 py-3">Название</th>
                                 <th scope="col" class="font-500 py-3">Цена (руб.)</th>
-                                <th scope="col" class="font-500 py-3">Категория</th>
                                 <th scope="col" class="font-500 py-3">НДС</th>
                                 <th scope="col" class="font-500 py-3">Дата создания</th>
                             </tr>
