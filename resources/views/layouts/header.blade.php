@@ -42,7 +42,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item"
-                               href="">Склад
+                               href="{{ route('inventory.index') }}">Склад
                             </a>
                         </li>
                     </ul>

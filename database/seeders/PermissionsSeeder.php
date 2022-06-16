@@ -107,5 +107,18 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'Удаление контактного лица',
             'app' => 'contact_person'
         ]);
+
+        Permission::create(['name' => 'Просмотр склада',
+            'app' => 'inventory'
+        ]);
+        Permission::create(['name' => 'Добавление предмета на склад',
+            'app' => 'inventory'
+        ]);
+        Permission::create(['name' => 'Редактирование предмета на складе',
+            'app' => 'inventory'
+        ]);
+        Permission::create(['name' => 'Удаление предмета на складе',
+            'app' => 'inventory'
+        ]);
     }
 }

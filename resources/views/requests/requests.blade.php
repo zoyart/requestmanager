@@ -63,9 +63,22 @@
                                             {{ Str::limit($request['title'], 20, '...') }}
                                         </a>
                                     </td>
-                                    <td class="py-3">{{ Str::limit($request['description'], 30, '...') }}</td>
+                                    <td class="py-3">
+                                        @if(empty($request['description']))
+                                            Нет данных
+                                        @else
+                                            {{ Str::limit($request['description'], 30, '...') }}
+                                        @endif
+
+                                    </td>
                                     <td class="py-3">{{ $request['status'] }}</td>
-                                    <td class="py-3">{{ $request['urgency'] }}</td>
+                                    <td class="py-3">
+                                        @if(empty($request['urgency']))
+                                            Нет данных
+                                        @else
+                                            {{ $request['urgency'] }}
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

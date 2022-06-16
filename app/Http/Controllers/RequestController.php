@@ -11,11 +11,7 @@ use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 
 class RequestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         // Проверка на права

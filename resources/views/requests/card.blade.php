@@ -160,6 +160,7 @@
                             <div class="row  pb-3">
                                 <div class="col-4">Серийный номер:</div>
                                 <div class="col-8">Нет данных</div>
+
                             </div>
                         </div>
                     </div>

@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ContactPersonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         // Проверка на права

@@ -79,7 +79,7 @@
     <div class="title__text  py-5 vh-100 d-flex flex-column ">
         <div class="container">
             <div class="row pt-5">
-                <div class="col-6">
+                <div class="col">
                     <div class="row pb-3 font-700 fsize-40 font-white">
                         <div class="col">
                             CRM-система для сервисной компании

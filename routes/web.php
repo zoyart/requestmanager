@@ -11,17 +11,19 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactPersonController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\InventoryController;
+
 
 // Стартовая страница
 Route::view('/', 'index')->name('index');
 
 // Только гости могут посещать данные страницы
 Route::group(['middleware' => 'guest'], function () {
-//    Регистрация
+    //    Регистрация
     Route::get('/register', [UserController::class, 'register'])->name('register.create');
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
-//    Аутентификация
+    //    Аутентификация
     Route::get('/login', [UserController::class, 'loginForm'])->name('login.form');
     Route::post('/login', [UserController::class, 'auth'])->name('auth');
 });
@@ -32,7 +34,7 @@ Route::group(['middleware', 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-//    Заявка
+    //    Заявка
     Route::put('/requests/change-status/{id}', [RequestController::class, 'changeStatus'])
         ->name('requests.change-status');
     Route::delete('/requests/delete-few', [RequestController::class, 'deleteFew'])
@@ -40,13 +42,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/requests', RequestController::class)
         ->middleware('can:Просмотр всех заявок');
 
-//    Прайс лист
+    //    Прайс лист
     Route::delete('/price-list/delete-few', [PriceListController::class, 'deleteFew'])
         ->name('price-list.delete-few');
     Route::resource('/price-list', PriceListController::class)
         ->middleware('can:Просмотр всех прайс-листов');
 
-//    Объекты прайс листа
+    //    Объекты прайс листа
     Route::get('/price-list/work/{id}', [PriceListWorkController::class, 'show'])
         ->name('work.show');
     Route::post('/price-list/work/{id}', [PriceListWorkController::class, 'store'])
@@ -61,15 +63,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/price-list/material/delete-few/{id}', [PriceListMaterialController::class, 'deleteFew'])
         ->name('material.delete-few');
 
-//    Аккаунт
+    //    Аккаунт
     Route::resource('/account', AccountController::class);
 
-//    Сотрудники
+    //    Сотрудники
     Route::resource('/employees', EmployeeController::class);
 
-//    Клиенты
+    //    Клиенты
     Route::resource('/clients', ClientController::class);
     Route::resource('/contact-person', ContactPersonController::class);
 
+    //    Склад
+    Route::delete('/inventory/delete-few', [InventoryController::class, 'deleteFew'])
+        ->name('inventory.delete-few');
+    Route::resource('/inventory', InventoryController::class);
 });
 

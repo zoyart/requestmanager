@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PriceListWorkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __construct()
     {
         // Проверка на права
@@ -70,7 +65,7 @@ class PriceListWorkController extends Controller
      */
     public function edit($id)
     {
-        //
+        redirect()->route('index');
     }
 
     public function deleteFew(Request $request, $id)

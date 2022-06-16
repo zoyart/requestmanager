@@ -16,7 +16,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        redirect()->route('index');
     }
 
     /**
@@ -26,7 +26,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        redirect()->route('index');
     }
 
     /**
@@ -37,7 +37,7 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        redirect()->route('index');
     }
 
     /**

@@ -9,11 +9,6 @@ use App\Models\PriceListObject;
 
 class PriceListController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __construct()
     {
         // Проверка на права
@@ -44,7 +39,7 @@ class PriceListController extends Controller
      */
     public function create()
     {
-        //
+        redirect()->route('index');
     }
 
     /**
@@ -88,7 +83,7 @@ class PriceListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        redirect()->route('index');
     }
 
     public function deleteFew(Request $request)

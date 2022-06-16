@@ -81,9 +81,7 @@
                 </div>
             </div>
             <form method="post" action=" {{ route('auth') }} " class="w-50">
-
                 @csrf
-
                 <div class="mb-3">
                     <label for="email" class="form-label">Email адрес</label>
                     <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -96,11 +94,10 @@
                            id="password"  placeholder="@error('password') {{ $message }} @enderror">
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <input type="checkbox" class="form-check-input" id="rememberMe" value="1" name="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Запомнить меня</label>
                 </div>
                 <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d">Войти</button>
-
             </form>
         </div>
     </div>

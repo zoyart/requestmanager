@@ -54,10 +54,12 @@ class UserController extends Controller
 
     public function auth(StoreLoginRequest $request)
     {
+        $rememberMe =  ($request->input('rememberMe') === "1") ? 1 : 0;
+
         if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password,
-        ])) {
+        ], $rememberMe)) {
             return redirect()->route('requests.index');
         }
 
