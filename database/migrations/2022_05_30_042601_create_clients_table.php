@@ -19,8 +19,7 @@ class CreateClientsTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies');
 
             $table->string('phone_number', 15)->nullable('true');
-            $table->float('latitude')->nullable('true');
-            $table->float('longitude')->nullable('true');
+
 
             $table->string('name', 45)->nullable('false');
             $table->text('working_conditions')->nullable('true');

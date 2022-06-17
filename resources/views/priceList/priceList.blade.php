@@ -25,12 +25,8 @@
                                 Удалить
                             </button>
                         </div>
-                        <div class="collapse" id="edit_items">
-                            <button type="button"
-                                    class="d-inline-block button-sm border-0 rounded-pill y-to-d me-3 edit"
-                                    data-bs-target="#editModal" data-bs-toggle="modal">
-                                Редактировать
-                            </button>
+                        <div class="w-100">
+                            <input type="text" class="form-control" id="search" placeholder="Поиск прайс-листов">
                         </div>
                     </div>
                 </div>
@@ -103,7 +99,7 @@
                           id="form-checkbox">
                         @csrf
                         @method('DELETE')
-                        <table class="table">
+                        <table class="table" id="table">
                             <thead class="">
                             <tr>
                                 <th scope="col" class="py-3">
@@ -148,9 +144,8 @@
     <script>
         var elements = new Map();
         $('.checkbox').click(function (){
-            if ($('#delete_items').hasClass('collapse') && $('#edit_items').hasClass('collapse')) {
+            if ($('#delete_items').hasClass('collapse')) {
                 $('#delete_items').removeClass('collapse');
-                $('#edit_items').removeClass('collapse');
             } else {
                 if (!$('.checkbox').is(":checked")) {
                     $('#delete_items').addClass('collapse');
@@ -159,13 +154,11 @@
             }
         });
         $('#select_all').click(function (){
-            if ($('#delete_items').hasClass('collapse') && $('#edit_items').hasClass('collapse')) {
+            if ($('#delete_items').hasClass('collapse')) {
                 $('#delete_items').removeClass('collapse');
-                $('#edit_items').removeClass('collapse');
             } else {
                 if (!$('.checkbox').is(":checked")) {
                     $('#delete_items').addClass('collapse');
-                    $('#edit_items').addClass('collapse');
                 }
             }
         });

@@ -15,10 +15,16 @@
             <div class="row">
                 <div class="col">
                     <div class="d-flex" id="actions">
-                        <button type="button" data-bs-target="#create" data-bs-toggle="modal"
-                                class="d-inline-block button-sm border-0 rounded-pill y-to-d me-3">
-                            Создать аккаунт
-                        </button>
+                        <div>
+                            <button type="button" data-bs-target="#create" data-bs-toggle="modal"
+                                    class="d-inline-block button-sm border-0 rounded-pill y-to-d me-3">
+                                Создать
+                            </button>
+                        </div>
+
+                        <div class="w-100">
+                            <input type="text" class="form-control" id="search" placeholder="Поиск сотрудников">
+                        </div>
                     </div>
                 </div>
                 <!-- Modal create -->
@@ -92,7 +98,7 @@
         <div class="container">
             <div class="row">
                 <div class="requests-table rounded bg-white">
-                        <table class="table">
+                        <table class="table" id="table">
                             <thead class="">
                             <tr>
                                 <th scope="col" class="fw-normal py-3">Имя</th>

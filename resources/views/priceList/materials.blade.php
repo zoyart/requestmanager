@@ -1,9 +1,7 @@
 @extends('layouts.layout')
 
 @section('head-title')
-    @if(!isset($data))
-        Прайс лист "{{ $data[0]['id'] }}"
-    @endif
+    Материалы
 @endsection
 
 @section('content')
@@ -25,6 +23,9 @@
                                     form="form-checkbox">
                                 Удалить
                             </button>
+                        </div>
+                        <div class="w-100">
+                            <input type="text" class="form-control" id="search" placeholder="Поиск по материалам">
                         </div>
                     </div>
                 </div>
@@ -96,7 +97,7 @@
                           id="form-checkbox">
                         @csrf
                         @method('DELETE')
-                        <table class="table">
+                        <table class="table" id="table">
                             <thead class="">
                             <tr>
                                 <th scope="col" class="py-3">

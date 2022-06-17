@@ -32,6 +32,8 @@ class CreateRequestsTable extends Migration
 
             $table->integer('inventory_number')->nullable();
             $table->integer('serial_number')->nullable();
+            $table->string('latitude', 255)->nullable(true);
+            $table->string('longitude', 255)->nullable(true);
 
             $table->text('description')->nullable();
 

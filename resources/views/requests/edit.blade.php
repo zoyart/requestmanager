@@ -103,6 +103,20 @@
                                                value="">
                                     </div>
                                 </div>
+                                <div class="row  pb-3 d-flex align-items-center">
+                                    <div class="col-4">Широта:</div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="latitude" name="latitude"
+                                               value="{{ $data['latitude'] }}">
+                                    </div>
+                                </div>
+                                <div class="row  pb-3 d-flex align-items-center">
+                                    <div class="col-4">Долгота:</div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="longitude" name="longitude"
+                                               value="{{ $data['longitude'] }}">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

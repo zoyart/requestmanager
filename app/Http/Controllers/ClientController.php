@@ -60,8 +60,6 @@ class ClientController extends Controller
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'email' => $request->email,
-            'longitude' => $request->longitude,
-            'latitude' => $request->latitude,
             'address' => $request->address,
             'working_conditions' => $request->working_conditions,
         ]);

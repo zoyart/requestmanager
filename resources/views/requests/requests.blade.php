@@ -14,11 +14,14 @@
                 <div class="col">
                     <div class="action__buttons">
                         <div class="d-flex" id="actions">
-                            <div class="collapse" id="delete_items">
+                            <div class="collapse pe-5" id="delete_items">
                                 <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d"
                                         form="form-checkbox">
                                     Удалить
                                 </button>
+                            </div>
+                            <div class="w-100">
+                                <input type="text" class="form-control" id="search" placeholder="Поиск заявок">
                             </div>
                         </div>
                     </div>
@@ -34,8 +37,8 @@
                           id="form-checkbox">
                         @csrf
                         @method('DELETE')
-                        <table class="table">
-                            <thead class="">
+                        <table class="table" id="table">
+                            <thead>
                             <tr>
                                 <th scope="col" class="py-3">
                                     <input class="form-check-input " type="checkbox" value="" id="select_all">
@@ -60,14 +63,14 @@
                                     <td class="py-3">
                                         <a class=""
                                            href="{{ route('requests.show', ['request' => $request['id']]) }}">
-                                            {{ Str::limit($request['title'], 20, '...') }}
+                                            {{ Str::limit($request['title'], 30, '...') }}
                                         </a>
                                     </td>
                                     <td class="py-3">
                                         @if(empty($request['description']))
                                             Нет данных
                                         @else
-                                            {{ Str::limit($request['description'], 30, '...') }}
+                                            {{ Str::limit($request['description'], 40, '...') }}
                                         @endif
 
                                     </td>

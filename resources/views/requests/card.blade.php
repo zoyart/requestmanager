@@ -160,7 +160,6 @@
                             <div class="row  pb-3">
                                 <div class="col-4">Серийный номер:</div>
                                 <div class="col-8">Нет данных</div>
-
                             </div>
                         </div>
                     </div>
@@ -174,10 +173,9 @@
                                 <div class="fsize-20 font-500">Местонахождение объекта обслуживания</div>
                             </div>
                         </div>
-                        <iframe class="w-100"
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2025054.7922010028!2d60.40241112715431!3d60.28673196228088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1653659816507!5m2!1sru!2sru"
-                            width="600" height="450" style="border:0; display: block" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d264.2571066229573!2d{{ $request['latitude'] }}!3d{{ $request['longitude'] }}!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1655399055913!5m2!1sru!2sru"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
             </div>

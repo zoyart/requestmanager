@@ -21,7 +21,7 @@ class CreateRequestsSeeder extends Seeder
             Request::create([
                 'company_id' => 1,
                 'user_id' => 1,
-                'title' => 'Lorem ipsum dias lorem',
+                'title' => "Lorem ipsum dias lorem {$i}",
                 'description' => 'Lorem ipsum dias lorem lorem ipsum dias lorem',
                 'urgency' => 'Низкая',
             ]);

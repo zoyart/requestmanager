@@ -20,6 +20,8 @@ class Request extends Model
         'title',
         'description',
         'urgency',
+        'latitude',
+        'longitude',
     ];
 
     protected $attributes = [

@@ -118,11 +118,13 @@ class RequestController extends Controller
 
         \App\Models\Request::where('id', $id)->update([
             'title' => $request->title,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ]);
 
-        $data = \App\Models\Request::where('company_id', $company_id)->get();
+        $requests = \App\Models\Request::where('company_id', $company_id)->get();
 
-        return view('requests.requests', compact('data'));
+        return view('requests.requests', compact('requests'));
     }
 
     /**

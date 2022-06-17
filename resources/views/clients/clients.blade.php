@@ -22,6 +22,9 @@
                                 Создать
                             </button>
                         </a>
+                        <div class="w-100">
+                            <input type="text" class="form-control" id="search" placeholder="Поиск клиентов">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,7 +36,7 @@
                 <div class="col">
                     <div class="back-white rounded-3">
                         <div class="requests-table rounded bg-white">
-                            <table class="table">
+                            <table class="table" id="table">
                                 <thead class="">
                                 <tr>
                                     <th scope="col" class="fw-normal py-3">Название</th>
