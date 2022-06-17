@@ -131,17 +131,7 @@
                 <div class="col">
                     <a href="">
                         <div class="custom-card rounded-3 back-white p-5">
-                            <div class="card__title fsize-20 font-500 font-dark pb-3">Склад</div>
-                            <div class="card__text font-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="">
-                        <div class="custom-card rounded-3 back-white p-5">
-                            <div class="card__title fsize-20 font-500 font-dark pb-3">Работа с заявками</div>
+                            <div class="card__title fsize-20 font-500 font-dark pb-3">Прайс-листы</div>
                             <div class="card__text font-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
                             </div>
@@ -153,7 +143,7 @@
                 <div class="col">
                     <a href="">
                         <div class="custom-card rounded-3 back-white p-5">
-                            <div class="card__title fsize-20 font-500 font-dark pb-3">Работа с заявками</div>
+                            <div class="card__title fsize-20 font-500 font-dark pb-3">Создание контактных лиц</div>
                             <div class="card__text font-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
                             </div>
@@ -163,17 +153,7 @@
                 <div class="col">
                     <a href="">
                         <div class="custom-card rounded-3 back-white p-5">
-                            <div class="card__title fsize-20 font-500 font-dark pb-3">Управление сотрудниками</div>
-                            <div class="card__text font-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="">
-                        <div class="custom-card rounded-3 back-white p-5">
-                            <div class="card__title fsize-20 font-500 font-dark pb-3">lorem10</div>
+                            <div class="card__title fsize-20 font-500 font-dark pb-3">Личный кабинет</div>
                             <div class="card__text font-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
                             </div>
