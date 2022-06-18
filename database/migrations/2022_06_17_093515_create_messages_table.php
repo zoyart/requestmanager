@@ -15,7 +15,10 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id()->unsigned();
-//            привязать к заявке
+
+            $table->bigInteger('request_id')->unsigned()->nullable(false);
+            $table->foreign('request_id')->references('id')->on('requests');
+
             $table->text('message')->nullable(false);
             $table->string('author', 255)->nullable(false);
             $table->string('status', 45)->nullable(false);

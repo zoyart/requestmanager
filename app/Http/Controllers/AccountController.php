@@ -48,10 +48,13 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        $company_id = Auth::user()->company_id;
-        $data = User::where('id', $id)->get();
-        $company_data = Company::where('id', $company_id)->get();
-
+        try {
+            $company_id = Auth::user()->company_id;
+            $data = User::where('company_id', $company_id)->where('id', $id)->get();
+            $company_data = Company::where('id', $company_id)->get();
+        } catch (\Exception $exception) {
+            return abort(404);
+        }
         return view('account.account', compact('company_id', 'data', 'company_data'));
     }
 

@@ -54,6 +54,7 @@ class ContactPersonController extends Controller
             'company_id' => $company_id,
             'name' => $request->input('name'),
             'surname' => $request->input('surname'),
+            'position' => 'contact_person',
             'email' => $request->input('email'),
             'user_status' => 'client',
             'password' => Hash::make($request->password),

@@ -35,7 +35,8 @@
                                 <div class="description mb-3">
                                     <label for="description" class="form-label">Описание:</label>
                                     <textarea class="form-control" id="description" rows="10"
-                                              name="description" placeholder="" value="{{ $data['description'] }}"></textarea>
+                                              name="description" placeholder="" value="{{ $data['description'] }}">
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +53,7 @@
                                     <div class="col-4">Тип заявки:</div>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="request_type" name="request_type"
-                                               value="">
+                                               value="{{ $data->request_type }}">
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
@@ -60,8 +61,20 @@
                                     <div class="col-8">
                                         <select name="status" class="form-select">
                                             <option value="{{ $data['status'] }}" selected>{{ $data['status'] }}</option>
+                                            <option value="В работе">Новая</option>
                                             <option value="В работе">В работе</option>
                                             <option value="Завершена">Завершена</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row  pb-3 d-flex align-items-center">
+                                    <div class="col-4">Срочность:</div>
+                                    <div class="col-8">
+                                        <select name="urgency" class="form-select">
+                                            <option value="{{ $data['urgency'] }}" selected>{{ $data['urgency'] }}</option>
+                                            <option value="В работе">Низкая</option>
+                                            <option value="В работе">Средняя</option>
+                                            <option value="Завершена">Высокая</option>
                                         </select>
                                     </div>
                                 </div>
@@ -79,28 +92,35 @@
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Оплачено:</div>
                                     <div class="col-8">
-                                        <select name="status" class="form-select">
-                                            <option value="Да" selected>Нет</option>
-                                            <option value="Нет">Да</option>
+                                        <select name="is_paid" class="form-select">
+                                            <option value="{{ $data->is_paid }}" selected>{{ $data->is_paid }}</option>
+                                            @if($data->is_paid === "Да")
+                                                <option value="Нет">Нет</option>
+                                            @else
+                                                <option value="Да">Да</option>
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
-                                    <div class="col-4">Номер заявки:</div>
-                                    <div class="col-8">{{ $data['id'] }}</div>
+                                    <div class="col-4">Адрес:</div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="object_address" name="object_address"
+                                               value="{{ $data->object_address }}">
+                                    </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Инвентарный номер:</div>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" id="" name=""
-                                               value="">
+                                        <input type="text" class="form-control" id="inventory_number" name="inventory_number"
+                                               value="{{ $data->inventory_number }}">
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Серийный номер:</div>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" id="" name=""
-                                               value="">
+                                        <input type="text" class="form-control" id="serial_number" name="serial_number"
+                                               value="{{ $data->serial_number }}">
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">

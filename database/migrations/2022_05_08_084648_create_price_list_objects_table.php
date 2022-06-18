@@ -15,6 +15,7 @@ class CreatePriceListObjectsTable extends Migration
     {
         Schema::create('price_list_objects', function (Blueprint $table) {
             $table->id();
+
             $table->bigInteger('price_list_id')->unsigned()->nullable(false);
             $table->foreign('price_list_id')->references('id')->on('price_lists');
 

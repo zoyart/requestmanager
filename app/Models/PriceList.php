@@ -15,8 +15,8 @@ class PriceList extends Model
         'author',
     ];
 
-    public function objectPriceList()
+    public function priceListObjects()
     {
-        $this->belongsTo(PriceListObject::class);
+        return $this->hasMany(PriceListObject::class);
     }
 }

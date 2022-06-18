@@ -80,6 +80,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/inventory', InventoryController::class);
 
     //    Согласования
-    Route::resource('/messages', MessageController::class);
+    Route::resource('requests/{id}/messages', MessageController::class);
 });
 

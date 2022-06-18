@@ -7,7 +7,7 @@
 @section('content')
 
 @section('page.name')
-    Прайс лист по "{{ $priceListData[0]['name'] }}"
+    Прайс лист по "{{ $priceListData['name'] }}"
 @endsection
 
     <div class="price-list-form pb-4">
@@ -60,7 +60,7 @@
                                         </select>
                                     </div>
                                     <input type="hidden" value="work" name="type">
-                                    <input type="hidden" value="{{ $priceListData[0]['id'] }}" name="priceListId">
+                                    <input type="hidden" value="{{ $priceListData['id'] }}" name="priceListId">
                                 </div>
                                 <div class="modal-footer d-flex justify-content-start">
                                     <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d">

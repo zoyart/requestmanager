@@ -85,8 +85,14 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $request = \App\Models\Request::find($id);
-        $userInfo = $request->user;
+        try {
+            $company_id = Auth::user()->company_id;
+            $request = \App\Models\Request::where('company_id', $company_id)->find($id);
+            $userInfo = $request->user;
+        } catch (\Exception $exception) {
+            return abort(404);
+        }
+
 
         return view('requests.card', compact('request', 'userInfo'));
     }
@@ -116,8 +122,16 @@ class RequestController extends Controller
     {
         $company_id = (int) Auth::user()->company_id;
 
-        \App\Models\Request::where('id', $id)->update([
+        \App\Models\Request::where('company_id', $company_id)->where('id', $id)->update([
             'title' => $request->title,
+            'description' => $request->description,
+            'inventory_number' => $request->inventory_number,
+            'serial_number' => $request->serial_number,
+            'is_paid' => $request->is_paid,
+            'urgency' => $request->urgency,
+            'status' => $request->status,
+            'object_address' => $request->object_address,
+            'request_type' => $request->request_type,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
         ]);

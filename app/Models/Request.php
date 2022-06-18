@@ -20,8 +20,14 @@ class Request extends Model
         'title',
         'description',
         'urgency',
+        'object_address',
         'latitude',
         'longitude',
+        'status',
+        'serial_number',
+        'inventory_number',
+        'request_type',
+        'is_paid',
     ];
 
     protected $attributes = [
@@ -36,5 +42,10 @@ class Request extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 }

@@ -51,10 +51,16 @@ class PriceListWorkController extends Controller
      */
     public function show($id)
     {
-        $data = PriceListObject::where('price_list_id', $id)->where('type', 'work')->get();
-        $priceListData = PriceList::where('id', $id)->get();
+        try {
+            $company_id = Auth::user()->company_id;
 
-        return view('priceList.work', compact('data','id', 'priceListData'));
+            $priceList = PriceList::where('company_id', $company_id)->find($id);
+            $priceListObjects = $priceList->priceListObjects()->where('type', 'work')->get();
+        } catch (\Exception $exception) {
+            return $exception->getCode();
+        }
+
+        return view('priceList.work', ['data' => $priceListObjects, 'id' => $id, 'priceListData' => $priceList]);
     }
 
     /**

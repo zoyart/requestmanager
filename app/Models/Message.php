@@ -10,6 +10,7 @@ class Message extends Model
     use HasFactory;
 
     protected $fillable = [
+        'request_id',
         'company_id',
         'author',
         'message',
@@ -22,4 +23,8 @@ class Message extends Model
     ];
 
 
+    public function request()
+    {
+        return $this->belongsTo(Request::class);
+    }
 }

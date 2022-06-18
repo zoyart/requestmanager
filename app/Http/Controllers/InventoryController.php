@@ -72,7 +72,13 @@ class InventoryController extends Controller
      */
     public function show($id)
     {
-        $data = Inventory::find($id)->get();
+        $company_id = Auth::user()->company_id;
+
+        try {
+            $data = Inventory::where('company_id', $company_id)->find($id)->get();
+        } catch (\Exception $exception) {
+            echo $exception->getCode();
+        }
 
         return view('inventory.card', compact('data'));
     }

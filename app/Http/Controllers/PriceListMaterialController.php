@@ -55,10 +55,16 @@ class PriceListMaterialController extends Controller
      */
     public function show($id)
     {
-        $data = PriceListObject::where('price_list_id', $id)->where('type', 'material')->get();
-        $priceListData = PriceList::where('id', $id)->get();
+        try {
+            $company_id = Auth::user()->company_id;
 
-        return view('priceList.materials', compact('data', 'id', 'priceListData'));
+            $priceList = PriceList::where('company_id', $company_id)->find($id);
+            $priceListObjects = $priceList->priceListObjects()->where('type', 'material')->get();
+        } catch (\Exception $exception) {
+            return $exception->getCode();
+        }
+
+        return view('priceList.materials', ['data' => $priceListObjects, 'id' => $id, 'priceListData' => $priceList]);
     }
 
     /**

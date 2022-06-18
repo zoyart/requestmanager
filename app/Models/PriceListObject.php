@@ -20,6 +20,6 @@ class PriceListObject extends Model
 
     public function priceList()
     {
-        return $this->hasMany(PriceList::class);
+        return $this->belongsTo(PriceList::class);
     }
 }

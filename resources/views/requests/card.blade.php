@@ -96,7 +96,7 @@
             <div class="col">
                 <div class="d-flex">
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Карточка заявки</a>
-                    <a class="tab rounded-top font-dark text-center font-500" href="{{ route('messages.show', ['message' => $request['id']]) }}">Согласования</a>
+                    <a class="tab rounded-top font-dark text-center font-500" href="{{ route('messages.index', ['id' => $request['id']]) }}">Согласования</a>
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Оплачено:</div>
-                                <div class="col-8">Нет данных</div>
+                                <div class="col-8">{{ $request->is_paid }}</div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col-4">Номер заявки:</div>
@@ -160,6 +160,10 @@
                             <div class="row  pb-3">
                                 <div class="col-4">Серийный номер:</div>
                                 <div class="col-8">Нет данных</div>
+                            </div>
+                            <div class="row  pb-3">
+                                <div class="col-4">Адрес:</div>
+                                <div class="col-8">{{ $request->object_address }}</div>
                             </div>
                         </div>
                     </div>

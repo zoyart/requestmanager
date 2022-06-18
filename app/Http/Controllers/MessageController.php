@@ -13,8 +13,18 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
+        $company_id = Auth::user()->company_id;
+
+        try {
+            $request = \App\Models\Request::where('company_id', $company_id)->find($id);
+            $data = $request->messages()->orderBy('created_at', 'desc')->get();
+        } catch (\Exception $exception) {
+            return abort(404);
+        }
+
+        return view('messages.messages', compact('id', 'data'));
     }
 
     /**
@@ -33,7 +43,7 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
         $request->validate([
             'message' => 'required',
@@ -47,12 +57,13 @@ class MessageController extends Controller
         $author = Auth::user()->name;
 
         Message::create([
+            'request_id' => $id,
             'message' => $request->message,
             'author' => $author,
             'file' => $file ?? null,
         ]);
 
-//        return redirect()->route();
+        return redirect()->route('messages.index', compact('id'));
     }
 
     /**
@@ -63,7 +74,6 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        return view('messages.messages');
     }
 
     /**

@@ -13,4 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     @yield('links')
     <link rel="stylesheet" href="{{ asset("resources/css/style.css") }}">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    />
 </head>

@@ -17,7 +17,7 @@
                     data-bs-toggle="modal">
                 Добавить сообщение
             </button>
-            <form action="{{ route('messages.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('messages.store', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Modal create -->
                 <div class="modal fade" id="change-status" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -59,7 +59,7 @@
     <div class="container">
         <div class="col">
             <div class="d-flex">
-                <a class="tab rounded-top font-dark text-center font-500" href="">Карточка заявки</a>
+                <a class="tab rounded-top font-dark text-center font-500" href="{{ route('requests.show', ['request' => $id]) }}">Карточка заявки</a>
                 <a class="tab rounded-top back-light font-dark text-center font-500" href="">Согласования</a>
             </div>
         </div>
@@ -67,12 +67,59 @@
 </div>
 <div class="cards back-light min-vh-100">
     <div class="container">
-        <div class="row py-4">
+        <div class="row">
             <div class="col">
-
-            </div>
-            <div class="col">
-
+                @foreach($data as $item)
+                    <div class="back-white rounded-3 shadow-sm p-4 my-5">
+                        <div class="row pb-3">
+                            <div class="col">
+                                <table class="table" id="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="fw-normal py-3">Сообщение</th>
+                                        <th scope="col" class="fw-normal py-3">Статус</th>
+                                        <th scope="col" class="fw-normal py-3">Автор</th>
+                                        <th scope="col" class="fw-normal py-3">Создано</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-3">{{ $item->message }}</td>
+                                            <td class="py-3">{{ $item->status }}</td>
+                                            <td class="py-3">{{ $item->author }}</td>
+                                            <td class="py-3">{{ $item->created_at }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @if($item->file)
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse{{ $item->id }}" aria-expanded="false"
+                                                    aria-controls="collapseTwo">
+                                                Показать файл
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{ $item->id }}" class="accordion-collapse collapse"
+                                             aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <a data-fancybox href="{{ asset('public/storage/' . $item->file) }}">
+                                                    <img src="{{ asset('public/storage/' . $item->file) }}" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -76,7 +76,7 @@ class ClientController extends Controller
     public function show($id)
     {
         $company_id = Auth::user()->company_id;
-        $data = Client::where('id', $id)->get();
+        $data = Client::where('company_id', $company_id)->where('id', $id)->get();
         $dataContactPerson = User::where('company_id', $company_id)->where('user_status', 'client')->get();
 
         return view('clients.card', compact('data', 'dataContactPerson'));

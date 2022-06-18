@@ -19,4 +19,19 @@ class Company extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function priceLists()
+    {
+        return $this->hasMany(PriceList::class);
+    }
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 }

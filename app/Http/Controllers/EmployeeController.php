@@ -69,13 +69,20 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $data = User::where('id', $id)->get();
-        $user = User::find($id);
-        $request = Permission::where('app', 'request')->get();
-        $priceList = Permission::where('app', 'priceList')->get();
-        $employee = Permission::where('app', 'employee')->get();
-        $client = Permission::where('app', 'client')->get();
-        $contact_person = Permission::where('app', 'contact_person')->get();
+        try {
+            $company_id = Auth::user()->company_id;
+            $data = User::where('company_id', $company_id)->where('id', $id)->get();
+            $user = User::where('company_id', $company_id)->find($id);
+            $request = Permission::where('app', 'request')->get();
+            $priceList = Permission::where('app', 'priceList')->get();
+            $employee = Permission::where('app', 'employee')->get();
+            $client = Permission::where('app', 'client')->get();
+            $contact_person = Permission::where('app', 'contact_person')->get();
+        } catch (\Exception $exception) {
+            return abort(404);
+        }
+
+
 
         return view('account.employee-card',
             compact('data', 'request', 'priceList', 'employee', 'client', 'user', 'contact_person'));
