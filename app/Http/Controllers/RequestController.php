@@ -160,6 +160,7 @@ class RequestController extends Controller
     {
         $company_id = (int) Auth::user()->company_id;
         $request_array = $request->all();
+
 //      ID всех отмеченных чекбоксов
         $ids = array_slice($request_array, 2);
 

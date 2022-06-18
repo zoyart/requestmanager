@@ -12,6 +12,7 @@ $('.checkbox').click(function (){
     }
 });
 
+// Поиск по таблице
 $(document).ready(function(){
     $("#search").keyup(function(){
         _this = this;
@@ -24,22 +25,3 @@ $(document).ready(function(){
         });
     });
 });
-
-// Множественное редактирование на странице
-// var elements = [];
-// $('.edit').click(function () {
-//     $('.table_items').each(function (){
-//         if ($(this).find('.checkbox').is(":checked")) {
-//             elements.push($(this).find('.checkbox').val());
-//         }
-//     });
-//     $.ajax({
-//         url: "price-list/3/edit",
-//         type: "GET",
-//         data: {"company_id": 1, "elements": elements, "id": 3},
-//         headers: {
-//             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-//         }
-//     });
-// });
-// console.log(elements);

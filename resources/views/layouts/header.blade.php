@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg back-dark py-3 shadow-sm">
+<nav class="navbar navbar-expand-lg back-dark navbar-dark py-3 shadow-sm">
     <div class="container">
         <a class="navbar-brand me-5" href="{{ route('requests.index') }}">
             <div class="d-flex align-items-center fs-6">
@@ -20,7 +20,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                 <li class="nav-item me-2">
                     <a class="nav-link link-on-dark" href="{{ route('requests.create') }}">Создать заявку</a>
                 </li>
@@ -51,12 +51,14 @@
                     <a class="nav-link link-on-dark"
                        href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id]) }}">Аккаунт</a>
                 </li>
+
             </ul>
-            <div class="mx-5">
-                <label class="font-light font-500" for="">
-                    {{ \Illuminate\Support\Facades\Auth::user()['name'] }} {{ \Illuminate\Support\Facades\Auth::user()['surname'] }}
-                </label>
-            </div>
+            <a class="font-light font-500 me-5" for=""
+               href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id]) }}">
+                {{ \Illuminate\Support\Facades\Auth::user()['name'] }}
+                {{ \Illuminate\Support\Facades\Auth::user()['surname'] }}
+            </a>
+
             @if(\Illuminate\Support\Facades\Auth::check())
                 <form action=" {{ route('logout') }} " method="get">
                     @csrf
