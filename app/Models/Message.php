@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'company_id',
+        'author',
+        'message',
+        'status',
+        'file',
+    ];
+
+    protected $attributes = [
+        'status' => 'Новая',
+    ];
+
+
 }

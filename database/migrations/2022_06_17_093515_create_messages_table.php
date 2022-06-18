@@ -14,7 +14,13 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unsigned();
+//            привязать к заявке
+            $table->text('message')->nullable(false);
+            $table->string('author', 255)->nullable(false);
+            $table->string('status', 45)->nullable(false);
+            $table->string('file')->nullable();
+
             $table->timestamps();
         });
     }

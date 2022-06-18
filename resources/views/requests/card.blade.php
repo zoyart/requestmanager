@@ -96,7 +96,7 @@
             <div class="col">
                 <div class="d-flex">
                     <a class="tab rounded-top back-light font-dark text-center font-500" href="">Карточка заявки</a>
-                    <a class="tab rounded-top font-dark text-center font-500" href="">Согласования</a>
+                    <a class="tab rounded-top font-dark text-center font-500" href="{{ route('messages.show', ['message' => $request['id']]) }}">Согласования</a>
                 </div>
             </div>
         </div>

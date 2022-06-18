@@ -48,8 +48,8 @@
                                placeholder="@error('article_number') {{ $message }} @enderror">
                     </div>
                     <div class="comment mb-3">
-                        <label for="working_conditions" class="form-label">Комментарий</label>
-                        <textarea class="form-control" id="description" rows="10" name="working_conditions" value="{{ $data[0]['comment'] }}"></textarea>
+                        <label for="comment" class="form-label">Комментарий</label>
+                        <textarea class="form-control" id="comment" rows="10" name="comment" value="{{ $data[0]['comment'] }}"></textarea>
                     </div>
                 </div>
             </div>

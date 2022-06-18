@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -13,7 +15,6 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -34,7 +35,24 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'message' => 'required',
+            'file' => 'nullable|image',
+        ]);
+
+        if ($request->hasFile('file')) {
+            $folder = date('Y-m-d');
+            $file = $request->file('file')->store("images/{$folder}", 'public');
+        }
+        $author = Auth::user()->name;
+
+        Message::create([
+            'message' => $request->message,
+            'author' => $author,
+            'file' => $file ?? null,
+        ]);
+
+//        return redirect()->route();
     }
 
     /**
@@ -45,7 +63,7 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('messages.messages');
     }
 
     /**

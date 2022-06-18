@@ -12,6 +12,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactPersonController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\MessageController;
 
 
 // Стартовая страница
@@ -77,5 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/inventory/delete-few', [InventoryController::class, 'deleteFew'])
         ->name('inventory.delete-few');
     Route::resource('/inventory', InventoryController::class);
+
+    //    Согласования
+    Route::resource('/messages', MessageController::class);
 });
 
