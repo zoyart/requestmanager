@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReqRequest;
 use App\Models\Client;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,14 +30,11 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $company_id = (int) Auth::user()->company_id;
+        $company_id = (int)Auth::user()->company_id;
+        $userId = Auth::user()->id;
+        $user = User::find($userId);
 
-        if (Auth::user()->user_status === 'owner') {
-            $requests = \App\Models\Request::where('company_id', $company_id)->get();
-        } else {
-            $user = User::find(Auth::user()->id);
-            $requests = $user->requests;
-        }
+        $requests = $user->requests;
 
         return view('requests.requests', compact('requests'));
 
@@ -49,30 +47,48 @@ class RequestController extends Controller
      */
     public function create()
     {
-        $company_id = (int) Auth::user()->company_id;
-        $clients = Client::where('company_id', $company_id)->get();
-        $employees = User::where('company_id', $company_id)->where('user_status', 'employee')->get();
+        $company_id = (int)Auth::user()->company_id;
+        $clients = Company::find($company_id)->clients()->get();
+        $employees = Company::find($company_id)->users()->where('user_status', 'employee')->get();
+        $contactPersons = Company::find($company_id)->users()->where('user_status', 'client')->get();
 
-        return view('requests.create', compact('clients', 'employees'));
+        return view('requests.create', compact('clients', 'employees', 'contactPersons'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreReqRequest $request)
     {
-        $company_id = (int) Auth::user()->company_id;
+//        dd($request);
+        $company_id = (int)Auth::user()->company_id;
+        $userId = $request->user_id;
+        $contactPerson = $request->contact_person;
 
-        \App\Models\Request::create([
+        $request = \App\Models\Request::create([
             'company_id' => $company_id,
-            'user_id' => $request->user_id,
             'title' => $request->title,
             'description' => $request->description,
             'urgency' => $request->urgency,
         ]);
+
+        // Добавление пользователей к заявке
+        if (Auth::user()->id == $userId) {
+            $request->user()->attach($userId);
+            if ($contactPerson != 0) {
+                $request->user()->attach($contactPerson);
+            }
+        } else {
+            $request->user()->attach($userId);
+            $owner = Company::find($company_id)->users()->where('user_status', 'owner')->get('id');
+            $request->user()->attach($owner);
+            if ($contactPerson != 0) {
+                $request->user()->attach($contactPerson);
+            }
+        }
 
         return redirect()->route('requests.index');
     }
@@ -80,7 +96,7 @@ class RequestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -88,7 +104,7 @@ class RequestController extends Controller
         try {
             $company_id = Auth::user()->company_id;
             $request = \App\Models\Request::where('company_id', $company_id)->find($id);
-            $userInfo = $request->user;
+            $userInfo = $request->user()->get();
         } catch (\Exception $exception) {
             return abort(404);
         }
@@ -100,27 +116,28 @@ class RequestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $company_id = (int) Auth::user()->company_id;
-        $data = \App\Models\Request::where('company_id', $company_id)->where('id', $id)->get()[0];
+        $company_id = (int)Auth::user()->company_id;
+        $request = \App\Models\Request::where('company_id', $company_id)->find($id);
+//        $data = \App\Models\Request::where('company_id', $company_id)->where('id', $id)->get()[0];
 
-        return view('requests.edit', compact('data'));
+        return view('requests.edit', compact('request'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $company_id = (int) Auth::user()->company_id;
+        $company_id = (int)Auth::user()->company_id;
 
         \App\Models\Request::where('company_id', $company_id)->where('id', $id)->update([
             'title' => $request->title,
@@ -136,15 +153,13 @@ class RequestController extends Controller
             'longitude' => $request->longitude,
         ]);
 
-        $requests = \App\Models\Request::where('company_id', $company_id)->get();
-
-        return view('requests.requests', compact('requests'));
+        return redirect()->route('requests.index');
     }
 
     /**
      * Update status
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function changeStatus($id, Request $request)
@@ -159,12 +174,14 @@ class RequestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $company_id = (int) Auth::user()->company_id;
+        $company_id = (int)Auth::user()->company_id;
+
+        \App\Models\Request::find($id)->user()->detach();
         \App\Models\Request::where('company_id', $company_id)->where('id', $id)->delete();
 
         return redirect()->route('requests.index');
@@ -172,13 +189,14 @@ class RequestController extends Controller
 
     public function deleteFew(Request $request)
     {
-        $company_id = (int) Auth::user()->company_id;
+        $company_id = (int)Auth::user()->company_id;
         $request_array = $request->all();
 
 //      ID всех отмеченных чекбоксов
         $ids = array_slice($request_array, 2);
 
         foreach ($ids as $item) {
+            \App\Models\Request::find($item)->user()->detach();
             \App\Models\Request::where('company_id', $company_id)->where('id', $item)->delete();
         }
 

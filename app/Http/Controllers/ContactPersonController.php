@@ -60,6 +60,11 @@ class ContactPersonController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->syncPermissions([
+            'Просмотр всех заявок',
+            'Просмотр карточки заявки',
+            ]);
+
         return redirect()->route('clients.show', ['client' => $request->input('client_id')]);
     }
 

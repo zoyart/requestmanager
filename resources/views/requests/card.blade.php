@@ -113,12 +113,12 @@
                         </div>
                         <div class="font-text">
                             <div class="row  pb-3">
-                                <div class="col-2">Тема:</div>
-                                <div class="col-10">{{ $request['title'] }}</div>
+                                <div class="col">Тема:</div>
+                                <div class="col">{{ $request->title }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-2">Описание:</div>
-                                <div class="col-10">{{ $request['description'] }}</div>
+                                <div class="col">Описание:</div>
+                                <div class="col">{{ $request->description }}</div>
                             </div>
                         </div>
                     </div>
@@ -132,38 +132,40 @@
                         </div>
                         <div class="font-text">
                             <div class="row  pb-3">
-                                <div class="col-4">Тип Заявки:</div>
-                                <div class="col-8">Нет данных</div>
+                                <div class="col">Тип заявки:</div>
+                                <div class="col">Нет данных</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Статус:</div>
-                                <div class="col-8">{{ $request['status'] }}</div>
+                                <div class="col">Статус:</div>
+                                <div class="col">{{ $request['status'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Исполнитель:</div>
-                                <div class="col-8">{{ $userInfo->name }} {{ $userInfo->surname }}
-                                    ({{ $userInfo->position }})
+                                <div class="col">Исполнители:</div>
+                                <div class="col">
+                                @foreach($userInfo as $user)
+                                        {{ $user->name }} {{ $user->surname }}
+                                @endforeach
                                 </div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Оплачено:</div>
-                                <div class="col-8">{{ $request->is_paid }}</div>
+                                <div class="col">Оплачено:</div>
+                                <div class="col">{{ $request->is_paid }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Номер заявки:</div>
-                                <div class="col-8">{{ $request['id'] }}</div>
+                                <div class="col">Номер заявки:</div>
+                                <div class="col">{{ $request['id'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Инвентарный номер:</div>
-                                <div class="col-8">Нет данных</div>
+                                <div class="col">Инвентарный номер:</div>
+                                <div class="col">Нет данных</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Серийный номер:</div>
-                                <div class="col-8">Нет данных</div>
+                                <div class="col">Серийный номер:</div>
+                                <div class="col">Нет данных</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Адрес:</div>
-                                <div class="col-8">{{ $request->object_address }}</div>
+                                <div class="col">Адрес:</div>
+                                <div class="col">{{ $request->object_address }}</div>
                             </div>
                         </div>
                     </div>

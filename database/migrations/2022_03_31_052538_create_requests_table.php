@@ -18,9 +18,6 @@ class CreateRequestsTable extends Migration
             $table->bigInteger('company_id')->unsigned()->nullable(false);
             $table->foreign('company_id')->references('id')->on('companies');
 
-            $table->bigInteger('user_id')->unsigned()->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
-
             $table->integer('client_id')->nullable();
 
             $table->string('title', 100)->nullable(false);

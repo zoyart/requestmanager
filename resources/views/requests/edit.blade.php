@@ -7,12 +7,12 @@
 @section('content')
 
 @section('page.name')
-    Редактирование заявки "{{ $data['id'] }}"
+    Редактирование заявки "{{ $request['id'] }}"
 @endsection
 
     <div class="cards back-light min-vh-100">
         <div class="container">
-            <form action="{{ route('requests.update', ['request' => $data['id']])}}"
+            <form action="{{ route('requests.update', ['request' => $request['id']])}}"
                   method="post">
                 @csrf
                 @method('PUT')
@@ -29,13 +29,13 @@
                                     <div class="col-2">Тема:</div>
                                     <div class="col-10">
                                         <input type="text" class="form-control" id="title" name="title"
-                                               value="{{ $data['title'] }}">
+                                               value="{{ $request['title'] }}">
                                     </div>
                                 </div>
                                 <div class="description mb-3">
                                     <label for="description" class="form-label">Описание:</label>
-                                    <textarea class="form-control" id="description" rows="10"
-                                              name="description" placeholder="" value="{{ $data['description'] }}">
+                                    <textarea class="form-control" id="description" rows="16"
+                                              name="description" value="">{{ $request['description'] }}
                                     </textarea>
                                 </div>
                             </div>
@@ -53,14 +53,14 @@
                                     <div class="col-4">Тип заявки:</div>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="request_type" name="request_type"
-                                               value="{{ $data->request_type }}">
+                                               value="{{ $request->request_type }}">
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Статус:</div>
                                     <div class="col-8">
                                         <select name="status" class="form-select">
-                                            <option value="{{ $data['status'] }}" selected>{{ $data['status'] }}</option>
+                                            <option value="{{ $request['status'] }}" selected>{{ $request['status'] }}</option>
                                             <option value="В работе">Новая</option>
                                             <option value="В работе">В работе</option>
                                             <option value="Завершена">Завершена</option>
@@ -71,7 +71,7 @@
                                     <div class="col-4">Срочность:</div>
                                     <div class="col-8">
                                         <select name="urgency" class="form-select">
-                                            <option value="{{ $data['urgency'] }}" selected>{{ $data['urgency'] }}</option>
+                                            <option value="{{ $request['urgency'] }}" selected>{{ $request['urgency'] }}</option>
                                             <option value="В работе">Низкая</option>
                                             <option value="В работе">Средняя</option>
                                             <option value="Завершена">Высокая</option>
@@ -93,8 +93,8 @@
                                     <div class="col-4">Оплачено:</div>
                                     <div class="col-8">
                                         <select name="is_paid" class="form-select">
-                                            <option value="{{ $data->is_paid }}" selected>{{ $data->is_paid }}</option>
-                                            @if($data->is_paid === "Да")
+                                            <option value="{{ $request->is_paid }}" selected>{{ $request->is_paid }}</option>
+                                            @if($request->is_paid === "Да")
                                                 <option value="Нет">Нет</option>
                                             @else
                                                 <option value="Да">Да</option>
@@ -106,35 +106,35 @@
                                     <div class="col-4">Адрес:</div>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="object_address" name="object_address"
-                                               value="{{ $data->object_address }}">
+                                               value="{{ $request->object_address }}">
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Инвентарный номер:</div>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="inventory_number" name="inventory_number"
-                                               value="{{ $data->inventory_number }}">
+                                               value="{{ $request->inventory_number }}">
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Серийный номер:</div>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="serial_number" name="serial_number"
-                                               value="{{ $data->serial_number }}">
+                                               value="{{ $request->serial_number }}">
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Широта:</div>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="latitude" name="latitude"
-                                               value="{{ $data['latitude'] }}">
+                                               value="{{ $request['latitude'] }}">
                                     </div>
                                 </div>
                                 <div class="row  pb-3 d-flex align-items-center">
                                     <div class="col-4">Долгота:</div>
                                     <div class="col-8">
                                         <input type="text" class="form-control" id="longitude" name="longitude"
-                                               value="{{ $data['longitude'] }}">
+                                               value="{{ $request['longitude'] }}">
                                     </div>
                                 </div>
                             </div>

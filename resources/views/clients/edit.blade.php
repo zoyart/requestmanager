@@ -43,7 +43,9 @@
                         </div>
                         <div class="working_conditions mb-3">
                             <label for="working_conditions" class="form-label">Условия работы с заказчиком</label>
-                            <textarea class="form-control" id="description" rows="10" name="working_conditions" value="{{ $data[0]['working_conditions'] }}"></textarea>
+                            <textarea class="form-control" id="description" rows="10" name="working_conditions" value="">
+{{ $data[0]['working_conditions'] }}
+                            </textarea>
                         </div>
                     </div>
                     <div class="col-lg-4">

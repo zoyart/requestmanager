@@ -171,9 +171,8 @@ class TestData extends Seeder
         $statusArray = array('Новая', 'В работе', 'Завершена');
 
         for ($i = 0; $i < 20; $i++) {
-            Request::create([
+            $request = Request::create([
                 'company_id' => 1,
-                'user_id' => 1,
                 'title' => "Lorem ipsum dias lorem {$i}",
                 'description' => 'Lorem ipsum dias lorem lorem ipsum dias lorem',
                 'urgency' => $urgencyArray[array_rand($urgencyArray)],
@@ -183,6 +182,8 @@ class TestData extends Seeder
                 'latitude' => $latitudeArray[array_rand($latitudeArray)],
                 'longitude' => $longitudeArray[array_rand($longitudeArray)],
             ]);
+
+            $request->user()->attach(1);
         }
     }
 }

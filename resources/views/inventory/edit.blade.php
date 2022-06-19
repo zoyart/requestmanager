@@ -49,7 +49,7 @@
                     </div>
                     <div class="comment mb-3">
                         <label for="comment" class="form-label">Комментарий</label>
-                        <textarea class="form-control" id="comment" rows="10" name="comment" value="{{ $data[0]['comment'] }}"></textarea>
+                        <textarea class="form-control" id="comment" rows="10" name="comment" value="">{{ $data[0]['comment'] }}</textarea>
                     </div>
                 </div>
             </div>

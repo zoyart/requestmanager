@@ -47,10 +47,6 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="address-object mb-3">
-                        <label for="address-object" class="form-label">Адрес объекта</label>
-                        <input type="text" class="form-control" id="address-object" name="address_object">
-                    </div>
                     <div class="client mb-3">
                         <label class="form-label">Клиент</label>
                         <select class="form-select">
@@ -59,6 +55,19 @@
                                 <option>{{ $client['name'] }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="contact_person mb-3">
+                        <label for="contact_person" class="form-label">Контактное лицо</label>
+                        <select name="contact_person" class="form-select">
+                            <option value="0" selected>Нет</option>
+                            @foreach($contactPersons as $contactPerson)
+                                <option value="{{ $contactPerson['id'] }}">{{ $contactPerson['name'] }} {{ $contactPerson['surname'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="address-object mb-3">
+                        <label for="address-object" class="form-label">Адрес объекта</label>
+                        <input type="text" class="form-control" id="address-object" name="address_object">
                     </div>
                 </div>
             </div>
