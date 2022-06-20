@@ -11,6 +11,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserRegistered;
 
 class UserController extends Controller
 {
@@ -21,6 +23,9 @@ class UserController extends Controller
 
     public function store(StoreRegistrationRequest $request)
     {
+        $validate = Validator::make(Input::all(), [
+        ]);
+
         $company = Company::create([
             'name' => $request->companyName,
             'email' => $request->email,
@@ -38,11 +43,8 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-
         $user->syncPermissions('Владелец');
-
         Auth::login($user);
-
 
         return redirect()->route('requests.index');
     }
@@ -72,4 +74,5 @@ class UserController extends Controller
 
         return redirect()->route('index');
     }
+
 }

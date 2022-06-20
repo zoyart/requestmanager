@@ -45,7 +45,7 @@ class EmployeeController extends Controller
             'surname' => 'required',
             'position' => 'required',
             'email' => 'required|email|unique:users|unique:companies',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed|min:8|max:45'
         ]);
 
         $user = User::create([
@@ -81,8 +81,6 @@ class EmployeeController extends Controller
         } catch (\Exception $exception) {
             return abort(404);
         }
-
-
 
         return view('account.employee-card',
             compact('data', 'request', 'priceList', 'employee', 'client', 'user', 'contact_person'));

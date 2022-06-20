@@ -13,11 +13,14 @@
     <div class="container pb-2">
         <div class="col">
             <div class="d-flex" id="actions">
-                <from action="" method=""></from>
-                <button type="button" data-bs-target="#create" data-bs-toggle="modal"
+                <form action="{{ route('account.destroy', ['account' => $data[0]['id']]) }}" method="post">
+                    @csrf
+                    @method('delete')
+                <button type="submit" data-bs-target="#create" data-bs-toggle="modal"
                         class="d-inline-block button-sm border-0 rounded-pill y-to-d me-3">
                     Удалить аккаунт
                 </button>
+                </form>
             </div>
         </div>
     </div>

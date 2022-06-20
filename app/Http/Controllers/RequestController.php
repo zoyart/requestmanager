@@ -63,7 +63,6 @@ class RequestController extends Controller
      */
     public function store(StoreReqRequest $request)
     {
-//        dd($request);
         $company_id = (int)Auth::user()->company_id;
         $userId = $request->user_id;
         $contactPerson = $request->contact_person;

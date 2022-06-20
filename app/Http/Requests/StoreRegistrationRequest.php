@@ -44,8 +44,6 @@ class StoreRegistrationRequest extends FormRequest
             'password.required' => 'Это поле обязательно к заполнению.',
             'password.min' => 'Пароль должен содержать минимум 8 символов.',
             'password.confirmed' => 'Подтвердите пароль',
-            'g-recaptcha-response.required' => 'Капча обязательна',
-            'g-recaptcha-response.captcha' => 'Ошибка капчи',
         ];
     }
 }
