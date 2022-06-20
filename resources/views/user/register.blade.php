@@ -1,3 +1,4 @@
+{!! NoCaptcha::renderJs() !!}
 <!doctype html>
 <html lang="en">
 
@@ -114,6 +115,9 @@
                     <label for="password_confirmation" class="form-label">Подтвердите пароль</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password_confirmation" name="password_confirmation"
                            placeholder="@error('password') {{ $message }} @enderror">
+                </div>
+                <div class="mb-4">
+                    {!! NoCaptcha::display() !!}
                 </div>
                 <input type="text" hidden name="user_status" value="owner">
                 <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d">Зарегестрироваться</button>

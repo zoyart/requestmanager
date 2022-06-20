@@ -28,7 +28,8 @@ class StoreRegistrationRequest extends FormRequest
             'name' => 'required|max:45',
             'surname' => 'required|max:45',
             'email' => 'required|email|unique:users|unique:companies|max:45',
-            'password' => 'required|confirmed|min:8|max:45'
+            'password' => 'required|confirmed|min:8|max:45',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 
@@ -43,6 +44,8 @@ class StoreRegistrationRequest extends FormRequest
             'password.required' => 'Это поле обязательно к заполнению.',
             'password.min' => 'Пароль должен содержать минимум 8 символов.',
             'password.confirmed' => 'Подтвердите пароль',
+            'g-recaptcha-response.required' => 'Капча обязательна',
+            'g-recaptcha-response.captcha' => 'Ошибка капчи',
         ];
     }
 }
