@@ -97,6 +97,15 @@
                     <input type="checkbox" class="form-check-input" id="rememberMe" value="1" name="rememberMe">
                     <label class="form-check-label" for="rememberMe">Запомнить меня</label>
                 </div>
+                <div class="mb-4">
+                    {!! NoCaptcha::renderJs() !!}
+                    {!! NoCaptcha::display() !!}
+                    @if ($errors->has('g-recaptcha-response'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                        </span>
+                    @endif
+                </div>
                 <button type="submit" class="d-inline-block button-sm border-0 rounded-pill y-to-d">Войти</button>
             </form>
         </div>

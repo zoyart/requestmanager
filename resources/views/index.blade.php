@@ -106,7 +106,7 @@
                         <div class="custom-card rounded-3 back-white p-5">
                             <div class="card__title fsize-20 font-500 font-dark pb-3">Работа с заявками</div>
                             <div class="card__text font-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
+                                Назначайте исполнителей и контактных лиц для заявки.
                             </div>
                         </div>
                     </a>
@@ -116,7 +116,7 @@
                         <div class="custom-card rounded-3 back-white p-5">
                             <div class="card__title fsize-20 font-500 font-dark pb-3">Работа с клиентами</div>
                             <div class="card__text font-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
+                                Создание карточоки клиента и контактных лиц для клиентов.
                             </div>
                         </div>
                     </a>
@@ -126,7 +126,7 @@
                         <div class="custom-card rounded-3 back-white p-5">
                             <div class="card__title fsize-20 font-500 font-dark pb-3">Прайс-листы</div>
                             <div class="card__text font-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
+                                Хранение праййс листов по работам и материалам.
                             </div>
                         </div>
                     </a>
@@ -138,7 +138,7 @@
                         <div class="custom-card rounded-3 back-white p-5">
                             <div class="card__title fsize-20 font-500 font-dark pb-3">Создание контактных лиц</div>
                             <div class="card__text font-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
+                                Контактные лица могут просматривать свои заявки, а также учавстовать в согласованиях.
                             </div>
                         </div>
                     </a>
@@ -148,7 +148,7 @@
                         <div class="custom-card rounded-3 back-white p-5">
                             <div class="card__title fsize-20 font-500 font-dark pb-3">Личный кабинет</div>
                             <div class="card__text font-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
+                                Просмотр дополнительной информации об аккаунте.
                             </div>
                         </div>
                     </a>
@@ -156,9 +156,9 @@
                 <div class="col">
                     <a href="">
                         <div class="custom-card rounded-3 back-white p-5">
-                            <div class="card__title fsize-20 font-500 font-dark pb-3">lorem10</div>
+                            <div class="card__title fsize-20 font-500 font-dark pb-3">Управление правами сотрудников</div>
                             <div class="card__text font-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, veniam.
+                                Гибкая настройка прав для сотрудников.
                             </div>
                         </div>
                     </a>

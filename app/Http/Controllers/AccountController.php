@@ -66,7 +66,10 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $companyId = Auth::user()->company_id;
+        $accountData = User::where('company_id', $companyId)->find($id);
+//        dd($accountData);
+        return view('account.account-edit', ['data' => $accountData]);
     }
 
     /**
@@ -78,7 +81,19 @@ class AccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $companyId = Auth::user()->company_id;
+
+
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+        ]);
+        User::where('company_id', $companyId)->find($id)->update([
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+        ]);
+
+        return redirect()->route('requests.index');
     }
 
     /**

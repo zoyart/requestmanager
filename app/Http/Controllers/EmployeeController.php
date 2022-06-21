@@ -78,12 +78,14 @@ class EmployeeController extends Controller
             $employee = Permission::where('app', 'employee')->get();
             $client = Permission::where('app', 'client')->get();
             $contact_person = Permission::where('app', 'contact_person')->get();
+            $inventory = Permission::where('app', 'inventory')->get();
+
         } catch (\Exception $exception) {
             return abort(404);
         }
 
         return view('account.employee-card',
-            compact('data', 'request', 'priceList', 'employee', 'client', 'user', 'contact_person'));
+            compact('data', 'request', 'priceList', 'employee', 'client', 'user', 'contact_person', 'inventory'));
     }
 
     /**
@@ -101,9 +103,10 @@ class EmployeeController extends Controller
         $employee = Permission::where('app', 'employee')->get();
         $client = Permission::where('app', 'client')->get();
         $contact_person = Permission::where('app', 'contact_person')->get();
+        $inventory = Permission::where('app', 'inventory')->get();
 
         return view('account.employee-edit',
-            compact('data', 'request', 'priceList', 'employee', 'client', 'user', 'contact_person'));
+            compact('data', 'request', 'priceList', 'employee', 'client', 'user', 'contact_person', 'inventory'));
     }
 
     /**

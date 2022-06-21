@@ -44,7 +44,7 @@
                     </div>
                 </form>
                 <!-- EndModal -->
-                <form action=""
+                <form action="{{ route('account.edit', ['account'=> $data[0]['id']]) }}"
                       method="get">
                     <button type="submit" class="button-circle-sm rounded-circle border-0 y-to-d me-3">
                         <div class="d-flex align-items-center justify-content-center">
@@ -85,33 +85,33 @@
                         </div>
                         <div class="font-text">
                             <div class="row  pb-3">
-                                <div class="col-2">Имя:</div>
-                                <div class="col-10">{{ $data[0]['name'] }}</div>
+                                <div class="col">Имя:</div>
+                                <div class="col">{{ $data[0]['name'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-2">Фамилия:</div>
-                                <div class="col-10">{{ $data[0]['surname'] }}</div>
+                                <div class="col">Фамилия:</div>
+                                <div class="col">{{ $data[0]['surname'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-2">Почта:</div>
-                                <div class="col-10">{{ $data[0]['email'] }}</div>
+                                <div class="col">Почта:</div>
+                                <div class="col">{{ $data[0]['email'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-2">Пароль:</div>
-                                <div class="col-10">???</div>
+                                <div class="col">Пароль:</div>
+                                <div class="col">???</div>
                                 <a class="" href="">Сменить пароль</a>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-2">Дата регистрации:</div>
-                                <div class="col-10">{{ $data[0]['created_at'] }}</div>
+                                <div class="col">Дата регистрации:</div>
+                                <div class="col">{{ $data[0]['created_at'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-2">Название компании:</div>
-                                <div class="col-10">{{ $company_data[0]['name'] }}</div>
+                                <div class="col">Название компании:</div>
+                                <div class="col">{{ $company_data[0]['name'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-2">Владелец:</div>
-                                <div class="col-10">{{ ($data[0]['user_status'] === 'owner') ? 'Да' : 'Нет'  }}</div>
+                                <div class="col">Владелец:</div>
+                                <div class="col">{{ ($data[0]['user_status'] === 'owner') ? 'Да' : 'Нет'  }}</div>
                             </div>
                         </div>
                     </div>

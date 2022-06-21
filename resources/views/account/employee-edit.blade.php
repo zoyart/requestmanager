@@ -170,7 +170,7 @@
                                 <div class="font-500 fsize-20 pb-2">Склад</div>
                                 <hr class="dropdown-divider">
                                 <ul class="font-text">
-                                    @foreach($contact_person as $item)
+                                    @foreach($inventory as $item)
                                         <li>
                                             <input type="checkbox" class="check form-check-input me-2"
                                                    name="permissions[]"

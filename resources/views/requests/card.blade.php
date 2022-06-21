@@ -133,7 +133,13 @@
                         <div class="font-text">
                             <div class="row  pb-3">
                                 <div class="col">Тип заявки:</div>
-                                <div class="col">Нет данных</div>
+                                <div class="col">
+                                    @if($request['request_type'])
+                                        {{ $request['request_type'] }}
+                                    @else
+                                        Нет данных
+                                    @endif
+                                </div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col">Статус:</div>
@@ -157,15 +163,33 @@
                             </div>
                             <div class="row  pb-3">
                                 <div class="col">Инвентарный номер:</div>
-                                <div class="col">Нет данных</div>
+                                <div class="col">
+                                    @if($request['inventory_number'])
+                                        {{ $request['inventory_number'] }}
+                                    @else
+                                        Нет данных
+                                    @endif
+                                </div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col">Серийный номер:</div>
-                                <div class="col">Нет данных</div>
+                                <div class="col">
+                                    @if($request['serial_number'])
+                                    {{ $request['serial_number'] }}
+                                    @else
+                                        Нет данных
+                                    @endif
+                                </div>
                             </div>
                             <div class="row  pb-3">
                                 <div class="col">Адрес:</div>
-                                <div class="col">{{ $request->object_address }}</div>
+                                <div class="col">
+                                    @if($request->object_address)
+                                        {{ $request->object_address }}
+                                    @else
+                                        Нет данных
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

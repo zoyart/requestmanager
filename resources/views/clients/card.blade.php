@@ -66,28 +66,28 @@
                         </div>
                         <div class="font-text">
                             <div class="row  pb-3">
-                                <div class="col-4">Название:</div>
-                                <div class="col-8">{{ $data[0]['name'] }}</div>
+                                <div class="col">Название:</div>
+                                <div class="col">{{ $data[0]['name'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Адрес:</div>
-                                <div class="col-8">{{ $data[0]['address'] }}</div>
+                                <div class="col">Адрес:</div>
+                                <div class="col">{{ $data[0]['address'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Email:</div>
-                                <div class="col-8">{{ $data[0]['email'] }}</div>
+                                <div class="col">Email:</div>
+                                <div class="col">{{ $data[0]['email'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Условия работы с клиентом:</div>
-                                <div class="col-8">{{ $data[0]['working_conditions'] }}</div>
+                                <div class="col">Условия работы с клиентом:</div>
+                                <div class="col">{{ $data[0]['working_conditions'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Дата создания:</div>
-                                <div class="col-8">{{ $data[0]['created_at'] }}</div>
+                                <div class="col">Дата создания:</div>
+                                <div class="col">{{ $data[0]['created_at'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-4">Дата обновления:</div>
-                                <div class="col-8">{{ $data[0]['updated_at'] }}</div>
+                                <div class="col">Дата обновления:</div>
+                                <div class="col">{{ $data[0]['updated_at'] }}</div>
                             </div>
                         </div>
                     </div>
@@ -160,6 +160,15 @@
                                                        class="form-control @error('password') is-invalid @enderror"
                                                        id="password_confirmation" name="password_confirmation"
                                                        placeholder="@error('password') {{ $message }} @enderror">
+                                            </div>
+                                            <div class="mb-4">
+                                                {!! NoCaptcha::renderJs() !!}
+                                                {!! NoCaptcha::display() !!}
+                                                @if ($errors->has('g-recaptcha-response'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                             <input type="text" hidden name="client_id" value="{{ $data[0]['id'] }}">
                                             <div class="modal-footer d-flex justify-content-start">

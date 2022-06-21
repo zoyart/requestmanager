@@ -105,8 +105,19 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $message)
     {
-        //
+        Message::where('request_id', $id)->find($message)->delete();
+
+        return redirect()->back();
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        Message::where('id', $id)->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back();
     }
 }

@@ -13,14 +13,14 @@
 <div class="card__buttons">
     <div class="container">
         <div class="d-flex">
-            <button type="button" class="button-sm border-0 rounded-pill y-to-d" data-bs-target="#change-status"
+            <button type="button" class="button-sm border-0 rounded-pill y-to-d" data-bs-target="#create-message"
                     data-bs-toggle="modal">
                 Добавить сообщение
             </button>
             <form action="{{ route('messages.store', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Modal create -->
-                <div class="modal fade" id="change-status" data-bs-backdrop="static" data-bs-keyboard="false"
+                <div class="modal fade" id="create-message" data-bs-backdrop="static" data-bs-keyboard="false"
                      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -59,7 +59,8 @@
     <div class="container">
         <div class="col">
             <div class="d-flex">
-                <a class="tab rounded-top font-dark text-center font-500" href="{{ route('requests.show', ['request' => $id]) }}">Карточка заявки</a>
+                <a class="tab rounded-top font-dark text-center font-500"
+                   href="{{ route('requests.show', ['request' => $id]) }}">Карточка заявки</a>
                 <a class="tab rounded-top back-light font-dark text-center font-500" href="">Согласования</a>
             </div>
         </div>
@@ -83,16 +84,84 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="py-3">{{ $item->message }}</td>
-                                            <td class="py-3">{{ $item->status }}</td>
-                                            <td class="py-3">{{ $item->author }}</td>
-                                            <td class="py-3">{{ $item->created_at }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td class="py-3">{{ $item->message }}</td>
+                                        <td class="py-3">{{ $item->status }}</td>
+                                        <td class="py-3">{{ $item->author }}</td>
+                                        <td class="py-3">{{ $item->created_at }}</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <div class="row py-3">
+                            <div class="d-flex">
+                                <button type="button" class="button-sm border-0 rounded-pill y-to-d my-2 mx-2"
+                                        data-bs-target="#change-status"
+                                        data-bs-toggle="modal">
+                                    Изменить статус
+                                </button>
+                                <form action="">
+                                    @csrf
+                                    <button type="submit" class="button-sm border-0 rounded-pill y-to-d my-2 mx-2">
+                                        Редактировать
+                                    </button>
+                                </form>
+                                <form action="{{ route('messages.destroy', ['id' => $id, 'message' => $item->id]) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="button-sm border-0 rounded-pill y-to-d my-2 mx-2">
+                                        Удалить
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                        <form action="{{ route('messages.change-status', ['id' => $item->id]) }}"
+                              method="post">
+                        @csrf
+                        @method('PUT')
+                        <!-- Modal create -->
+                            <div class="modal fade" id="change-status" data-bs-backdrop="static"
+                                 data-bs-keyboard="false"
+                                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Изменить статус
+                                                заявки</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="name my-3">
+                                                <label for="name" class="form-label">Текущий
+                                                    статус: "{{ $item->status }}"</label>
+                                            </div>
+                                            <div class="status mb-3">
+                                                <label class="form-label">Укажите новый статус: </label>
+                                                <select name="status" class="form-select">
+                                                    <option value="Новая">Новая</option>
+                                                    <option value="Не согласовано">Не согласовано</option>
+                                                    <option value="Согласовано">Согласовано</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-start">
+                                            <button type="submit"
+                                                    class="d-inline-block button-sm border-0 rounded-pill y-to-d">
+                                                Изменить
+                                            </button>
+                                            <button type="button"
+                                                    class="d-inline-block button-sm border-0 rounded-pill l-to-d"
+                                                    data-bs-dismiss="modal">Отмена
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- EndModal -->
+                        </form>
                         <div class="row">
                             @if($item->file)
                                 <div class="accordion" id="accordionExample">

@@ -61,7 +61,7 @@
                                     <div class="col-8">
                                         <select name="status" class="form-select">
                                             <option value="{{ $request['status'] }}" selected>{{ $request['status'] }}</option>
-                                            <option value="В работе">Новая</option>
+                                            <option value="Новая">Новая</option>
                                             <option value="В работе">В работе</option>
                                             <option value="Завершена">Завершена</option>
                                         </select>
@@ -148,15 +148,6 @@
                     </div>
                 </div>
             </form>
-
-            {{--        <div class="row pb-4">--}}
-            {{--            <div class="col">--}}
-            {{--                <div class="map back-white rounded-3 shadow-sm p-3">--}}
-            {{--                    <iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500.8663690719773!2d55.3817390469361!3d57.71458766493508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43e619ef30008317%3A0xefce1851e3502ca5!2z0YPQuy4g0JPQsNCz0LDRgNC40L3QsCwgNjUsINCe0YXQsNC90YHQuiwg0J_QtdGA0LzRgdC60LjQuSDQutGA0LDQuSwgNjE4MTAw!5e1!3m2!1sru!2sru!4v1650815389149!5m2!1sru!2sru" width="600" height="450" style="border: 0; display: block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">--}}
-            {{--                    </iframe>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-            {{--        </div>--}}
         </div>
     </div>
 

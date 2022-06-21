@@ -122,7 +122,6 @@ class RequestController extends Controller
     {
         $company_id = (int)Auth::user()->company_id;
         $request = \App\Models\Request::where('company_id', $company_id)->find($id);
-//        $data = \App\Models\Request::where('company_id', $company_id)->where('id', $id)->get()[0];
 
         return view('requests.edit', compact('request'));
     }
@@ -134,8 +133,13 @@ class RequestController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreReqRequest $request, $id)
     {
+        $validate = $request->validate([
+            'inventory_number' => 'numeric',
+            'serial_number' => 'numeric',
+        ]);
+
         $company_id = (int)Auth::user()->company_id;
 
         \App\Models\Request::where('company_id', $company_id)->where('id', $id)->update([
@@ -152,7 +156,7 @@ class RequestController extends Controller
             'longitude' => $request->longitude,
         ]);
 
-        return redirect()->route('requests.index');
+        return redirect()->route('requests.show', ['request' => $id]);
     }
 
     /**
@@ -163,7 +167,9 @@ class RequestController extends Controller
      */
     public function changeStatus($id, Request $request)
     {
-        \App\Models\Request::where('id', $id)->update([
+        $companyId = Auth::user()->company_id;
+
+        \App\Models\Request::where('company_id', $companyId)->where('id', $id)->update([
             'status' => $request->status,
         ]);
 

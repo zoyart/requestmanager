@@ -29,7 +29,6 @@ class StoreInventoryRequest extends FormRequest
             'count' => 'required|numeric',
             'price' => 'numeric',
             'cost_price' => 'numeric',
-
         ];
     }
 

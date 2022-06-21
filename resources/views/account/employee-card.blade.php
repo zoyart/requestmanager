@@ -64,33 +64,33 @@
                         </div>
                         <div class="font-text">
                             <div class="row  pb-3">
-                                <div class="col-3">Имя:</div>
-                                <div class="col-9">{{ $data[0]['name'] }}</div>
+                                <div class="col">Имя:</div>
+                                <div class="col">{{ $data[0]['name'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-3">Фамилия:</div>
-                                <div class="col-9">{{ $data[0]['surname'] }}</div>
+                                <div class="col">Фамилия:</div>
+                                <div class="col">{{ $data[0]['surname'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-3">Email:</div>
-                                <div class="col-9">{{ $data[0]['email'] }}</div>
+                                <div class="col">Email:</div>
+                                <div class="col">{{ $data[0]['email'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-3">Должность:</div>
-                                <div class="col-9">{{ $data[0]['position'] }}</div>
+                                <div class="col">Должность:</div>
+                                <div class="col">{{ $data[0]['position'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-3">Пароль:</div>
-                                <div class="col-9">???</div>
+                                <div class="col">Пароль:</div>
+                                <div class="col">???</div>
                                 <a class="" href="">Сменить пароль</a>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-3">Дата создания аккаунта:</div>
-                                <div class="col-9">{{ $data[0]['created_at'] }}</div>
+                                <div class="col">Дата создания аккаунта:</div>
+                                <div class="col">{{ $data[0]['created_at'] }}</div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-3">Дата последнего изменения аккаунта:</div>
-                                <div class="col-9">{{ $data[0]['updated_at'] }}</div>
+                                <div class="col">Дата последнего изменения аккаунта:</div>
+                                <div class="col">{{ $data[0]['updated_at'] }}</div>
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                                 <div class="font-500 fsize-20 pb-2">Склад</div>
                                 <hr class="dropdown-divider">
                                 <ul class="font-text">
-                                    @foreach($contact_person as $item)
+                                    @foreach($inventory as $item)
                                         <li>
                                             <input type="checkbox" class="check form-check-input me-2"
                                                    name="permissions[]" disabled
