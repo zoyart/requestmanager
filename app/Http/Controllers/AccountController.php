@@ -89,6 +89,9 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
+//        $userId = Auth::user()->id;
+//        $company = Company::find();
+
         $user = User::find($id);
         $user->delete();
 
