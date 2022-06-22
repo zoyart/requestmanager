@@ -28,6 +28,7 @@ class StoreClientRequest extends FormRequest
             'address' => 'required',
             'email' => 'required|email',
             'phone_number' => 'max:15',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 

@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="font-text">
-                            <div class="row  pb-3">
+                            <div class="row pb-3">
                                 <div class="col">Название:</div>
                                 <div class="col">{{ $data[0]['name'] }}</div>
                             </div>

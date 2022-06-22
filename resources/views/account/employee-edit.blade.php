@@ -26,36 +26,25 @@
                         </div>
                         <div class="font-text">
                             <div class="row  pb-3">
-                                <div class="col-3">Имя:</div>
-                                <div class="col-9">
+                                <div class="">Имя:</div>
+                                <div class="">
                                     <input type="text" class="form-control" id="name" name="name"
                                            value="{{ $data[0]['name'] }}">
                                 </div>
                             </div>
                             <div class="row  pb-3">
-                                <div class="col-3">Фамилия:</div>
-                                <div class="col-9">
+                                <div class="">Фамилия:</div>
+                                <div class="">
                                     <input type="text" class="form-control" id="surname" name="surname"
                                            value="{{ $data[0]['surname'] }}">
                                 </div>
                             </div>
-                            {{--                                <div class="row  pb-3">--}}
-                            {{--                                    <div class="col-3">Email:</div>--}}
-                            {{--                                    <div class="col-9">--}}
-                            {{--                                        <input type="text" class="form-control" id="email" name="email"--}}
-                            {{--                                               value="{{ $data[0]['email'] }}">--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
                             <div class="row  pb-3">
-                                <div class="col-3">Должность:</div>
-                                <div class="col-9">
+                                <div class="">Должность:</div>
+                                <div class="">
                                     <input name="position" class="form-control" type="text" id="position"
                                            value="{{ $data[0]['position'] }}">
                                 </div>
-                            </div>
-                            <div class="row  pb-3">
-                                <div class="col-3">Пароль:</div>
-                                <div class="col-9">???</div>
                             </div>
                         </div>
                     </div>

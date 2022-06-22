@@ -101,7 +101,7 @@
                                         data-bs-toggle="modal">
                                     Изменить статус
                                 </button>
-                                <form action="">
+                                <form action="{{ route('messages.edit', ['id' => $id, 'message' => $item->id]) }}">
                                     @csrf
                                     <button type="submit" class="button-sm border-0 rounded-pill y-to-d my-2 mx-2">
                                         Редактировать

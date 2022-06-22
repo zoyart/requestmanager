@@ -45,7 +45,8 @@ class EmployeeController extends Controller
             'surname' => 'required',
             'position' => 'required',
             'email' => 'required|email|unique:users|unique:companies',
-            'password' => 'required|confirmed|min:8|max:45'
+            'password' => 'required|confirmed|min:8|max:45',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         $user = User::create([

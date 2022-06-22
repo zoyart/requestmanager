@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MessageController extends Controller
 {
@@ -82,9 +83,11 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $message)
     {
-        //
+        $data = Message::where('request_id', $id)->find($message);
+
+        return view('messages.edit', compact('data', 'id'));
     }
 
     /**
@@ -94,9 +97,27 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $message)
     {
-        //
+        $request->validate([
+            'message' => 'required',
+            'file' => 'nullable|image',
+        ]);
+
+        $author = Auth::user()->name;
+//        if ($request->hasFile('file')) {
+//            $folder = date('Y-m-d');
+//            $file = $request->file('file')->store("images/{$folder}", 'public');
+//        }
+        Message::where('request_id', $id)->find($message)->update([
+            'request_id' => $id,
+            'message' => $request->message,
+            'author' => $author,
+//            'file' => $file ?? null,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('requests.show', ['request' => $id]);
     }
 
     /**
@@ -107,7 +128,10 @@ class MessageController extends Controller
      */
     public function destroy($id, $message)
     {
-        Message::where('request_id', $id)->find($message)->delete();
+        $message = Message::where('request_id', $id)->find($message);
+        $filePath = $message->file;
+        Storage::disk('public')->delete($filePath);
+        $message->delete();
 
         return redirect()->back();
     }
