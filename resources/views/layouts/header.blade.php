@@ -24,6 +24,7 @@
                 <li class="nav-item me-2">
                     <a class="nav-link link-on-dark" href="{{ route('requests.create') }}">Создать заявку</a>
                 </li>
+                @if(\Illuminate\Support\Facades\Auth::user()->user_status !== 'client')
                 <div class="dropdown nav-item me-2">
                     <a class="nav-link link-on-dark" href="#" role="button" id="dropdownMenuLink"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,6 +48,7 @@
                         </li>
                     </ul>
                 </div>
+                @endif
                 <li class="nav-item me-2">
                     <a class="nav-link link-on-dark"
                        href="{{ route('account.show', ['account' => \Illuminate\Support\Facades\Auth::user()->id]) }}">Аккаунт</a>

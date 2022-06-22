@@ -23,8 +23,8 @@ class UserController extends Controller
 
     public function store(StoreRegistrationRequest $request)
     {
-        $validate = Validator::make(Input::all(), [
-        ]);
+//        $validate = Validator::make(Input::all(), [
+//        ]);
 
         $company = Company::create([
             'name' => $request->companyName,
